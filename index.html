@@ -1,17 +1,125 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel='stylesheet' href='./resources/css/styles.css' />
-    </head>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yongjip Kim</title>
 
-    <body>
-        <header>header</header>
-        <section>
-            <p>Hello world!</p>
-        </section>
-    </body>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b1020;
+      color: #e8ecf3;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+    h1 { font-size: 40px; }
+    h2 { margin-top: 50px; }
+    p { color: #aeb7c6; }
 
-    <footer>
+    .btn {
+      border: 1px solid #333;
+      padding: 6px 12px;
+      margin-right: 8px;
+      cursor: pointer;
+      display: inline-block;
+    }
 
-    </footer>
+    .hidden { display: none; }
+
+    .card {
+      background: #121931;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .mermaid {
+      margin-top: 20px;
+    }
+  </style>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- Language Toggle -->
+  <div>
+    <span class="btn" onclick="setLang('en')">EN</span>
+    <span class="btn" onclick="setLang('kr')">KR</span>
+  </div>
+
+  <!-- HERO -->
+  <div id="en">
+    <h1>I use AI to turn data problems into simple, scalable systems.</h1>
+    <p>I build data platforms, APIs, and decision systems that power real business operations.</p>
+  </div>
+
+  <div id="kr" class="hidden">
+    <h1>AI를 활용해 데이터 문제를 단순하고 확장 가능한 시스템으로 만듭니다.</h1>
+    <p>데이터 플랫폼, API, 의사결정 시스템을 만들어 실제 비즈니스 운영을 지원합니다.</p>
+  </div>
+
+  <!-- PROJECT -->
+  <h2>Selected Work</h2>
+
+  <div class="card">
+    <div id="en-project">
+      <h3>AI-Powered Text-to-SQL System</h3>
+      <p>Reduced ad-hoc analysis time from hours to under one hour.</p>
+    </div>
+
+    <div id="kr-project" class="hidden">
+      <h3>AI 기반 Text-to-SQL 시스템</h3>
+      <p>애드혹 분석 시간을 수 시간에서 1시간 이하로 단축.</p>
+    </div>
+
+    <div class="mermaid">
+flowchart TD
+A[Question] --> B[Metadata]
+B --> C[AI]
+C --> D[SQL]
+D --> E[Result]
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="card">
+    <div id="en-about">
+      <h3>About</h3>
+      <p>I build end-to-end systems using AI, from data pipelines to internal tools.</p>
+    </div>
+
+    <div id="kr-about" class="hidden">
+      <h3>소개</h3>
+      <p>AI를 활용하여 데이터 파이프라인부터 내부 도구까지 end-to-end 시스템을 구축합니다.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.getElementById('en').classList.toggle('hidden', lang !== 'en');
+  document.getElementById('kr').classList.toggle('hidden', lang !== 'kr');
+
+  document.getElementById('en-project').classList.toggle('hidden', lang !== 'en');
+  document.getElementById('kr-project').classList.toggle('hidden', lang !== 'kr');
+
+  document.getElementById('en-about').classList.toggle('hidden', lang !== 'en');
+  document.getElementById('kr-about').classList.toggle('hidden', lang !== 'kr');
+}
+</script>
+
+</body>
 </html>
