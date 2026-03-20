@@ -196,34 +196,28 @@
 
       <div class="mermaid">
 flowchart TD
+    A[User Question] --> B[Domain and Table Selection]
 
-A[User Question] --> B[Domain / Table Selection]
+    B --> C[Structured Knowledge Layer]
+    C --> C1[Table Definitions]
+    C --> C2[Column Semantics]
+    C --> C3[Join Patterns]
+    C --> C4[Business Terms]
 
-B --> C[Structured Knowledge Layer]
-C --> C1[Table Definitions]
-C --> C2[Column Semantics]
-C --> C3[Join Patterns]
-C --> C4[Business Terms]
+    C --> D[AI Agent: Codex, Claude, Gemini]
+    D --> E[SQL Query Generation]
+    E --> F[Run Query in Athena]
 
-C --> D[AI Agent (Codex / Claude / Gemini)]
+    F --> G{Execution OK?}
+    G -- No --> D
+    G -- Yes --> H[Result QA and Data Validation]
 
-D --> E[SQL Query Generation]
+    H --> I{Quality Check Passed?}
+    I -- No --> D
+    I -- Yes --> J[Deliver to Human]
 
-E --> F[Run Query in Athena]
-
-F --> G{Syntax / Execution OK?}
-
-G -- No --> D
-G -- Yes --> H[Result QA / Data Validation]
-
-H --> I{Quality Check Passed?}
-
-I -- No --> D
-I -- Yes --> J[Deliver to Human]
-
-J --> K[Use Result / Update Knowledge if Needed]
-
-K --> C
+    J --> K[Use Result and Update Knowledge]
+    K --> C
       </div>
 
       <p class="meta">
