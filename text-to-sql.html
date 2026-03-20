@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-Powered Text-to-SQL System | Yongjip Kim</title>
+  <meta name="description" content="Building an AI-powered Text-to-SQL system to scale data access." />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121931;
+      --text: #e8ecf3;
+      --muted: #aeb7c6;
+      --accent: #7cc4ff;
+      --border: #26304d;
+      --maxw: 860px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 28px;
+      color: var(--muted);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-top: 52px;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .lead {
+      font-size: 20px;
+      color: var(--text);
+      max-width: 760px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .highlight {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .mermaid {
+      margin-top: 18px;
+      overflow-x: auto;
+    }
+
+    .quote {
+      border-left: 3px solid var(--accent);
+      padding-left: 14px;
+      color: var(--text);
+      margin: 18px 0;
+    }
+  </style>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="./index.html">← Back to home</a>
+
+    <h1>Building an AI-Powered Text-to-SQL System to Scale Data Access</h1>
+    <p class="lead">
+      I turned repeated data research into a reusable knowledge system for AI,
+      reducing ad-hoc analysis time from hours to under one hour.
+    </p>
+
+    <div class="card">
+      <h2>Context</h2>
+      <p>
+        In our data team, ad-hoc requests were a recurring bottleneck.
+        Simple requests could be answered quickly, but more complex questions often required
+        4–10 hours of research and query writing.
+      </p>
+      <p>
+        The hardest part was usually not writing SQL itself. Most of the time went into understanding
+        which tables to use, how to join them correctly, what each column meant, and how business logic
+        should be reflected in the query.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Problem</h2>
+      <p>
+        To answer a single question, analysts often had to:
+      </p>
+      <ul>
+        <li>identify relevant tables across the data lake</li>
+        <li>understand column semantics and data relationships</li>
+        <li>figure out reliable join patterns</li>
+        <li>apply business-specific definitions correctly</li>
+      </ul>
+      <p>
+        This process was repetitive, time-consuming, and hard to scale.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Idea</h2>
+      <p>
+        Instead of trying to make humans write SQL faster, I focused on making the knowledge behind
+        query writing reusable and accessible to AI.
+      </p>
+      <div class="quote">
+        The key is not just the model. It is how the problem is structured.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Solution</h2>
+      <p>
+        I built a Text-to-SQL system powered by AI coding agents such as Codex, Claude Code, and Gemini.
+      </p>
+      <p>
+        The core of the system is a structured knowledge layer that captures how analysts actually explore data:
+      </p>
+      <ul>
+        <li>table definitions</li>
+        <li>column meanings</li>
+        <li>partition and key information</li>
+        <li>common join patterns</li>
+        <li>business terminology mappings</li>
+      </ul>
+      <p>
+        This metadata was stored in YAML so AI agents could use it as context when generating queries.
+      </p>
+      <p>
+        To reduce context size and improve efficiency, I grouped tables by domain and used index files
+        to narrow down the relevant metadata before passing it to the model.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>System Flow</h2>
+
+      <div class="mermaid">
+flowchart TD
+
+A[User Question] --> B[Domain / Table Selection]
+
+B --> C[Structured Knowledge Layer]
+C --> C1[Table Definitions]
+C --> C2[Column Semantics]
+C --> C3[Join Patterns]
+C --> C4[Business Terms]
+
+C --> D[AI Agent (Codex / Claude / Gemini)]
+
+D --> E[SQL Query Generation]
+
+E --> F[Run Query in Athena]
+
+F --> G{Syntax / Execution OK?}
+
+G -- No --> D
+G -- Yes --> H[Result QA / Data Validation]
+
+H --> I{Quality Check Passed?}
+
+I -- No --> D
+I -- Yes --> J[Deliver to Human]
+
+J --> K[Use Result / Update Knowledge if Needed]
+
+K --> C
+      </div>
+
+      <p class="meta">
+        The system does not stop at SQL generation. It executes, checks, and iterates until the output is reliable enough for human review.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Workflow</h2>
+      <ol>
+        <li>A user asks a question.</li>
+        <li>The system identifies relevant domains and tables.</li>
+        <li>Structured metadata is retrieved.</li>
+        <li>An AI agent generates SQL.</li>
+        <li>The query is executed in Athena.</li>
+        <li>If there is a syntax or execution issue, the query is revised.</li>
+        <li>Results go through QA and data validation.</li>
+        <li>Once the output looks reliable, it is delivered to a human.</li>
+        <li>New learnings are added back into the knowledge layer.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Impact</h2>
+      <ul>
+        <li><span class="highlight">Reduced ad-hoc query time</span> from 4–10 hours to under 1 hour</li>
+        <li><span class="highlight">Increased monthly query capacity</span> from around 20 to 50+</li>
+        <li><span class="highlight">Shifted human effort</span> from manual query writing to validation and decision-making</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>What I Learned</h2>
+      <ul>
+        <li>Most of the difficulty in data work comes from understanding, not computation.</li>
+        <li>Structuring knowledge is more scalable than repeating research manually.</li>
+        <li>Simple systems, when designed well, can outperform more complex solutions.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
