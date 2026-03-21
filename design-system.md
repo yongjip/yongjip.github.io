@@ -83,6 +83,53 @@ Project links do not appear in the global header. Project discovery happens insi
 
 This keeps the global navigation stable while letting the content carry the browsing flow.
 
+## URL Strategy
+
+The English home page has one canonical URL:
+
+- `https://yongjip.github.io/`
+
+That root URL is the source of truth for:
+
+- the English home canonical URL
+- the English home `og:url`
+- brand links that return to the English home
+- English `Back to home` links
+- the English language switch from the Korean home page
+
+The Korean home page remains a distinct page:
+
+- `https://yongjip.github.io/index-ko.html`
+
+This avoids splitting the English home between `/` and `/index.html`.
+
+## Project Naming
+
+Projects may use two levels of naming when a full page title is too long for compact contexts.
+
+For the warehouse project:
+
+- short display title: `Graph-Based Warehouse Optimization and Simulation`
+- full page title: `Building a Graph-Based Warehouse Optimization and Simulation Workflow`
+
+Korean uses:
+
+- short display title: `창고 그래프 기반 최적화 및 시뮬레이션`
+- page title: `창고 그래프 기반 최적화 및 시뮬레이션`
+
+Use the short display title in compact contexts such as:
+
+- home work cards
+- related work links
+- other list-based navigation
+
+Use the full page title in page-level contexts such as:
+
+- page `<title>`
+- `og:title`
+- `twitter:title`
+- the page `h1` when the longer title is part of the case framing
+
 ## Article Header Pattern
 
 Case and method pages share the same article-header pattern.
@@ -226,6 +273,19 @@ Examples:
 - `View GitHub profile`
 
 Profile links open in a new tab.
+
+## Footer Roles
+
+The home footer should stay minimal.
+
+It should work as a quiet closing note rather than a second navigation bar. For that reason,
+the home page should not repeat LinkedIn and GitHub profile links that already appear in the header.
+
+Detail-page footers may still include utility links such as:
+
+- home
+- LinkedIn profile
+- GitHub profile
 
 ## Bilingual Structure
 
