@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>창고 최적화 및 시뮬레이션 | 김용집</title>
+  <title>창고 그래프 기반 최적화 및 시뮬레이션 | 김용집</title>
   <meta
     name="description"
     content="창고 그래프 구성 도구와 단순화된 시뮬레이션으로 재고 배치와 이동거리 영향을 분석한 케이스 스터디입니다."
   />
-  <meta property="og:title" content="창고 최적화 및 시뮬레이션" />
+  <meta property="og:title" content="창고 그래프 기반 최적화 및 시뮬레이션" />
   <meta
     property="og:description"
     content="창고 그래프 구성 도구와 단순화된 시뮬레이션 모델을 통해 재고 배치와 이동거리 영향을 분석한 케이스 스터디입니다."
@@ -19,7 +19,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="창고 최적화 및 시뮬레이션" />
+  <meta name="twitter:title" content="창고 그래프 기반 최적화 및 시뮬레이션" />
   <meta
     name="twitter:description"
     content="창고 그래프 구성 도구와 단순화된 시뮬레이션 모델을 통해 재고 배치와 이동거리 영향을 분석한 케이스 스터디입니다."
@@ -57,9 +57,8 @@
       <a class="brand" href="./index-ko.html">Yongjip Kim</a>
       <div class="header-actions">
         <nav class="top-nav" aria-label="Primary">
-          <a href="./index-ko.html">홈</a>
-          <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
-          <a href="https://github.com/yongjip">GitHub</a>
+          <a href="https://www.linkedin.com/in/yongjip/" target="_blank" rel="noopener noreferrer">LinkedIn 프로필</a>
+          <a href="https://github.com/yongjip" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>
         </nav>
         <nav class="lang-switch" aria-label="Language">
           <a href="./warehouse-optimization.html" lang="en">EN</a>
@@ -70,17 +69,23 @@
 
     <a class="back-link" href="./index-ko.html">홈으로 돌아가기</a>
 
-    <section class="hero hero-detail">
+    <section class="article-header">
       <p class="eyebrow">케이스 스터디</p>
-      <h1>그래프 기반 창고 최적화 및 시뮬레이션 워크플로우 구축</h1>
-      <p class="hero-copy">
+      <h1>창고 그래프 기반 최적화 및 시뮬레이션</h1>
+      <p class="article-summary">
         창고 그래프를 만드는 도구와 단순화된 시뮬레이션 모델을 구축했고,
         현재는 이를 더 현실적인 운영 분석으로 확장하는 작업을 이어가고 있습니다.
       </p>
-      <p class="hero-deck">
-        현재 시스템은 완성형 최적화 엔진이 아니라, 사용 가능한 그래프 모델과 방향성을 보여주는
-        단순화된 시뮬레이션을 결합한 1차 시스템입니다.
-      </p>
+      <div class="article-facts">
+        <article class="article-fact">
+          <p class="article-fact-label">범위</p>
+          <p>창고 그래프 구성 도구와 재고 재배치 효과를 보는 단순화된 시뮬레이션.</p>
+        </article>
+        <article class="article-fact">
+          <p class="article-fact-label">상태</p>
+          <p>방향성 분석에 쓸 수 있는 1차 시스템이지만, 완성된 최적화 엔진은 아닙니다.</p>
+        </article>
+      </div>
     </section>
 
     <section class="detail-section">
@@ -119,7 +124,7 @@
       <p class="detail-intro">
         그래프를 먼저 제대로 만들어야 그 위에서 경로 계산과 시뮬레이션이 의미를 갖게 됩니다.
       </p>
-      <div class="detail-columns">
+      <div class="detail-stack">
         <article class="detail-item">
           <h3>노드 그룹화</h3>
           <p>
@@ -176,7 +181,7 @@ flowchart TD
     <section class="detail-section">
       <p class="section-label">시뮬레이션</p>
       <h2>재고 재배치 아이디어를 빠르게 시험하기 위한 단순화된 모델</h2>
-      <div class="detail-columns">
+      <div class="detail-stack">
         <article class="detail-item">
           <h3>규칙 기반 등급화</h3>
           <p>
@@ -202,7 +207,7 @@ flowchart TD
     </section>
 
     <section class="detail-section">
-      <p class="section-label">결과와 한계</p>
+      <p class="section-label">결과</p>
       <h2>숫자는 최종 답이 아니라 방향성 있는 신호로 봐야 합니다.</h2>
       <div class="metric-grid">
         <article class="metric-item">
@@ -228,7 +233,7 @@ flowchart TD
     <section class="detail-section">
       <p class="section-label">배운 점</p>
       <h2>중요한 것은 숫자 자체보다 설명 가능한 구조입니다.</h2>
-      <div class="detail-columns">
+      <div class="detail-stack">
         <article class="detail-item">
           <h3>유의미한 신호</h3>
           <p>
@@ -274,8 +279,8 @@ flowchart TD
       <p>다른 케이스 스터디, 방법론, 프로필 링크.</p>
       <div class="footer-links">
         <a href="./index-ko.html">홈</a>
-        <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
-        <a href="https://github.com/yongjip">GitHub</a>
+        <a href="https://www.linkedin.com/in/yongjip/" target="_blank" rel="noopener noreferrer">LinkedIn 프로필 보기</a>
+        <a href="https://github.com/yongjip" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기</a>
       </div>
     </footer>
   </main>
