@@ -4,8 +4,8 @@ Portfolio site for Yongjip Kim.
 
 This repository hosts a simple static site focused on:
 
-- personal positioning around data platforms, decision systems, and AI-assisted internal tools
-- project writeups, starting with the Text-to-SQL case study
+- personal positioning around data platforms, analytics workflows, and AI-assisted internal tools
+- project writeups and method notes
 - a lightweight GitHub Pages setup that can be iterated quickly without a framework
 
 Current pages:
@@ -16,8 +16,9 @@ Current pages:
 - `text-to-sql-ko.html`: Korean version of the Text-to-SQL case study
 - `warehouse-optimization.html`: warehouse graph and simulation case study
 - `warehouse-optimization-ko.html`: Korean version of the warehouse case study
+- `seasonality-index.html`: method note on product-level seasonality and planning logic
+- `seasonality-index-ko.html`: Korean version of the seasonality method note
 
-Supporting documents:
+Site guidance:
 
-- `career_presence_handoff.md`: working source of truth for the brand and content direction
-- `linkedin-profile-copy.md`: LinkedIn-ready headline, About, Featured, and experience copy
+- `design-system.md`: page templates, design rules, navigation rules, and copy guidelines for keeping the site consistent
