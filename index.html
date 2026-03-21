@@ -34,12 +34,9 @@
   />
   <link rel="stylesheet" href="./resources/css/styles.css" />
 </head>
-<body>
-  <div class="page-glow page-glow-left"></div>
-  <div class="page-glow page-glow-right"></div>
-
-  <main class="site-shell">
-    <header class="site-header">
+<body class="home-page">
+  <main class="site-shell site-shell-home">
+    <header class="site-header site-header-home">
       <a class="brand" href="./index.html">Yongjip Kim</a>
       <div class="header-actions">
         <nav class="top-nav" aria-label="Primary">
@@ -54,202 +51,136 @@
       </div>
     </header>
 
-    <section class="hero">
+    <section class="hero hero-home">
       <p class="eyebrow">Director, Data Platform at Techtaka</p>
       <h1>I use AI to turn data problems into simple, scalable systems.</h1>
       <p class="hero-copy">
-        I build data platforms, APIs, and internal systems that power real business
-        operations. My focus is practical execution: using AI coding agents to turn
-        ambiguous data questions into internal products, repeatable workflows, and
-        tools that help teams make decisions faster.
+        I build data platforms, analytics workflows, and practical internal systems for
+        real business operations. My work combines data engineering, analytics, and
+        AI-assisted development to make ambiguous problems easier to structure and ship.
+      </p>
+      <p class="hero-note">
+        I prefer simple systems that are easy to explain, maintain, and improve.
       </p>
       <div class="action-row">
-        <a class="button button-primary" href="./text-to-sql.html">View case study</a>
+        <a class="button button-primary" href="./text-to-sql.html">Text-to-SQL</a>
         <a class="button button-secondary" href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
-        <a class="button button-secondary" href="https://github.com/yongjip">GitHub profile</a>
+        <a class="button button-secondary" href="https://github.com/yongjip">GitHub</a>
       </div>
     </section>
 
-    <section class="section-grid">
-      <article class="panel">
-        <p class="section-label">About</p>
-        <h2>I work across data engineering, analytics, and product.</h2>
-        <p>
-          My core background is in data systems, but AI coding agents have expanded how
-          I ship. I use them to build lightweight services and internal tools when a
-          business problem needs an end-to-end solution, not just a dashboard or a
-          pipeline.
-        </p>
-        <ul class="detail-list">
-          <li>Built and operated 100+ mart tables and 50+ dashboards in a lean team</li>
-          <li>Prefer serverless systems with Athena, Lambda, Glue, EMR Serverless, and DynamoDB</li>
-          <li>Focus on systems that reduce manual analysis and improve decision speed</li>
-        </ul>
-      </article>
-
-      <article class="panel panel-accent">
-        <p class="section-label">Philosophy</p>
-        <h2>Simple systems win more often than complicated ones.</h2>
-        <p>
-          Most high-impact data problems do not need a grand platform rewrite. They need
-          a clean structure, reliable validation, and a workflow that people can actually
-          maintain. I prefer systems that are easy to iterate on, easy to explain, and
-          strong enough to support real operations.
-        </p>
-        <p class="callout">
-          Complex problems can often be solved with well-designed simple systems.
-        </p>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
+    <section class="section section-work">
+      <div class="section-heading section-heading-home">
         <p class="section-label">Selected Work</p>
-        <h2>Projects built around operating leverage</h2>
+        <h2>Projects and methods that support real operations</h2>
       </div>
 
-      <div class="card-grid">
+      <div class="work-grid">
         <article class="work-card work-card-featured">
-          <div class="work-card-top">
-            <span class="pill">Detailed case study</span>
-            <span class="metric">4 to 10 hours to under 1 hour</span>
-          </div>
+          <p class="work-kicker">Case study</p>
           <h3>AI-Powered Text-to-SQL System</h3>
           <p>
-            Turned repeated data research into a structured knowledge layer for AI agents,
-            so ad-hoc analysis moved from one-off effort to a repeatable workflow with
-            execution and QA built in.
+            Structured metadata and AI agents turned repeated data research into a reusable
+            workflow for ad-hoc analytics.
           </p>
-          <a class="text-link" href="./text-to-sql.html">Read the project story</a>
+          <p class="work-meta">Outcome: 4-10 hours to under 1 hour</p>
+          <a class="text-link" href="./text-to-sql.html">Read the case study</a>
         </article>
 
-        <article class="work-card">
-          <div class="work-card-top">
-            <span class="pill">Platform operations</span>
-            <span class="metric">2-person team</span>
-          </div>
-          <h3>Data Platform at Techtaka</h3>
-          <p>
-            Built and operated mart tables, data lake synchronization, QA workflows, and
-            stakeholder dashboards in a small team that needed high ownership and fast
-            delivery.
-          </p>
-        </article>
-
-        <article class="work-card">
-          <div class="work-card-top">
-            <span class="pill">Modeling and simulation</span>
-            <span class="metric">Graph workflow</span>
-          </div>
+        <article class="work-card work-card-plain">
+          <p class="work-kicker">Case study</p>
           <h3>Warehouse Optimization and Simulation</h3>
           <p>
-            Built a graph construction tool and a simplified simulation model to test how
-            inventory placement changes could reduce picker travel distance, then continued
-            extending the workflow toward more realistic warehouse analysis.
+            Built a graph construction tool and simplified simulation model for evaluating
+            inventory placement and picker travel distance.
           </p>
+          <p class="work-meta">Status: built and still extending</p>
           <a class="text-link" href="./warehouse-optimization.html">Read the case study</a>
         </article>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">Experience Themes</p>
-        <h2>How I frame the work</h2>
-      </div>
-
-      <div class="theme-grid">
-        <article class="theme-card">
-          <h3>Data Platform</h3>
-          <p>
-            Operated data infrastructure on top of a data lake, maintained marts, and
-            built a reliable foundation for analytics and operational reporting.
-          </p>
-        </article>
-
-        <article class="theme-card">
-          <h3>Internal Data Products</h3>
-          <p>
-            Built dashboards, APIs, and lightweight internal services that made data
-            easier to access and use across teams without overengineering the stack.
-          </p>
-        </article>
-
-        <article class="theme-card">
-          <h3>Decision Support</h3>
-          <p>
-            Focused on workflows that shorten the path from question to action, including
-            AI-assisted query generation, validation loops, and operational decision support.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">Experience</p>
-        <h2>Recent roles</h2>
-      </div>
-
-      <div class="theme-grid">
-        <article class="theme-card">
-          <h3>Techtaka</h3>
-          <p>
-            Director, Data Platform. Built and operated a data platform on top of a data
-            lake, supported analytics and internal products in a 2-person team, and used
-            AI-assisted development to extend the platform into practical internal systems.
-          </p>
-        </article>
-
-        <article class="theme-card">
-          <h3>Coupang</h3>
-          <p>
-            Led business intelligence for PB Fresh, focusing on inventory, operations, and
-            decision support. Built data pipelines, reporting workflows, and planning logic
-            that reduced stranded inventory and improved instock performance.
-          </p>
-        </article>
-
-        <article class="theme-card">
-          <h3>Earlier foundation</h3>
-          <p>
-            Started in analytics and data tooling roles at Comscore and Wharton, working
-            with large-scale data processing, data quality, automation, and applied
-            analytical research.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">Methods</p>
-        <h2>Applied notes</h2>
-      </div>
-
-      <div class="theme-grid">
-        <article class="theme-card">
+        <article class="work-card work-card-plain">
+          <p class="work-kicker">Method</p>
           <h3>Seasonality Index for Inventory Planning</h3>
           <p>
-            A short note on estimating product-level seasonality and mapping it back to
-            category-level planning logic for inventory decisions.
+            A practical method for estimating product-level seasonality and connecting it
+            back to category-level planning logic.
           </p>
+          <p class="work-meta">Format: short method note</p>
           <a class="text-link" href="./seasonality-index.html">Read the method note</a>
         </article>
       </div>
     </section>
 
-    <section class="closing-panel">
-      <div>
-        <p class="section-label">Next Step</p>
-        <h2>Start with the Text-to-SQL case study.</h2>
-        <p>
-          It is the clearest example of how I use AI to extend data work into practical
-          internal systems while keeping the solution grounded and maintainable.
-        </p>
+    <section class="section section-list">
+      <div class="section-heading section-heading-home">
+        <p class="section-label">Experience</p>
+        <h2>Recent roles</h2>
       </div>
-      <a class="button button-primary" href="./text-to-sql.html">Open case study</a>
+
+      <div class="brief-list">
+        <article class="brief-item">
+          <h3>Techtaka</h3>
+          <p class="brief-role">Director, Data Platform</p>
+          <p>
+            Built and operated a data platform on top of a data lake in a 2-person team,
+            while supporting analytics and internal products.
+          </p>
+          <p>
+            Used AI-assisted development to extend the platform into practical internal
+            systems, including Text-to-SQL and other decision-support workflows.
+          </p>
+        </article>
+
+        <article class="brief-item">
+          <h3>Coupang</h3>
+          <p class="brief-role">Business Intelligence, PB Fresh</p>
+          <p>
+            Led business intelligence work around inventory, operations, and planning for PB Fresh.
+          </p>
+          <p>
+            Built data pipelines, reporting workflows, and planning logic that reduced
+            stranded inventory and improved instock performance.
+          </p>
+        </article>
+
+        <article class="brief-item">
+          <h3>Earlier foundation</h3>
+          <p class="brief-role">Comscore, Wharton</p>
+          <p>
+            Started in analytics and data tooling roles focused on large-scale data
+            processing, data quality, automation, and applied analytical research.
+          </p>
+        </article>
+      </div>
     </section>
+
+    <section class="section section-list section-methods">
+      <div class="section-heading section-heading-home">
+        <p class="section-label">Methods</p>
+        <h2>Applied notes</h2>
+      </div>
+
+      <p class="section-intro">
+        Short notes on practical models and methods I have used in analytics and operations work.
+      </p>
+
+      <div class="method-list">
+        <article class="method-item">
+          <a class="method-link" href="./seasonality-index.html">Seasonality Index for Inventory Planning</a>
+          <p>
+            Estimating product-level seasonality and mapping it back to category-level planning logic.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Text-to-SQL, warehouse modeling, and operational methods.</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
+        <a href="https://github.com/yongjip">GitHub</a>
+      </div>
+    </footer>
   </main>
 </body>
 </html>

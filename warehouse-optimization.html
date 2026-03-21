@@ -51,16 +51,14 @@
     });
   </script>
 </head>
-<body>
-  <div class="page-glow page-glow-left"></div>
-  <div class="page-glow page-glow-right"></div>
-
-  <main class="site-shell site-shell-narrow">
-    <header class="site-header">
+<body class="detail-page">
+  <main class="site-shell site-shell-detail">
+    <header class="site-header site-header-detail">
       <a class="brand" href="./index.html">Yongjip Kim</a>
       <div class="header-actions">
         <nav class="top-nav" aria-label="Primary">
           <a href="./index.html">Home</a>
+          <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
           <a href="https://github.com/yongjip">GitHub</a>
         </nav>
         <nav class="lang-switch" aria-label="Language">
@@ -72,7 +70,7 @@
 
     <a class="back-link" href="./index.html">Back to home</a>
 
-    <section class="hero hero-compact">
+    <section class="hero hero-detail">
       <p class="eyebrow">Case study</p>
       <h1>Building a Graph-Based Warehouse Optimization and Simulation Workflow</h1>
       <p class="hero-copy">
@@ -80,46 +78,52 @@
         evaluate how inventory placement changes could reduce picker travel distance, and I
         am continuing to extend the system toward more realistic operational analysis.
       </p>
+      <p class="hero-deck">
+        The current system is not a finished optimization engine. It is a usable graph model
+        plus a simplified simulation that helps explain placement decisions in a structured way.
+      </p>
     </section>
 
-    <section class="story-grid">
-      <article class="panel">
-        <p class="section-label">Starting Point</p>
-        <h2>The warehouse had node data, but not a usable graph.</h2>
-        <p>
-          We had storage node information such as coordinates, but no practical graph that
-          represented how workers could actually move through the warehouse. That made it
-          difficult to reason about layout, access, and inventory placement in a structured
-          way.
-        </p>
-        <p>
-          The immediate problem was not optimization yet. It was building the path-aware
-          model needed before any meaningful simulation or routing analysis could happen.
-        </p>
-      </article>
+    <section class="detail-section">
+      <p class="section-label">Overview</p>
+      <h2>The warehouse had node data, but not a usable graph.</h2>
+      <div class="detail-columns">
+        <article class="detail-item">
+          <h3>Starting point</h3>
+          <p>
+            We had storage node information such as coordinates, but no practical graph that
+            represented how workers could actually move through the warehouse. That made it
+            difficult to reason about layout, access, and inventory placement in a structured way.
+          </p>
+          <p>
+            The immediate problem was not optimization yet. It was building the path-aware
+            model needed before any meaningful simulation or routing analysis could happen.
+          </p>
+        </article>
 
-      <article class="panel panel-accent">
-        <p class="section-label">Current Scope</p>
-        <h2>This is a graph construction tool plus a simplified simulation.</h2>
-        <p>
-          I am not presenting this as a finished warehouse optimization engine. The current
-          system has two parts: a tool for constructing the warehouse graph, and a
-          simplified simulation model for estimating the impact of inventory reallocation.
-        </p>
-        <p class="callout">
-          The goal is directional decision support, not a perfect digital twin.
-        </p>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">Graph Construction</p>
-        <h2>Turn storage nodes and walkable paths into an analyzable warehouse graph</h2>
+        <article class="detail-item">
+          <h3>Current scope</h3>
+          <p>
+            I am not presenting this as a finished warehouse optimization engine. The current
+            system has two parts: a tool for constructing the warehouse graph, and a
+            simplified simulation model for estimating the impact of inventory reallocation.
+          </p>
+          <p>
+            The goal is directional decision support, not a perfect digital twin.
+          </p>
+        </article>
       </div>
+    </section>
 
-      <div class="feature-grid">
-        <article class="feature-card">
+    <section class="detail-section">
+      <p class="section-label">Graph construction</p>
+      <h2>Turn storage nodes and walkable paths into an analyzable warehouse graph.</h2>
+      <p class="detail-intro">
+        The graph comes first. Once movement is represented cleanly, routing and simulation
+        become possible on top of it.
+      </p>
+      <div class="detail-columns">
+        <article class="detail-item">
           <h3>Node grouping</h3>
           <p>
             Storage nodes are grouped first. The current approach uses Manhattan distance to
@@ -127,7 +131,7 @@
           </p>
         </article>
 
-        <article class="feature-card">
+        <article class="detail-item">
           <h3>Access points</h3>
           <p>
             Each group is assigned one or more access points so the graph can represent how
@@ -135,20 +139,30 @@
           </p>
         </article>
 
-        <article class="feature-card">
+        <article class="detail-item">
           <h3>Path-based connections</h3>
           <p>
             Users draw walkable paths, and the tool automatically connects nearby access
             points to those paths to generate a usable graph structure.
           </p>
         </article>
+
+        <article class="detail-item">
+          <h3>Why grouping matters</h3>
+          <p>
+            Running shortest-path calculations directly across every storage node would be
+            expensive. Grouping reduces graph complexity so later routing and simulation work
+            remains tractable.
+          </p>
+        </article>
       </div>
     </section>
 
-    <section class="panel">
+    <section class="detail-section">
       <p class="section-label">Flow</p>
       <h2>How the warehouse model is constructed</h2>
-      <div class="mermaid mermaid-panel">
+      <div class="diagram-frame">
+        <div class="mermaid mermaid-panel">
 flowchart TD
     A[Storage Nodes] --> B[Node Grouping]
     B --> C[Access Points]
@@ -156,36 +170,19 @@ flowchart TD
     D --> E[Warehouse Graph]
     E --> F[Shortest Path Logic]
     F --> G[Simulation]
+        </div>
       </div>
-      <p class="panel-note">
-        The graph construction step comes first. Simulation and routing only become useful
-        after the warehouse can be represented as a usable movement model.
+      <p class="detail-intro">
+        Simulation and routing only become useful after the warehouse can be represented as a
+        usable movement model.
       </p>
     </section>
 
-    <section class="panel">
-      <p class="section-label">Why Grouping Matters</p>
-      <h2>Reduce routing cost before trying to optimize the warehouse</h2>
-      <p>
-        Running shortest-path calculations directly across every storage node would be
-        expensive. Grouping reduces graph complexity so the routing problem becomes more
-        tractable. That makes later simulation and optimization work more realistic from a
-        computation and workflow perspective.
-      </p>
-      <p class="panel-note">
-        In practice, the grouping layer is not just a data cleanup step. It is part of the
-        system design for controlling graph size and path computation cost.
-      </p>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">Simulation</p>
-        <h2>A simplified model for testing inventory reallocation ideas</h2>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
+    <section class="detail-section">
+      <p class="section-label">Simulation</p>
+      <h2>A simplified model for testing inventory reallocation ideas.</h2>
+      <div class="detail-columns">
+        <article class="detail-item">
           <h3>Rule-based ranking</h3>
           <p>
             Products and storage nodes are ranked using a simplified grading logic instead
@@ -193,7 +190,7 @@ flowchart TD
           </p>
         </article>
 
-        <article class="feature-card">
+        <article class="detail-item">
           <h3>Reallocation test</h3>
           <p>
             Inventory is reassigned according to those grades, and the model compares
@@ -201,7 +198,7 @@ flowchart TD
           </p>
         </article>
 
-        <article class="feature-card">
+        <article class="detail-item">
           <h3>Directional output</h3>
           <p>
             The result is meant to explain whether better placement should materially reduce
@@ -211,29 +208,35 @@ flowchart TD
       </div>
     </section>
 
-    <section class="impact-strip">
-      <article>
-        <span class="impact-number">~50%</span>
-        <p>Estimated travel distance reduction in the simplified simulation</p>
-      </article>
-      <article>
-        <span class="impact-number">Not final</span>
-        <p>The result is directional and does not fully reflect real warehouse constraints</p>
-      </article>
-      <article>
-        <span class="impact-number">Key risk</span>
-        <p>Local bottlenecks may appear if picking activity concentrates around specific locations</p>
-      </article>
+    <section class="detail-section">
+      <p class="section-label">Result and limits</p>
+      <h2>The number is useful as a signal, not as a final claim.</h2>
+      <div class="metric-grid">
+        <article class="metric-item">
+          <p class="metric-label">Estimated</p>
+          <span class="metric-value">~50%</span>
+          <p>Travel distance reduction in the simplified simulation.</p>
+        </article>
+
+        <article class="metric-item">
+          <p class="metric-label">Interpretation</p>
+          <span class="metric-value">Not final</span>
+          <p>The result is directional and does not fully reflect real warehouse constraints.</p>
+        </article>
+
+        <article class="metric-item">
+          <p class="metric-label">Key risk</p>
+          <span class="metric-value">Bottlenecks</span>
+          <p>Local congestion may appear if picking activity concentrates around specific locations.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">Interpretation</p>
-        <h2>The value is in the explanation, not just the number.</h2>
-      </div>
-
-      <div class="theme-grid">
-        <article class="theme-card">
+    <section class="detail-section">
+      <p class="section-label">Interpretation</p>
+      <h2>The value is in the explanation, not just the number.</h2>
+      <div class="detail-columns">
+        <article class="detail-item">
           <h3>Promising signal</h3>
           <p>
             The simplified simulation suggests that inventory placement can have a large
@@ -241,7 +244,7 @@ flowchart TD
           </p>
         </article>
 
-        <article class="theme-card">
+        <article class="detail-item">
           <h3>Important limitation</h3>
           <p>
             I do not treat the 50 percent figure as a final operational claim because the
@@ -250,7 +253,7 @@ flowchart TD
           </p>
         </article>
 
-        <article class="theme-card">
+        <article class="detail-item">
           <h3>Main takeaway</h3>
           <p>
             Even at this stage, the graph-based model helps explain in a structured way why
@@ -259,6 +262,15 @@ flowchart TD
         </article>
       </div>
     </section>
+
+    <footer class="site-footer">
+      <p>Home, LinkedIn, and the rest of the portfolio.</p>
+      <div class="footer-links">
+        <a href="./index.html">Home</a>
+        <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
+        <a href="https://github.com/yongjip">GitHub</a>
+      </div>
+    </footer>
   </main>
 </body>
 </html>

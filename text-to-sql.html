@@ -51,16 +51,14 @@
     });
   </script>
 </head>
-<body>
-  <div class="page-glow page-glow-left"></div>
-  <div class="page-glow page-glow-right"></div>
-
-  <main class="site-shell site-shell-narrow">
-    <header class="site-header">
+<body class="detail-page">
+  <main class="site-shell site-shell-detail">
+    <header class="site-header site-header-detail">
       <a class="brand" href="./index.html">Yongjip Kim</a>
       <div class="header-actions">
         <nav class="top-nav" aria-label="Primary">
           <a href="./index.html">Home</a>
+          <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
           <a href="https://github.com/yongjip">GitHub</a>
         </nav>
         <nav class="lang-switch" aria-label="Language">
@@ -72,55 +70,62 @@
 
     <a class="back-link" href="./index.html">Back to home</a>
 
-    <section class="hero hero-compact">
+    <section class="hero hero-detail">
       <p class="eyebrow">Case study</p>
       <h1>Building an AI-Powered Text-to-SQL System to Scale Data Access</h1>
       <p class="hero-copy">
         I turned repeated data research into a reusable knowledge system for AI, reducing
         ad-hoc analysis time from 4 to 10 hours to under 1 hour.
       </p>
+      <p class="hero-deck">
+        The value came from making analyst knowledge reusable, then wrapping generation with
+        execution and validation so the workflow could actually support real requests.
+      </p>
     </section>
 
-    <section class="story-grid">
-      <article class="panel">
-        <p class="section-label">Context</p>
-        <h2>The bottleneck was understanding, not SQL syntax.</h2>
-        <p>
-          Ad-hoc requests were consuming too much analyst time. The repeated work was not
-          just query writing. It was identifying the right tables, interpreting column
-          meaning, mapping business logic correctly, and figuring out join patterns that
-          could be trusted.
-        </p>
-        <p>
-          That made even routine questions expensive. Complex requests often took 4 to 10
-          hours, which limited how many requests the team could realistically support each
-          month.
-        </p>
-      </article>
+    <section class="detail-section">
+      <p class="section-label">Overview</p>
+      <h2>The bottleneck was understanding, not SQL syntax.</h2>
+      <div class="detail-columns">
+        <article class="detail-item">
+          <h3>Context</h3>
+          <p>
+            Ad-hoc requests were consuming too much analyst time. The repeated work was not
+            just query writing. It was identifying the right tables, interpreting column
+            meaning, mapping business logic correctly, and figuring out join patterns that
+            could be trusted.
+          </p>
+          <p>
+            That made even routine questions expensive. Complex requests often took 4 to 10
+            hours, which limited how many requests the team could realistically support each
+            month.
+          </p>
+        </article>
 
-      <article class="panel panel-accent">
-        <p class="section-label">Approach</p>
-        <h2>Make the knowledge reusable before trying to automate the SQL.</h2>
-        <p>
-          I built a structured knowledge layer in YAML that captured how analysts actually
-          reason about the data model: table definitions, column semantics, keys,
-          partitioning, join patterns, and business terminology.
-        </p>
-        <p class="callout">
-          The leverage came from structuring context well enough that AI agents could use it
-          repeatedly, not from treating the model as magic.
-        </p>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">What the system did</p>
-        <h2>A practical validation loop around AI-generated SQL</h2>
+        <article class="detail-item">
+          <h3>Approach</h3>
+          <p>
+            I built a structured knowledge layer in YAML that captured how analysts actually
+            reason about the data model: table definitions, column semantics, keys,
+            partitioning, join patterns, and business terminology.
+          </p>
+          <p>
+            The leverage came from structuring context well enough that AI agents could use it
+            repeatedly, not from treating the model as magic.
+          </p>
+        </article>
       </div>
+    </section>
 
-      <div class="feature-grid">
-        <article class="feature-card">
+    <section class="detail-section">
+      <p class="section-label">Workflow</p>
+      <h2>A practical validation loop around AI-generated SQL</h2>
+      <p class="detail-intro">
+        The workflow narrowed context first, then generated, executed, and checked SQL before
+        any result was handed back to a human.
+      </p>
+      <div class="detail-columns">
+        <article class="detail-item">
           <h3>Scoped context</h3>
           <p>
             Tables were grouped by domain and narrowed through index files so the agent
@@ -128,7 +133,7 @@
           </p>
         </article>
 
-        <article class="feature-card">
+        <article class="detail-item">
           <h3>SQL generation</h3>
           <p>
             AI coding agents used the structured metadata to generate and revise SQL based
@@ -136,20 +141,29 @@
           </p>
         </article>
 
-        <article class="feature-card">
+        <article class="detail-item">
           <h3>Execution and QA</h3>
           <p>
             The workflow ran queries in Athena, checked execution success, and validated
             results before handing anything back to a human.
           </p>
         </article>
+
+        <article class="detail-item">
+          <h3>Reusable knowledge</h3>
+          <p>
+            The resulting structure could be updated and reused so later requests started
+            from a better base instead of from scratch.
+          </p>
+        </article>
       </div>
     </section>
 
-    <section class="panel">
-      <p class="section-label">System Flow</p>
+    <section class="detail-section">
+      <p class="section-label">System flow</p>
       <h2>From question to validated answer</h2>
-      <div class="mermaid mermaid-panel">
+      <div class="diagram-frame">
+        <div class="mermaid mermaid-panel">
 flowchart TD
     A[User Question] --> B[Domain and Table Selection]
     B --> C[Knowledge Layer]
@@ -168,36 +182,43 @@ flowchart TD
     I -- Yes --> J[Deliver to Human]
     J --> K[Update Knowledge]
     K --> C
+        </div>
       </div>
-      <p class="panel-note">
-        The system did not stop at generation. It executed, checked, and iterated until
-        the result was reliable enough for review.
+      <p class="detail-intro">
+        The system did not stop at generation. It executed, checked, and iterated until the
+        result was reliable enough for review.
       </p>
     </section>
 
-    <section class="impact-strip">
-      <article>
-        <span class="impact-number">4 to 10 hrs</span>
-        <p>Typical ad-hoc turnaround before the system</p>
-      </article>
-      <article>
-        <span class="impact-number">Under 1 hr</span>
-        <p>Turnaround after structured context and validation loops</p>
-      </article>
-      <article>
-        <span class="impact-number">20 to 50+</span>
-        <p>Approximate monthly ad-hoc capacity after the workflow improved</p>
-      </article>
+    <section class="detail-section">
+      <p class="section-label">Results</p>
+      <h2>Structured context changed both speed and capacity.</h2>
+      <div class="metric-grid">
+        <article class="metric-item">
+          <p class="metric-label">Before</p>
+          <span class="metric-value">4 to 10 hrs</span>
+          <p>Typical ad-hoc turnaround before the system.</p>
+        </article>
+
+        <article class="metric-item">
+          <p class="metric-label">After</p>
+          <span class="metric-value">Under 1 hr</span>
+          <p>Turnaround after structured context and validation loops.</p>
+        </article>
+
+        <article class="metric-item">
+          <p class="metric-label">Capacity</p>
+          <span class="metric-value">20 to 50+</span>
+          <p>Approximate monthly ad-hoc capacity after the workflow improved.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-label">What I learned</p>
-        <h2>The real system was the knowledge architecture.</h2>
-      </div>
-
-      <div class="theme-grid">
-        <article class="theme-card">
+    <section class="detail-section">
+      <p class="section-label">Takeaways</p>
+      <h2>The real system was the knowledge architecture.</h2>
+      <div class="detail-columns">
+        <article class="detail-item">
           <h3>Understanding is the hard part</h3>
           <p>
             Most of the cost in analytics work comes from reconstructing how the business
@@ -205,7 +226,7 @@ flowchart TD
           </p>
         </article>
 
-        <article class="theme-card">
+        <article class="detail-item">
           <h3>Simple structure scales</h3>
           <p>
             A clean YAML knowledge layer plus execution and QA created more leverage than a
@@ -213,7 +234,7 @@ flowchart TD
           </p>
         </article>
 
-        <article class="theme-card">
+        <article class="detail-item">
           <h3>AI works best with discipline</h3>
           <p>
             The output becomes useful when the workflow is constrained, validated, and tied
@@ -222,6 +243,15 @@ flowchart TD
         </article>
       </div>
     </section>
+
+    <footer class="site-footer">
+      <p>Home, LinkedIn, and the rest of the portfolio.</p>
+      <div class="footer-links">
+        <a href="./index.html">Home</a>
+        <a href="https://www.linkedin.com/in/yongjip/">LinkedIn</a>
+        <a href="https://github.com/yongjip">GitHub</a>
+      </div>
+    </footer>
   </main>
 </body>
 </html>
