@@ -11,7 +11,9 @@ This repository hosts a simple static site focused on:
 Current pages:
 
 - `index.html`: home page and portfolio overview
+- `index-ko.html`: Korean home page and portfolio overview
 - `text-to-sql.html`: detailed project page for the AI-powered Text-to-SQL system
+- `text-to-sql-ko.html`: Korean version of the Text-to-SQL case study
 
 Supporting documents:
 

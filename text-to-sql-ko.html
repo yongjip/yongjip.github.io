@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 기반 Text-to-SQL 시스템 | 김용집</title>
+  <meta
+    name="description"
+    content="AI 기반 Text-to-SQL 시스템을 구축해 데이터 접근성을 확장하고 애드혹 분석 시간을 줄인 사례입니다."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=IBM+Plex+Sans+KR:wght@400;500;600&amp;display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./resources/css/styles.css" />
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#f4ead7",
+        primaryTextColor: "#1d2d2f",
+        primaryBorderColor: "#5f7a77",
+        lineColor: "#5f7a77",
+        secondaryColor: "#d8e5e1",
+        tertiaryColor: "#fffdf8",
+        fontFamily: "IBM Plex Sans KR"
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="page-glow page-glow-left"></div>
+  <div class="page-glow page-glow-right"></div>
+
+  <main class="site-shell site-shell-narrow">
+    <header class="site-header">
+      <a class="brand" href="./index-ko.html">Yongjip Kim</a>
+      <div class="header-actions">
+        <nav class="top-nav" aria-label="Primary">
+          <a href="./index-ko.html">Home</a>
+          <a href="https://github.com/yongjip">GitHub</a>
+        </nav>
+        <nav class="lang-switch" aria-label="Language">
+          <a href="./text-to-sql.html" lang="en">EN</a>
+          <a class="is-active" href="./text-to-sql-ko.html" lang="ko">KR</a>
+        </nav>
+      </div>
+    </header>
+
+    <a class="back-link" href="./index-ko.html">홈으로 돌아가기</a>
+
+    <section class="hero hero-compact">
+      <p class="eyebrow">케이스 스터디</p>
+      <h1>AI 기반 Text-to-SQL 시스템으로 데이터 접근성을 확장한 방법</h1>
+      <p class="hero-copy">
+        반복되던 데이터 탐색 과정을 AI가 활용할 수 있는 재사용 가능한 지식 시스템으로 바꿔,
+        애드혹 분석 시간을 4~10시간에서 1시간 미만으로 줄였습니다.
+      </p>
+    </section>
+
+    <section class="story-grid">
+      <article class="panel">
+        <p class="section-label">문제 배경</p>
+        <h2>병목은 SQL 문법이 아니라 데이터 이해였습니다.</h2>
+        <p>
+          애드혹 요청은 계속 늘어났고, 분석가의 시간이 과도하게 소모되고 있었습니다.
+          반복되는 일의 핵심은 쿼리 자체보다도 어떤 테이블을 써야 하는지, 컬럼 의미가 무엇인지,
+          비즈니스 로직을 데이터 모델에 어떻게 맞춰야 하는지, 어떤 조인 패턴이 신뢰 가능한지
+          다시 파악하는 과정이었습니다.
+        </p>
+        <p>
+          그래서 단순한 질문도 비용이 컸고, 복잡한 요청은 4~10시간이 걸리기도 했습니다.
+          결과적으로 한 달에 처리할 수 있는 요청 수가 구조적으로 제한됐습니다.
+        </p>
+      </article>
+
+      <article class="panel panel-accent">
+        <p class="section-label">접근 방식</p>
+        <h2>SQL 자동화보다 먼저 지식을 재사용 가능하게 만들었습니다.</h2>
+        <p>
+          분석가가 실제로 데이터를 이해하는 방식을 YAML 기반 지식 레이어로 구조화했습니다.
+          여기에는 테이블 정의, 컬럼 의미, 키와 파티셔닝 정보, 조인 패턴, 비즈니스 용어가 포함됩니다.
+        </p>
+        <p class="callout">
+          핵심은 모델 자체가 아니라, AI가 반복해서 사용할 수 있도록 맥락을 구조화하는 것이었습니다.
+        </p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-label">시스템 구성</p>
+        <h2>AI가 만든 SQL을 실제 검증 루프로 감싼 구조</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>맥락 범위 축소</h3>
+          <p>
+            테이블을 도메인별로 그룹화하고 인덱스 파일로 먼저 좁혀서, 에이전트가 필요한 메타데이터만
+            보도록 만들었습니다.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>SQL 생성</h3>
+          <p>
+            AI 코딩 에이전트가 구조화된 메타데이터를 바탕으로 실제 비즈니스 질문에 맞는 SQL을
+            생성하고 수정했습니다.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>실행과 QA</h3>
+          <p>
+            워크플로우는 Athena에서 쿼리를 실행하고, 실행 성공 여부와 결과 품질을 확인한 뒤에만
+            사람에게 전달했습니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <p class="section-label">시스템 흐름</p>
+      <h2>질문에서 검증된 결과까지</h2>
+      <div class="mermaid mermaid-panel">
+flowchart TD
+    A[사용자 질문] --> B[도메인과 테이블 선택]
+    B --> C[지식 레이어]
+    C --> C1[테이블 정의]
+    C --> C2[컬럼 의미]
+    C --> C3[조인 패턴]
+    C --> C4[비즈니스 용어]
+    C --> D[AI 에이전트]
+    D --> E[SQL 쿼리]
+    E --> F[Athena 실행]
+    F --> G{실행 성공}
+    G -- 아니오 --> D
+    G -- 예 --> H[결과 검증]
+    H --> I{품질 통과}
+    I -- 아니오 --> D
+    I -- 예 --> J[사람에게 전달]
+    J --> K[지식 업데이트]
+    K --> C
+      </div>
+      <p class="panel-note">
+        이 시스템은 SQL 생성에서 끝나지 않았습니다. 실행, 검증, 반복 수정을 거쳐 신뢰 가능한 결과만 전달했습니다.
+      </p>
+    </section>
+
+    <section class="impact-strip">
+      <article>
+        <span class="impact-number">4~10시간</span>
+        <p>도입 전 일반적인 애드혹 분석 소요 시간</p>
+      </article>
+      <article>
+        <span class="impact-number">1시간 미만</span>
+        <p>구조화된 맥락과 검증 루프 도입 후 소요 시간</p>
+      </article>
+      <article>
+        <span class="impact-number">20건에서 50건+</span>
+        <p>월간 애드혹 분석 처리 역량의 대략적 변화</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-label">배운 점</p>
+        <h2>실제 시스템의 핵심은 지식 아키텍처였습니다.</h2>
+      </div>
+
+      <div class="theme-grid">
+        <article class="theme-card">
+          <h3>어려운 건 이해 과정</h3>
+          <p>
+            분석 업무의 비용 대부분은 계산보다도, 비즈니스가 데이터 모델에 어떻게 대응되는지
+            매번 다시 복원하는 데서 발생합니다.
+          </p>
+        </article>
+
+        <article class="theme-card">
+          <h3>단순한 구조가 확장된다</h3>
+          <p>
+            이 상황에서는 무거운 플랫폼보다도, 깔끔한 YAML 지식 레이어와 실행 및 QA 루프가 더 큰 레버리지를 만들었습니다.
+          </p>
+        </article>
+
+        <article class="theme-card">
+          <h3>AI는 규율과 함께 쓸 때 강해진다</h3>
+          <p>
+            출력은 제약과 검증이 있을 때 비로소 실무에 유용해집니다. 그리고 그 결과가 다시 팀의
+            재사용 가능한 지식으로 돌아갈 때 가치가 커집니다.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

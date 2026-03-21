@@ -33,7 +33,7 @@ body {
     radial-gradient(circle at top left, rgba(223, 209, 177, 0.7), transparent 36%),
     linear-gradient(180deg, #fbf7ee 0%, #f6efdf 55%, #f3ead7 100%);
   color: var(--ink);
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
   line-height: 1.65;
   position: relative;
 }
@@ -56,6 +56,18 @@ h3 {
   letter-spacing: -0.03em;
   line-height: 1.08;
   margin: 0;
+}
+
+html[lang="ko"] body {
+  font-family: "IBM Plex Sans KR", "IBM Plex Sans", sans-serif;
+}
+
+html[lang="ko"] h1,
+html[lang="ko"] h2,
+html[lang="ko"] h3 {
+  font-family: "IBM Plex Sans KR", "IBM Plex Sans", sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
 }
 
 p,
@@ -107,6 +119,14 @@ ol {
   margin-bottom: 52px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .brand {
   font-weight: 600;
   text-decoration: none;
@@ -120,6 +140,35 @@ ol {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 250, 240, 0.7);
+}
+
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.lang-switch a.is-active {
+  background: var(--ink);
+  color: #fffaf0;
 }
 
 .top-nav a,
@@ -439,6 +488,11 @@ ol {
 
   .site-header {
     margin-bottom: 32px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .hero {
