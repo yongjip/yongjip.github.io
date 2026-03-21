@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Building Data Systems with AI</title>
+  <desc id="desc">Portfolio cover image for Yongjip Kim</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbf7ee" />
+      <stop offset="100%" stop-color="#f3ead7" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#fffaf0" stop-opacity="0.96" />
+      <stop offset="100%" stop-color="#f4ead7" stop-opacity="0.96" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#403726" flood-opacity="0.10" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1040" cy="122" r="178" fill="#d8e5e1" opacity="0.62" />
+  <circle cx="172" cy="80" r="132" fill="#efe2c6" opacity="0.9" />
+
+  <rect x="70" y="64" width="1060" height="502" rx="34" fill="url(#panel)" stroke="#d7c8ac" stroke-width="2" filter="url(#shadow)" />
+
+  <text x="120" y="138" fill="#a25b39" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="3">YONGJIP KIM</text>
+
+  <text x="120" y="242" fill="#1d2d2f" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="700">
+    <tspan x="120" dy="0">Building Data</tspan>
+    <tspan x="120" dy="78">Systems with AI</tspan>
+  </text>
+
+  <text x="120" y="388" fill="#536363" font-family="IBM Plex Sans, Arial, sans-serif" font-size="28" font-weight="500">
+    Data Platform · Analytics · Internal Tools
+  </text>
+
+  <text x="120" y="438" fill="#536363" font-family="IBM Plex Sans, Arial, sans-serif" font-size="28" font-weight="500">
+    Selected work: Text-to-SQL · Warehouse Optimization
+  </text>
+
+  <rect x="120" y="476" width="268" height="44" rx="22" fill="#245c57" />
+  <text x="154" y="505" fill="#fffaf0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22" font-weight="700">
+    yongjip.github.io
+  </text>
+
+  <path d="M822 197C862 150 911 126 970 126C1017 126 1058 141 1094 171" fill="none" stroke="#a25b39" stroke-width="8" stroke-linecap="round" opacity="0.9" />
+  <path d="M822 197C859 224 902 237 951 237C1012 237 1060 217 1094 177" fill="none" stroke="#245c57" stroke-width="8" stroke-linecap="round" opacity="0.95" />
+
+  <circle cx="823" cy="197" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
+  <circle cx="951" cy="237" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
+  <circle cx="1094" cy="177" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
+
+  <text x="794" y="282" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700">Data</text>
+  <text x="919" y="322" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700">Systems</text>
+  <text x="1060" y="262" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700">Decisions</text>
+</svg>

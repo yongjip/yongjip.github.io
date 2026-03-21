@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Warehouse Optimization and Simulation | Yongjip Kim</title>
+  <meta
+    name="description"
+    content="In-progress case study: building a graph-based warehouse modeling and simulation system to evaluate inventory placement and picker travel distance."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./resources/css/styles.css" />
+</head>
+<body>
+  <div class="page-glow page-glow-left"></div>
+  <div class="page-glow page-glow-right"></div>
+
+  <main class="site-shell site-shell-narrow">
+    <header class="site-header">
+      <a class="brand" href="./index.html">Yongjip Kim</a>
+      <div class="header-actions">
+        <nav class="top-nav" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="https://github.com/yongjip">GitHub</a>
+        </nav>
+        <nav class="lang-switch" aria-label="Language">
+          <a class="is-active" href="./warehouse-optimization.html" lang="en">EN</a>
+          <a href="./warehouse-optimization-ko.html" lang="ko">KR</a>
+        </nav>
+      </div>
+    </header>
+
+    <a class="back-link" href="./index.html">Back to home</a>
+
+    <section class="hero hero-compact">
+      <p class="eyebrow">Case study</p>
+      <h1>Building a Graph-Based Warehouse Optimization and Simulation Workflow</h1>
+      <p class="hero-copy">
+        I built a warehouse graph construction tool and a simplified simulation model to
+        evaluate how inventory placement changes could reduce picker travel distance, and I
+        am continuing to extend the system toward more realistic operational analysis.
+      </p>
+    </section>
+
+    <section class="story-grid">
+      <article class="panel">
+        <p class="section-label">Starting Point</p>
+        <h2>The warehouse had node data, but not a usable graph.</h2>
+        <p>
+          We had storage node information such as coordinates, but no practical graph that
+          represented how workers could actually move through the warehouse. That made it
+          difficult to reason about layout, access, and inventory placement in a structured
+          way.
+        </p>
+        <p>
+          The immediate problem was not optimization yet. It was building the path-aware
+          model needed before any meaningful simulation or routing analysis could happen.
+        </p>
+      </article>
+
+      <article class="panel panel-accent">
+        <p class="section-label">Current Scope</p>
+        <h2>This is a graph construction tool plus a simplified simulation.</h2>
+        <p>
+          I am not presenting this as a finished warehouse optimization engine. The current
+          system has two parts: a tool for constructing the warehouse graph, and a
+          simplified simulation model for estimating the impact of inventory reallocation.
+        </p>
+        <p class="callout">
+          The goal is directional decision support, not a perfect digital twin.
+        </p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-label">Graph Construction</p>
+        <h2>Turn storage nodes and walkable paths into an analyzable warehouse graph</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Node grouping</h3>
+          <p>
+            Storage nodes are grouped first. The current approach uses Manhattan distance to
+            form practical groups before routing is computed at a larger scale.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Access points</h3>
+          <p>
+            Each group is assigned one or more access points so the graph can represent how
+            workers enter and interact with that part of the warehouse.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Path-based connections</h3>
+          <p>
+            Users draw walkable paths, and the tool automatically connects nearby access
+            points to those paths to generate a usable graph structure.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <p class="section-label">Why Grouping Matters</p>
+      <h2>Reduce routing cost before trying to optimize the warehouse</h2>
+      <p>
+        Running shortest-path calculations directly across every storage node would be
+        expensive. Grouping reduces graph complexity so the routing problem becomes more
+        tractable. That makes later simulation and optimization work more realistic from a
+        computation and workflow perspective.
+      </p>
+      <p class="panel-note">
+        In practice, the grouping layer is not just a data cleanup step. It is part of the
+        system design for controlling graph size and path computation cost.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-label">Simulation</p>
+        <h2>A simplified model for testing inventory reallocation ideas</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Rule-based ranking</h3>
+          <p>
+            Products and storage nodes are ranked using a simplified grading logic instead
+            of a full operational model.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Reallocation test</h3>
+          <p>
+            Inventory is reassigned according to those grades, and the model compares
+            estimated picker travel distance before and after reallocation.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Directional output</h3>
+          <p>
+            The result is meant to explain whether better placement should materially reduce
+            movement, not to claim an exact final operating result.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="impact-strip">
+      <article>
+        <span class="impact-number">~50%</span>
+        <p>Estimated travel distance reduction in the simplified simulation</p>
+      </article>
+      <article>
+        <span class="impact-number">Not final</span>
+        <p>The result is directional and does not fully reflect real warehouse constraints</p>
+      </article>
+      <article>
+        <span class="impact-number">Key risk</span>
+        <p>Local bottlenecks may appear if picking activity concentrates around specific locations</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-label">Interpretation</p>
+        <h2>The value is in the explanation, not just the number.</h2>
+      </div>
+
+      <div class="theme-grid">
+        <article class="theme-card">
+          <h3>Promising signal</h3>
+          <p>
+            The simplified simulation suggests that inventory placement can have a large
+            effect on travel distance.
+          </p>
+        </article>
+
+        <article class="theme-card">
+          <h3>Important limitation</h3>
+          <p>
+            I do not treat the 50 percent figure as a final operational claim because the
+            current model does not fully capture congestion or other real execution
+            constraints.
+          </p>
+        </article>
+
+        <article class="theme-card">
+          <h3>Main takeaway</h3>
+          <p>
+            Even at this stage, the graph-based model helps explain in a structured way why
+            better inventory placement should materially reduce movement.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
