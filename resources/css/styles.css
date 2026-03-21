@@ -622,6 +622,31 @@ ol {
   border-bottom: 1px solid var(--line);
 }
 
+.related-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.related-item {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.related-title {
+  display: inline-block;
+  color: var(--ink);
+  font-family: "Fraunces", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.related-item p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
 .method-list {
   margin-top: 16px;
   display: grid;
