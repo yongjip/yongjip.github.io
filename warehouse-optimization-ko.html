@@ -33,6 +33,23 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="./resources/css/styles.css" />
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#f4ead7",
+        primaryTextColor: "#1d2d2f",
+        primaryBorderColor: "#5f7a77",
+        lineColor: "#5f7a77",
+        secondaryColor: "#d8e5e1",
+        tertiaryColor: "#fffdf8",
+        fontFamily: "IBM Plex Sans KR"
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="page-glow page-glow-left"></div>
@@ -123,6 +140,24 @@
           </p>
         </article>
       </div>
+    </section>
+
+    <section class="panel">
+      <p class="section-label">흐름</p>
+      <h2>창고 모델이 만들어지는 과정</h2>
+      <div class="mermaid mermaid-panel">
+flowchart TD
+    A[보관 노드] --> B[노드 그룹화]
+    B --> C[접근 지점]
+    C --> D[이동 경로]
+    D --> E[창고 그래프]
+    E --> F[최단 경로 로직]
+    F --> G[시뮬레이션]
+      </div>
+      <p class="panel-note">
+        그래프를 먼저 제대로 만드는 것이 핵심입니다. 창고를 사용할 수 있는 이동 모델로 표현한 뒤에야
+        시뮬레이션과 경로 계산이 의미를 갖게 됩니다.
+      </p>
     </section>
 
     <section class="panel">
