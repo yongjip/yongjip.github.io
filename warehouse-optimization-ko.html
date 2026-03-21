@@ -33,23 +33,6 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="./resources/css/styles.css" />
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: "base",
-      themeVariables: {
-        primaryColor: "#f4ead7",
-        primaryTextColor: "#1d2d2f",
-        primaryBorderColor: "#5f7a77",
-        lineColor: "#5f7a77",
-        secondaryColor: "#d8e5e1",
-        tertiaryColor: "#fffdf8",
-        fontFamily: "IBM Plex Sans KR"
-      }
-    });
-  </script>
 </head>
 <body class="detail-page">
   <main class="site-shell site-shell-detail">
@@ -163,14 +146,12 @@
       <p class="section-label">흐름</p>
       <h2>창고 모델이 만들어지는 과정</h2>
       <div class="diagram-frame">
-        <div class="mermaid mermaid-panel">
-flowchart TD
-    A[보관 노드] --> B[노드 그룹화]
-    B --> C[접근 지점]
-    C --> D[이동 경로]
-    D --> E[창고 그래프]
-    E --> F[최단 경로 로직]
-    F --> G[시뮬레이션]
+        <div class="diagram-panel">
+          <img
+            class="diagram-image"
+            src="./resources/diagrams/warehouse-ko.svg"
+            alt="보관 노드에서 노드 그룹화, 접근 지점, 이동 경로, 창고 그래프, 최단 경로 로직, 시뮬레이션으로 이어지는 창고 모델 흐름도."
+          />
         </div>
       </div>
       <p class="detail-intro">

@@ -33,23 +33,6 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="./resources/css/styles.css" />
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: "base",
-      themeVariables: {
-        primaryColor: "#f4ead7",
-        primaryTextColor: "#1d2d2f",
-        primaryBorderColor: "#5f7a77",
-        lineColor: "#5f7a77",
-        secondaryColor: "#d8e5e1",
-        tertiaryColor: "#fffdf8",
-        fontFamily: "IBM Plex Sans KR"
-      }
-    });
-  </script>
 </head>
 <body class="detail-page">
   <main class="site-shell site-shell-detail">
@@ -165,25 +148,12 @@
       <p class="section-label">시스템 흐름</p>
       <h2>질문에서 검증된 결과까지</h2>
       <div class="diagram-frame">
-        <div class="mermaid mermaid-panel">
-flowchart TD
-    A[사용자 질문] --> B[도메인과 테이블 선택]
-    B --> C[지식 레이어]
-    C --> C1[테이블 정의]
-    C --> C2[컬럼 의미]
-    C --> C3[조인 패턴]
-    C --> C4[비즈니스 용어]
-    C --> D[AI 에이전트]
-    D --> E[SQL 쿼리]
-    E --> F[Athena 실행]
-    F --> G{실행 성공}
-    G -- 아니오 --> D
-    G -- 예 --> H[결과 검증]
-    H --> I{품질 통과}
-    I -- 아니오 --> D
-    I -- 예 --> J[사람에게 전달]
-    J --> K[지식 업데이트]
-    K --> C
+        <div class="diagram-panel">
+          <img
+            class="diagram-image"
+            src="./resources/diagrams/text-to-sql-ko.svg"
+            alt="사용자 질문에서 도메인과 테이블 선택, 지식 레이어, AI 에이전트, Athena 실행, 결과 검증, 지식 업데이트로 이어지는 시스템 흐름도."
+          />
         </div>
       </div>
       <p class="detail-intro">

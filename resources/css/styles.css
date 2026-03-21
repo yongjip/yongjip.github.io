@@ -817,10 +817,19 @@ html[lang="ko"] .detail-section h2 {
   font-weight: 600;
 }
 
+.diagram-panel,
 .mermaid-panel {
   margin-top: 22px;
   overflow-x: auto;
   padding: 10px 0;
+}
+
+.diagram-image,
+.mermaid-panel svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
 .panel-note {

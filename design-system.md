@@ -93,15 +93,18 @@ That root URL is the source of truth for:
 
 - the English home canonical URL
 - the English home `og:url`
-- brand links that return to the English home
-- English `Back to home` links
-- the English language switch from the Korean home page
+- canonical and metadata values
+
+Visible navigation should still prefer relative links such as `./` so the site works both on:
+
+- GitHub Pages at the root domain
+- local preview servers that mount the site under a subpath
 
 The Korean home page remains a distinct page:
 
 - `https://yongjip.github.io/index-ko.html`
 
-This avoids splitting the English home between `/` and `/index.html`.
+This avoids splitting the English home between `/` and `/index.html` in metadata, while keeping local preview links stable.
 
 ## Project Naming
 
