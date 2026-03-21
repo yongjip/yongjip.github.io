@@ -6,8 +6,26 @@
   <title>창고 최적화 및 시뮬레이션 | 김용집</title>
   <meta
     name="description"
-    content="Graph 기반 창고 모델링과 단순화된 시뮬레이션으로 재고 배치와 작업자 이동거리 영향을 평가한 케이스 스터디입니다."
+    content="그래프 기반 창고 모델링과 단순화된 시뮬레이션으로 재고 배치와 작업자 이동거리 영향을 평가한 케이스 스터디입니다."
   />
+  <meta property="og:title" content="창고 최적화 및 시뮬레이션" />
+  <meta
+    property="og:description"
+    content="창고 그래프 구성 도구와 단순화된 시뮬레이션 모델을 통해 재고 배치와 이동거리 영향을 평가한 사례입니다."
+  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yongjip.github.io/warehouse-optimization-ko.html" />
+  <meta property="og:image" content="https://yongjip.github.io/resources/og/portfolio-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="창고 최적화 및 시뮬레이션" />
+  <meta
+    name="twitter:description"
+    content="창고 그래프 구성 도구와 단순화된 시뮬레이션 모델을 통해 재고 배치와 이동거리 영향을 평가한 사례입니다."
+  />
+  <meta name="twitter:image" content="https://yongjip.github.io/resources/og/portfolio-cover.png" />
+  <link rel="canonical" href="https://yongjip.github.io/warehouse-optimization-ko.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -25,7 +43,7 @@
       <a class="brand" href="./index-ko.html">Yongjip Kim</a>
       <div class="header-actions">
         <nav class="top-nav" aria-label="Primary">
-          <a href="./index-ko.html">Home</a>
+          <a href="./index-ko.html">홈</a>
           <a href="https://github.com/yongjip">GitHub</a>
         </nav>
         <nav class="lang-switch" aria-label="Language">
@@ -39,9 +57,9 @@
 
     <section class="hero hero-compact">
       <p class="eyebrow">케이스 스터디</p>
-      <h1>Graph 기반 창고 최적화 및 시뮬레이션 워크플로우 구축</h1>
+      <h1>그래프 기반 창고 최적화 및 시뮬레이션 워크플로우 구축</h1>
       <p class="hero-copy">
-        창고 graph 를 만드는 도구와 단순화된 시뮬레이션 모델을 구축했고,
+        창고 그래프를 만드는 도구와 단순화된 시뮬레이션 모델을 구축했고,
         현재는 이를 더 현실적인 운영 분석으로 확장하는 작업을 이어가고 있습니다.
       </p>
     </section>
@@ -49,10 +67,10 @@
     <section class="story-grid">
       <article class="panel">
         <p class="section-label">출발점</p>
-        <h2>storage node 데이터는 있었지만, 활용 가능한 graph 는 없었습니다.</h2>
+        <h2>보관 노드 데이터는 있었지만, 활용 가능한 그래프는 없었습니다.</h2>
         <p>
-          좌표를 포함한 storage node 정보는 있었지만, 작업자가 실제로 이동할 수 있는 경로를 반영한
-          실용적인 graph 는 없었습니다. 그래서 레이아웃, 접근성, 재고 배치를 구조적으로 평가하기가
+          좌표를 포함한 보관 노드 정보는 있었지만, 작업자가 실제로 이동할 수 있는 경로를 반영한
+          실용적인 그래프는 없었습니다. 그래서 레이아웃, 접근성, 재고 배치를 구조적으로 평가하기가
           어려웠습니다.
         </p>
         <p>
@@ -62,10 +80,10 @@
 
       <article class="panel panel-accent">
         <p class="section-label">현재 범위</p>
-        <h2>완성형 최적화 엔진이 아니라 graph 구성 도구와 단순화된 시뮬레이션입니다.</h2>
+        <h2>완성형 최적화 엔진이 아니라 그래프 구성 도구와 단순화된 시뮬레이션입니다.</h2>
         <p>
           이 프로젝트를 완성된 창고 최적화 시스템으로 소개하고 싶지는 않습니다.
-          현재 시스템은 두 부분으로 구성됩니다. 하나는 warehouse graph 를 만드는 도구이고,
+          현재 시스템은 두 부분으로 구성됩니다. 하나는 창고 그래프를 만드는 도구이고,
           다른 하나는 재고 재배치 효과를 추정하는 단순화된 시뮬레이션 모델입니다.
         </p>
         <p class="callout">
@@ -76,47 +94,47 @@
 
     <section class="section">
       <div class="section-heading">
-        <p class="section-label">Graph 구성</p>
-        <h2>storage node 와 이동 경로를 분석 가능한 warehouse graph 로 바꾸는 과정</h2>
+        <p class="section-label">그래프 구성</p>
+        <h2>보관 노드와 이동 경로를 분석 가능한 창고 그래프로 바꾸는 과정</h2>
       </div>
 
       <div class="feature-grid">
         <article class="feature-card">
-          <h3>node grouping</h3>
+          <h3>노드 그룹화</h3>
           <p>
-            먼저 storage node 를 그룹화합니다. 현재는 Manhattan distance 기반으로 실용적인 group 을
-            만들고, 이후 경로 계산을 더 큰 단위에서 다룰 수 있도록 하고 있습니다.
+            먼저 보관 노드를 그룹화합니다. 현재는 맨해튼 거리 기반으로 실용적인 그룹을 만들고,
+            이후 경로 계산을 더 큰 단위에서 다룰 수 있도록 하고 있습니다.
           </p>
         </article>
 
         <article class="feature-card">
-          <h3>access point 설정</h3>
+          <h3>접근 지점 설정</h3>
           <p>
-            각 group 에 하나 이상의 access point 를 두어, 작업자가 해당 영역에 어떻게 접근하는지
-            graph 상에서 표현할 수 있게 했습니다.
+            각 그룹에 하나 이상의 접근 지점을 두어, 작업자가 해당 영역에 어떻게 접근하는지
+            그래프 상에서 표현할 수 있게 했습니다.
           </p>
         </article>
 
         <article class="feature-card">
-          <h3>path 기반 연결</h3>
+          <h3>이동 경로 연결</h3>
           <p>
-            사용자가 실제 이동 가능한 path 를 그리면, 시스템이 path 와 가까운 access point 를 자동으로
-            연결해 graph 구조를 생성합니다.
+            사용자가 실제 이동 가능한 경로를 그리면, 시스템이 경로와 가까운 접근 지점을 자동으로
+            연결해 그래프 구조를 생성합니다.
           </p>
         </article>
       </div>
     </section>
 
     <section class="panel">
-      <p class="section-label">Grouping 의 의미</p>
+      <p class="section-label">그룹화의 의미</p>
       <h2>창고를 최적화하기 전에 경로 계산 비용부터 줄여야 했습니다.</h2>
       <p>
-        모든 storage node 단위에서 바로 최단경로를 계산하면 비용이 매우 커집니다. grouping 은 graph
+        모든 보관 노드 단위에서 바로 최단경로를 계산하면 비용이 매우 커집니다. 그룹화는 그래프
         복잡도를 줄여 경로 계산 문제를 다루기 쉽게 만듭니다. 그 덕분에 이후의 시뮬레이션과
         최적화 작업도 계산량과 워크플로우 측면에서 훨씬 현실적인 형태가 됩니다.
       </p>
       <p class="panel-note">
-        실제로 grouping 레이어는 단순 전처리가 아니라, graph 크기와 path computation 비용을 제어하는
+        실제로 그룹화 레이어는 단순 전처리가 아니라, 그래프 크기와 경로 계산 비용을 제어하는
         시스템 설계의 핵심입니다.
       </p>
     </section>
@@ -131,7 +149,7 @@
         <article class="feature-card">
           <h3>규칙 기반 등급화</h3>
           <p>
-            상품과 storage node 를 완전한 운영 모델 대신 단순화된 규칙 기반 로직으로 등급화했습니다.
+            상품과 보관 노드를 완전한 운영 모델 대신 단순화된 규칙 기반 로직으로 등급화했습니다.
           </p>
         </article>
 
@@ -177,7 +195,7 @@
         <article class="theme-card">
           <h3>유의미한 신호</h3>
           <p>
-            단순화된 시뮬레이션만으로도 inventory placement 가 이동거리에 큰 영향을 줄 수 있다는
+            단순화된 시뮬레이션만으로도 재고 배치가 이동거리에 큰 영향을 줄 수 있다는
             가능성을 보여줍니다.
           </p>
         </article>
@@ -193,7 +211,7 @@
         <article class="theme-card">
           <h3>핵심 의미</h3>
           <p>
-            그럼에도 graph 기반 모델을 통해 더 나은 재고 배치가 왜 이동거리를 줄이는지 구조적으로
+            그럼에도 그래프 기반 모델을 통해 더 나은 재고 배치가 왜 이동거리를 줄이는지 구조적으로
             설명할 수 있게 됐다는 점이 중요합니다.
           </p>
         </article>
