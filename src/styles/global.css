@@ -205,8 +205,16 @@ ol {
   border-bottom-color: var(--line);
 }
 
+.work-title-link,
+.method-link,
 .text-link,
-.back-link {
+.back-link,
+.hero-copy a,
+.section-intro a,
+.article-summary a,
+.detail-section a:not(.button),
+.source-item a,
+.site-footer a {
   text-decoration-line: underline;
   text-decoration-color: rgba(36, 92, 87, 0.28);
   text-decoration-thickness: 1px;
@@ -214,8 +222,16 @@ ol {
   transition: color 160ms ease, text-decoration-color 160ms ease, opacity 160ms ease;
 }
 
+.work-title-link:hover,
+.method-link:hover,
 .text-link:hover,
-.back-link:hover {
+.back-link:hover,
+.hero-copy a:hover,
+.section-intro a:hover,
+.article-summary a:hover,
+.detail-section a:not(.button):hover,
+.source-item a:hover,
+.site-footer a:hover {
   color: var(--accent);
   text-decoration-color: rgba(36, 92, 87, 0.68);
 }
@@ -296,12 +312,14 @@ ol {
 }
 
 .hero-home {
+  max-width: var(--lane-reading);
   padding-top: 12px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--line-strong);
 }
 
 .hero-detail {
+  max-width: var(--lane-reading);
   padding-top: 10px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--line-strong);
@@ -497,6 +515,7 @@ html[lang="ko"] .article-header h1 {
 }
 
 .section-heading {
+  max-width: var(--lane-reading);
   margin-bottom: 14px;
 }
 
@@ -660,7 +679,6 @@ html[lang="ko"] .article-header h1 {
 
 .work-title-link {
   color: var(--ink);
-  text-decoration: none;
   transition: color 160ms ease, opacity 160ms ease;
 }
 
@@ -913,7 +931,6 @@ html[lang="ko"] .detail-section h2 {
   font-weight: 600;
   margin-top: 4px;
   line-height: 1.18;
-  text-decoration: none;
   transition: color 160ms ease, opacity 160ms ease;
 }
 
@@ -1058,6 +1075,7 @@ html[lang="ko"] .archive-page-work .hero-compact h1 {
 }
 
 .site-footer {
+  max-width: var(--lane-reading);
   margin-top: 40px;
   padding-top: 18px;
   border-top: 1px solid var(--line-strong);
@@ -1096,6 +1114,7 @@ html[lang="ko"] .archive-page-work .hero-compact h1 {
 }
 
 .detail-return {
+  max-width: var(--lane-reading);
   margin-top: 22px;
 }
 
