@@ -7,7 +7,7 @@ DIAGRAM_DIR="$ROOT_DIR/resources/diagrams"
 OUTPUT_DIR="$ROOT_DIR/public/resources/diagrams"
 CONFIG_FILE="$DIAGRAM_DIR/mermaid-config.json"
 NPM_CACHE_DIR="${NPM_CONFIG_CACHE:-/tmp/npm-cache}"
-MERMAID_HOME_DIR="${HOME:-/tmp}/.mermaid-build-home"
+PUPPETEER_CACHE_DIR="${PUPPETEER_CACHE_DIR:-${HOME:-/tmp}/.cache/puppeteer}"
 
 if [[ -z "${PUPPETEER_EXECUTABLE_PATH:-}" ]]; then
   if [[ -x "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]]; then
@@ -18,9 +18,9 @@ if [[ -z "${PUPPETEER_EXECUTABLE_PATH:-}" ]]; then
 fi
 
 export NPM_CONFIG_CACHE="$NPM_CACHE_DIR"
-export HOME="$MERMAID_HOME_DIR"
+export PUPPETEER_CACHE_DIR="$PUPPETEER_CACHE_DIR"
 
-mkdir -p "$NPM_CONFIG_CACHE" "$HOME" "$OUTPUT_DIR"
+mkdir -p "$NPM_CONFIG_CACHE" "$PUPPETEER_CACHE_DIR" "$OUTPUT_DIR"
 
 render_diagram() {
   local input_name="$1"

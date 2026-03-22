@@ -24,9 +24,11 @@
 
   <text x="120" y="138" fill="#a25b39" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="3">YONGJIP KIM</text>
 
-  <text x="120" y="242" fill="#1d2d2f" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="700">
-    <tspan x="120" dy="0">Building Data</tspan>
-    <tspan x="120" dy="78">Systems with AI</tspan>
+  <text x="120" y="238" fill="#1d2d2f" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="700">
+    Building Data
+  </text>
+  <text x="120" y="316" fill="#1d2d2f" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="700">
+    Systems with AI
   </text>
 
   <text x="120" y="388" fill="#536363" font-family="IBM Plex Sans, Arial, sans-serif" font-size="28" font-weight="500">
@@ -42,14 +44,14 @@
     yongjip.github.io
   </text>
 
-  <path d="M822 197C862 150 911 126 970 126C1017 126 1058 141 1094 171" fill="none" stroke="#a25b39" stroke-width="8" stroke-linecap="round" opacity="0.9" />
-  <path d="M822 197C859 224 902 237 951 237C1012 237 1060 217 1094 177" fill="none" stroke="#245c57" stroke-width="8" stroke-linecap="round" opacity="0.95" />
+  <path d="M840 190C878 148 922 128 976 128C1014 128 1052 140 1086 164" fill="none" stroke="#a25b39" stroke-width="8" stroke-linecap="round" opacity="0.9" />
+  <path d="M840 190C875 214 915 226 960 226C1014 226 1057 209 1088 179" fill="none" stroke="#245c57" stroke-width="8" stroke-linecap="round" opacity="0.95" />
 
-  <circle cx="823" cy="197" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
-  <circle cx="951" cy="237" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
-  <circle cx="1094" cy="177" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
+  <circle cx="840" cy="190" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
+  <circle cx="960" cy="226" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
+  <circle cx="1088" cy="178" r="18" fill="#fffaf0" stroke="#245c57" stroke-width="6" />
 
-  <text x="794" y="282" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700">Data</text>
-  <text x="919" y="322" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700">Systems</text>
-  <text x="1060" y="262" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="26" font-weight="700">Decisions</text>
+  <text x="810" y="276" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="700">Data</text>
+  <text x="930" y="316" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="700">Systems</text>
+  <text x="1050" y="256" fill="#1d2d2f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="700">Decisions</text>
 </svg>
