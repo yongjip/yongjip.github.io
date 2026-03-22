@@ -73,6 +73,14 @@ For local testing, add it to a local `.env` file. For GitHub Actions / Pages dep
 
 Once the token is set, the Cloudflare beacon will be injected site-wide from the shared layout.
 
+Google Analytics 4 can also be enabled by setting:
+
+```bash
+PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+This uses the standard site-wide `gtag.js` snippet from the shared layout.
+
 ## Documentation
 
 - `design-system.md`: site principles, URL policy, naming rules, and layout language
