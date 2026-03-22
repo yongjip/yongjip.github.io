@@ -1,0 +1,155 @@
+---
+id: recommended-order-quantity
+lang: en
+title: Building a Recommended Order Quantity Engine for Perishable Inventory
+shortTitle: Recommended Order Quantity for Perishable Inventory
+description: Built a rule-based ordering engine for perishable inventory using forecast, lead time, shelf life, open PO, MOQ, and warehouse constraints.
+summary: Forecast was only one input. The system combined freshness, lead time, open PO, MOQ, and warehouse handling constraints into a usable order recommendation for perishable inventory.
+kind: work
+featured: false
+order: 3
+related:
+  - warehouse-optimization
+  - seasonality-index
+ogTitle: Building a Recommended Order Quantity Engine for Perishable Inventory
+ogDescription: Case study on a perishable inventory ordering engine that balanced forecast, freshness, handling efficiency, and stockout risk.
+status: Used as operational ordering logic in PB Fresh
+scope: Perishable inventory ordering across forecast, inventory position, lead time, codelife, open PO, MOQ, pallet handling, and scheduling constraints.
+facts:
+  - label: Scope
+    value: Forecast, inventory position, lead time, codelife, open PO, MOQ, pallet handling, and scheduling constraints.
+  - label: Output
+    value: Recommended order quantity with decision reasons and expected inventory path.
+resultSummary: "Decision engine: forecast plus freshness and handling constraints"
+---
+
+<section class="detail-section detail-section-results">
+  <p class="section-label">Overview</p>
+  <h2>Forecast alone was not enough to recommend order quantity.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Problem</h3>
+      <p>
+        Fresh inventory ordering could not rely on demand forecast alone. A usable recommendation had to account for current inventory, open purchase orders, vendor lead time, minimum order quantities, and the number of days a product could still be sold after inbounding.
+      </p>
+      <p>
+        The hard part was not prediction by itself. It was making ordering decisions that balanced stockout risk against freshness perception, waste exposure, and operating constraints.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Approach</h3>
+      <p>
+        I built a rule-based recommended order quantity engine that translated forecast and inventory signals into a constrained ordering decision. The logic also produced reason codes and expected inventory paths so the recommendation could be interpreted operationally rather than treated as a black box.
+      </p>
+      <p>
+        The result was not a single formula. It was a staged decision system that encoded how perishables should be ordered under real warehouse and vendor constraints.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section detail-section-takeaways">
+  <p class="section-label">Constraints</p>
+  <h2>The engine had to balance freshness, feasibility, and warehouse handling at the same time.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Inventory and demand</h3>
+      <p>
+        The recommendation started from expected starting inventory, demand forecast, and open purchase orders rather than from forecast alone.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Lead time and codelife</h3>
+      <p>
+        Order timing had to reflect vendor lead time and usable codelife. For perishables, pulling inventory too early can create a different failure mode even if it lowers nominal stockout risk.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>MOQ and pallet handling</h3>
+      <p>
+        Minimum order and pallet-unit constraints were not only commercial rules. They also mattered for warehouse efficiency, because pallet-aligned ordering reduced unnecessary depalletizing work when inventory moved from cross-dock to outbound operations.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Orderable calendar</h3>
+      <p>
+        The logic also had to respect non-orderable and non-deliverable dates, so the recommendation reflected when orders could actually be placed and received.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Decision logic</p>
+  <h2>The system generated ROQ through staged rule logic rather than a single reorder threshold.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Target inventory and safety stock</h3>
+      <p>
+        The engine first established a target inventory position using inventory days, safety stock, lead time, and codelife-aware overrides.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Theoretical ROQ</h3>
+      <p>
+        A theoretical order quantity was calculated from target inventory, expected starting inventory, demand forecast, and open purchase order quantity. That gave the system a baseline recommendation before operational constraints were applied.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Order spreading control</h3>
+      <p>
+        A max purchase-order quantity cap was used to spread orders across time. The purpose was not only to limit short-codelife waste, but also to avoid bringing inventory in too early when the marginal stockout reduction was small.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Freshness and demand volatility</h3>
+      <p>
+        That mattered even for items with longer codelife. Excess early inventory could still reduce freshness perception for customers, trigger issue escalation, or become vulnerable to demand shifts caused by competitor pricing and price matching.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>MOQ, pallet, and risk overrides</h3>
+      <p>
+        The system then adjusted the recommendation to MOQ and pallet units, and used explicit override logic for high stockout-risk cases where a normal recommendation would otherwise be zero.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Outputs</p>
+  <h2>The useful output was a quantity plus an explanation.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Operational outputs</h3>
+      <p>
+        The engine produced recommended order quantity together with expected start and end inventory positions. That made the recommendation easier to review in operational planning workflows.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Decision reasons</h3>
+      <p>
+        The system also generated reason codes that distinguished normal reorder decisions from stockout-risk overrides and other operational cases. That made the logic more auditable and easier to discuss with planning and operations teams.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Takeaways</p>
+  <h2>Perishable ordering needed constraint architecture, not just better prediction.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>What mattered</h3>
+      <p>
+        The important design problem was not forecast generation alone. It was deciding how forecast should be constrained by freshness, timing, warehouse handling, and purchasing rules.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Why the system was useful</h3>
+      <p>
+        The engine made ordering decisions more consistent by balancing stockout risk against waste risk, freshness perception, and operating efficiency in one reusable logic.
+      </p>
+    </article>
+  </div>
+</section>

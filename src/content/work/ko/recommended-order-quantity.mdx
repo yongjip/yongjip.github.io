@@ -1,0 +1,155 @@
+---
+id: recommended-order-quantity
+lang: ko
+title: 신선식품 발주를 위한 Recommended Order Quantity 엔진
+shortTitle: 신선식품 ROQ 엔진
+description: forecast, lead time, codelife, open PO, MOQ, pallet handling 제약을 함께 반영하는 신선식품 발주 추천 엔진을 만들었습니다.
+summary: forecast는 입력 중 하나였을 뿐입니다. 이 시스템은 신선도, lead time, open PO, MOQ, 창고 운영 제약을 함께 반영해 실제로 사용할 수 있는 발주 추천을 만들었습니다.
+kind: work
+featured: false
+order: 3
+related:
+  - warehouse-optimization
+  - seasonality-index
+ogTitle: 신선식품 발주를 위한 Recommended Order Quantity 엔진
+ogDescription: forecast, freshness, handling efficiency, stockout risk를 함께 다루는 신선식품 발주 엔진 케이스 스터디입니다.
+status: PB Fresh 운영 발주 로직에 활용
+scope: forecast, inventory position, lead time, codelife, open PO, MOQ, pallet handling, 주문 가능 일정까지 반영한 신선식품 발주 로직.
+facts:
+  - label: 범위
+    value: forecast, inventory position, lead time, codelife, open PO, MOQ, pallet handling, 주문 가능 일정.
+  - label: 출력
+    value: Recommended order quantity, 결정 사유, 예상 inventory path.
+resultSummary: "의사결정 엔진: forecast + 신선도 + 운영 제약"
+---
+
+<section class="detail-section detail-section-results">
+  <p class="section-label">개요</p>
+  <h2>forecast만으로는 발주량을 추천할 수 없었습니다.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>문제</h3>
+      <p>
+        신선식품 발주는 수요 forecast만으로 결정할 수 없었습니다. 실제 추천값을 만들려면 현재 재고, open purchase order, vendor lead time, minimum order quantity, 그리고 입고 후 며칠이나 판매 가능한지를 함께 봐야 했습니다.
+      </p>
+      <p>
+        어려운 점은 예측 자체보다도, stockout risk와 freshness perception, waste exposure, warehouse operating constraints를 동시에 균형 있게 다루는 발주 결정을 만드는 것이었습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>접근</h3>
+      <p>
+        저는 forecast와 inventory signal을 실제 발주 결정으로 바꾸는 rule-based recommended order quantity 엔진을 만들었습니다. 이 로직은 추천값만 내는 것이 아니라 reason code와 예상 inventory path까지 함께 남겨, black box처럼 보이지 않도록 했습니다.
+      </p>
+      <p>
+        핵심은 하나의 공식이 아니라, 신선식품을 실제 운영 제약 아래에서 발주할 수 있도록 만드는 단계형 decision system이었습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section detail-section-takeaways">
+  <p class="section-label">제약 조건</p>
+  <h2>이 엔진은 신선도, 운영 가능성, 창고 처리 효율을 함께 고려해야 했습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>재고와 수요</h3>
+      <p>
+        추천값은 forecast만이 아니라 expected starting inventory와 open purchase order를 함께 본 상태에서 시작했습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>lead time과 codelife</h3>
+      <p>
+        주문 시점은 vendor lead time과 usable codelife를 함께 반영해야 했습니다. 신선식품은 재고를 너무 일찍 들여오는 것 자체가 다른 실패를 만들 수 있기 때문입니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>MOQ와 pallet handling</h3>
+      <p>
+        minimum order와 pallet-unit 제약은 단순한 vendor rule이 아니었습니다. cross-dock warehouse에서 outbound warehouse로 재고를 이동할 때 pallet 단위로 주문하면 불필요한 depalletizing 작업을 줄일 수 있어 창고 운영 효율에도 직접 연결됐습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>주문 가능 일정</h3>
+      <p>
+        로직은 주말, 휴일, 비주문일도 반영해야 했습니다. 즉 추천값은 이론적 수치가 아니라 실제로 언제 주문하고 받을 수 있는지를 함께 고려한 결과여야 했습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">의사결정 로직</p>
+  <h2>이 시스템은 하나의 reorder threshold가 아니라 단계형 rule logic으로 ROQ를 만들었습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>목표 inventory와 safety stock</h3>
+      <p>
+        먼저 inventory days, safety stock, lead time, codelife override를 반영해 목표 inventory position을 계산했습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>이론적 ROQ</h3>
+      <p>
+        그 다음 target inventory, expected starting inventory, demand forecast, open purchase order를 바탕으로 이론적 주문량을 계산해 baseline recommendation을 만들었습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>주문 분산 제어</h3>
+      <p>
+        max purchase-order quantity는 주문을 시간에 걸쳐 분산시키기 위한 장치였습니다. 목적은 short codelife SKU의 폐기만 줄이는 것이 아니라, marginal OOS reduction만을 위해 재고를 너무 일찍 많이 들여오지 않도록 하는 것이었습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>신선도와 수요 변동성</h3>
+      <p>
+        이 제어는 상대적으로 codelife가 긴 SKU에도 중요했습니다. 너무 일찍 들여온 재고는 고객 입장에선 충분히 신선하지 않다고 느껴질 수 있고, competitor pricing이나 price matching 때문에 수요가 흔들리면 과잉 재고가 되어 waste나 markdown risk로 이어질 수 있기 때문입니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>MOQ, pallet, risk override</h3>
+      <p>
+        마지막으로 추천값을 MOQ와 pallet unit에 맞게 조정하고, 일반 로직으로는 0이 나오더라도 stockout risk가 높은 경우엔 별도 override rule을 적용했습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">출력</p>
+  <h2>유용한 출력은 숫자 하나가 아니라 설명 가능한 결정이었습니다.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>운영 출력값</h3>
+      <p>
+        엔진은 recommended order quantity와 함께 expected start inventory, expected end inventory를 계산했습니다. 그래서 운영팀은 발주 추천을 단순한 숫자가 아니라 inventory path로 검토할 수 있었습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>결정 사유</h3>
+      <p>
+        또한 normal reorder, stockout-risk override 같은 reason code를 함께 남겨, 왜 그 추천이 나왔는지를 planning과 operations 팀이 더 쉽게 해석하고 논의할 수 있게 했습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">배운 점</p>
+  <h2>신선식품 발주는 더 좋은 예측보다 제약 구조가 먼저였습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>무엇이 중요했나</h3>
+      <p>
+        중요한 설계 문제는 forecast 자체보다, forecast를 신선도, 시점, 창고 handling, 구매 제약으로 어떻게 제한할 것인가였습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>왜 유용했나</h3>
+      <p>
+        이 엔진은 stockout risk, waste risk, freshness perception, operating efficiency를 하나의 reusable logic 안에서 함께 다뤄, 발주 결정을 더 일관되게 만들었습니다.
+      </p>
+    </article>
+  </div>
+</section>
