@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import CloudflareAnalytics from "../components/CloudflareAnalytics.astro";
 
 interface Alternate {
   hreflang: string;
@@ -70,5 +71,6 @@ const ogImage = "https://yongjip.github.io/resources/og/portfolio-cover.png";
   </head>
   <body class={Astro.url.pathname === "/" || Astro.url.pathname === "/ko/" ? "home-page" : "detail-page"}>
     <slot />
+    <CloudflareAnalytics />
   </body>
 </html>

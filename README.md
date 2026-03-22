@@ -61,6 +61,18 @@ npm run build
 npm run preview
 ```
 
+## Analytics
+
+Cloudflare Web Analytics is wired into the shared layout and can be enabled by setting:
+
+```bash
+PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN=your_site_token
+```
+
+For local testing, add it to a local `.env` file. For GitHub Actions / Pages deployment, add it as a repository variable or environment variable used during the build.
+
+Once the token is set, the Cloudflare beacon will be injected site-wide from the shared layout.
+
 ## Documentation
 
 - `design-system.md`: site principles, URL policy, naming rules, and layout language
