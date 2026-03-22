@@ -226,6 +226,27 @@ Core structural components:
 
 New pages should reuse these patterns before introducing new ones.
 
+For the step-by-step editing and review workflow, see [`docs/authoring-playbook.md`](./docs/authoring-playbook.md).
+
+## Diagrams
+
+Diagrams may use Mermaid as an authoring format, but not as a production rendering path.
+
+For this site:
+
+- Mermaid source files live in `resources/diagrams/*.mmd`
+- Mermaid rendering is controlled by `resources/diagrams/mermaid-config.json`
+- published pages should use prebuilt PNG assets
+- production pages should not load Mermaid in the browser
+
+This keeps diagrams editable while avoiding browser-dependent clipping and layout drift.
+
+When diagrams are updated:
+
+- edit the Mermaid source
+- regenerate the PNG assets with `./scripts/build-diagrams.sh`
+- keep the published pages pointing at the generated raster files
+
 ## Typography and Color
 
 The type system is simple:

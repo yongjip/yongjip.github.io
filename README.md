@@ -19,6 +19,16 @@ Current pages:
 - `seasonality-index.html`: method note on product-level seasonality and planning logic
 - `seasonality-index-ko.html`: Korean version of the seasonality method note
 
+Diagram workflow:
+
+- Mermaid source files live in `resources/diagrams/*.mmd`
+- Mermaid rendering is configured in `resources/diagrams/mermaid-config.json`
+- Production diagram assets are prebuilt PNG files in `resources/diagrams/`
+- Regenerate the published diagram assets with `./scripts/build-diagrams.sh`
+- Published pages should reference the generated PNG assets, not Mermaid runtime output
+- Mermaid is an authoring format only for this site. Production pages do not execute Mermaid in the browser.
+
 Site guidance:
 
 - `design-system.md`: page templates, URL policy, naming rules, navigation rules, and copy guidelines for keeping the site consistent
+- `docs/authoring-playbook.md`: reusable workflow for adding pages, updating diagrams, and reviewing site quality

@@ -1,0 +1,17 @@
+%%{init: {
+  "themeVariables": {
+    "fontSize": "14px"
+  },
+  "flowchart": {
+    "nodeSpacing": 24,
+    "rankSpacing": 30,
+    "padding": 10
+  }
+}}%%
+flowchart LR
+    A["Storage Nodes"] --> B["Node Grouping"]
+    B --> C["Access Points"]
+    C --> D["Walkable Paths"]
+    D --> E["Warehouse Graph"]
+    E --> F["Shortest Path Logic"]
+    F --> G["Simulation"]
