@@ -40,6 +40,8 @@ render_diagram() {
 
 render_diagram "text-to-sql-en.mmd" "text-to-sql-en.png"
 render_diagram "text-to-sql-ko.mmd" "text-to-sql-ko.png"
+render_diagram "roq-en.mmd" "roq-en.png"
+render_diagram "roq-ko.mmd" "roq-ko.png"
 render_diagram "warehouse-en-desktop.mmd" "warehouse-en-desktop.png"
 render_diagram "warehouse-en-mobile.mmd" "warehouse-en-mobile.png"
 render_diagram "warehouse-ko-desktop.mmd" "warehouse-ko-desktop.png"

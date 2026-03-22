@@ -1,0 +1,24 @@
+%%{init: {
+  "themeVariables": {
+    "fontSize": "14px"
+  },
+  "flowchart": {
+    "nodeSpacing": 28,
+    "rankSpacing": 34,
+    "padding": 10
+  }
+}}%%
+flowchart LR
+    A["Forecast"] --> X["ROQ 엔진"]
+    B["재고 상태"] --> X
+    C["Open PO"] --> X
+    D["Lead Time"] --> X
+    E["판매 가능 기간"] --> X
+    X --> F["주문 분산"]
+    X --> G["MOQ 및 Pallet 반영"]
+    X --> H["주문 가능 일정"]
+    F --> J["추천 발주량"]
+    G --> J
+    H --> J
+    J --> K["결정 설명"]
+    J --> L["재고 전망"]

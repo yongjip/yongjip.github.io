@@ -1,0 +1,24 @@
+%%{init: {
+  "themeVariables": {
+    "fontSize": "14px"
+  },
+  "flowchart": {
+    "nodeSpacing": 28,
+    "rankSpacing": 34,
+    "padding": 10
+  }
+}}%%
+flowchart LR
+    A["Forecast"] --> X["ROQ Engine"]
+    B["Inventory Position"] --> X
+    C["Open PO"] --> X
+    D["Lead Time"] --> X
+    E["Usable Sell Window"] --> X
+    X --> F["Order Spreading"]
+    X --> G["MOQ and Pallet Fit"]
+    X --> H["Orderable Calendar"]
+    F --> J["Recommended Order Quantity"]
+    G --> J
+    H --> J
+    J --> K["Decision Explanation"]
+    J --> L["Inventory Outlook"]
