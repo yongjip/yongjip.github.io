@@ -40,10 +40,12 @@ const copy = HOME_COPY[lang];
         <p class="section-label">Work</p>
         <h2>{copy.featuredHeading}</h2>
       </div>
-      <div class="work-list work-list-archive">
-        {featuredWork.map((entry) => <WorkCard entry={entry} mode="archive" />)}
+      <div class="section-group">
+        <div class="work-list work-list-archive">
+          {featuredWork.map((entry) => <WorkCard entry={entry} mode="archive" />)}
+        </div>
+        <a class="text-link section-cta" href={getIndexPath("work", lang)}>Browse the full work archive</a>
       </div>
-      <a class="text-link section-cta" href={getIndexPath("work", lang)}>Browse the full work archive</a>
     </section>
 
     <section class="section section-list">
@@ -51,7 +53,9 @@ const copy = HOME_COPY[lang];
         <p class="section-label">Experience</p>
         <h2>{copy.experienceHeading}</h2>
       </div>
-      <BriefList items={EXPERIENCE_ITEMS[lang]} />
+      <div class="section-group">
+        <BriefList items={EXPERIENCE_ITEMS[lang]} />
+      </div>
     </section>
 
     <section class="section section-list section-methods">
@@ -59,20 +63,22 @@ const copy = HOME_COPY[lang];
         <p class="section-label">Methods</p>
         <h2>{copy.methodsHeading}</h2>
       </div>
-      <p class="section-intro">{copy.methodsIntro}</p>
-      <div class="method-list method-list-preview">
-        {methods.map((entry) => (
-          <article class="method-item">
-            <p class="method-kicker">Method note</p>
-            <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
-              {entry.data.shortTitle}
-            </a>
-            <p class="method-summary">{entry.data.description}</p>
-            <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
-          </article>
-        ))}
+      <div class="section-group">
+        <p class="section-intro">{copy.methodsIntro}</p>
+        <div class="method-list method-list-preview">
+          {methods.map((entry) => (
+            <article class="method-item">
+              <p class="method-kicker">Method note</p>
+              <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+                {entry.data.shortTitle}
+              </a>
+              <p class="method-summary">{entry.data.description}</p>
+              <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
+            </article>
+          ))}
+        </div>
+        <a class="text-link section-cta" href={getIndexPath("method", lang)}>Browse all methods</a>
       </div>
-      <a class="text-link section-cta" href={getIndexPath("method", lang)}>Browse all methods</a>
     </section>
 
     <SiteFooter text={copy.footer} />
