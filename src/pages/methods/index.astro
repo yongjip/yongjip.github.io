@@ -25,8 +25,8 @@ const entries = await getEntries("methods", lang);
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Methods</p>
-      <h1>Short notes on planning logic and operational methods.</h1>
-      <p class="hero-copy">A quieter archive of methods that support the case studies without trying to replace them.</p>
+      <h1>Short notes on planning logic and operational methods</h1>
+      <p class="hero-copy">Methods that support the case studies without trying to replace them.</p>
     </section>
 
     <section class="section section-list section-methods">
@@ -38,10 +38,9 @@ const entries = await getEntries("methods", lang);
               {entry.data.shortTitle}
             </a>
             <p class="method-summary">{entry.data.description}</p>
-            <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
-            <a class="text-link method-cta" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
-              Read the method note
-            </a>
+            <div class="method-inline-meta">
+              <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
+            </div>
           </article>
         ))}
       </div>

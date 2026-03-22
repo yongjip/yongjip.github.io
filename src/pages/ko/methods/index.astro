@@ -26,7 +26,7 @@ const entries = await getEntries("methods", lang);
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Methods</p>
       <h1>계획 로직과 운영 방법을 정리한 짧은 노트</h1>
-      <p class="hero-copy">케이스 스터디를 보완하는 방법론 아카이브로, Work보다 더 조용하고 간결하게 구성합니다.</p>
+      <p class="hero-copy">케이스 스터디를 보완하는 방법을 모아 둔 조용한 아카이브입니다.</p>
     </section>
 
     <section class="section section-list section-methods">
@@ -38,10 +38,9 @@ const entries = await getEntries("methods", lang);
               {entry.data.shortTitle}
             </a>
             <p class="method-summary">{entry.data.description}</p>
-            <p class="method-meta">{`활용: ${entry.data.planningUse}`}</p>
-            <a class="text-link method-cta" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
-              방법론 노트 읽기
-            </a>
+            <div class="method-inline-meta">
+              <p class="method-meta">{`활용: ${entry.data.planningUse}`}</p>
+            </div>
           </article>
         ))}
       </div>

@@ -12,6 +12,7 @@
   --accent: #245c57;
   --accent-soft: #d7e5df;
   --warm: #8b553e;
+  --label: #667372;
   --shadow: 0 16px 36px rgba(42, 47, 39, 0.05);
   --radius-lg: 18px;
   --radius-md: 14px;
@@ -306,7 +307,7 @@ ol {
 
 .eyebrow,
 .section-label {
-  color: var(--warm);
+  color: var(--label);
   font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -320,14 +321,14 @@ ol {
 }
 
 body.home-page .hero-home h1 {
-  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
-  max-width: 17ch;
+  font-size: clamp(1.65rem, 2.8vw, 2.3rem);
+  max-width: none;
   line-height: 1.08;
 }
 
 html[lang="ko"] body.home-page .hero-home h1 {
-  font-size: clamp(1.95rem, 4vw, 3rem);
-  max-width: 15.5ch;
+  font-size: clamp(1.85rem, 3.4vw, 2.7rem);
+  max-width: none;
   word-break: keep-all;
 }
 
@@ -341,6 +342,10 @@ html[lang="ko"] body.home-page .hero-home h1 {
   max-width: 34rem;
   margin-top: 12px;
   color: var(--muted);
+}
+
+body.home-page .hero-home .hero-copy {
+  max-width: 44rem;
 }
 
 .hero-note {
@@ -415,7 +420,7 @@ html[lang="ko"] .article-header h1 {
 }
 
 .article-fact-label {
-  color: var(--warm);
+  color: var(--label);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -528,10 +533,6 @@ html[lang="ko"] .article-header h1 {
   padding: 28px;
 }
 
-.work-card {
-  box-shadow: 0 10px 28px rgba(42, 47, 39, 0.06);
-}
-
 .panel h2 {
   font-size: 2rem;
   margin-top: 10px;
@@ -578,8 +579,8 @@ html[lang="ko"] .article-header h1 {
 .work-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 14rem;
-  gap: 20px;
-  padding: 16px 0;
+  gap: 14px;
+  padding: 11px 0;
   border-bottom: 1px solid var(--line-soft);
 }
 
@@ -589,13 +590,6 @@ html[lang="ko"] .article-header h1 {
 
 .work-card-main {
   min-width: 0;
-}
-
-.work-card-meta {
-  display: grid;
-  align-content: start;
-  justify-items: start;
-  gap: 10px;
 }
 
 .pill,
@@ -616,34 +610,34 @@ html[lang="ko"] .article-header h1 {
 
 .metric {
   background: rgba(36, 92, 87, 0.08);
-  color: var(--warm);
+  color: var(--label);
 }
 
 .work-kicker {
-  color: var(--warm);
-  font-size: 0.82rem;
+  color: var(--label);
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .work-summary {
-  margin-top: 8px;
+  margin-top: 4px;
   color: var(--muted);
 }
 
 .work-proof {
   color: var(--ink);
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .work-card h3,
 .theme-card h3,
 .feature-card h3 {
-  font-size: 1.22rem;
-  margin-top: 6px;
+  font-size: 1.16rem;
+  margin-top: 4px;
   line-height: 1.18;
 }
 
@@ -673,16 +667,31 @@ html[lang="ko"] .article-header h1 {
   color: var(--accent);
 }
 
-.work-card-preview {
-  grid-template-columns: minmax(0, 1fr) 12rem;
-}
-
 .work-card-archive {
-  grid-template-columns: minmax(0, 1fr) 15rem;
+  display: block;
 }
 
 .work-card-archive h3 {
-  max-width: 20ch;
+  max-width: none;
+}
+
+.work-card-archive .work-summary {
+  max-width: none;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.work-card-inline-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.work-card-archive .work-proof,
+.work-card-inline-meta .work-proof {
+  font-size: 0.82rem;
 }
 
 .work-cta,
@@ -723,7 +732,7 @@ html[lang="ko"] .article-header h1 {
 
 .brief-role {
   margin-top: 4px;
-  color: var(--warm);
+  color: var(--label);
   font-weight: 600;
   font-size: 0.92rem;
 }
@@ -830,7 +839,7 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .metric-label {
-  color: var(--warm);
+  color: var(--label);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -863,7 +872,7 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .method-item {
-  padding: 0 0 16px;
+  padding: 10px 0 12px;
   border-bottom: 1px solid var(--line-soft);
 }
 
@@ -876,7 +885,7 @@ html[lang="ko"] .detail-section h2 {
   display: inline-block;
   color: var(--ink);
   font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-top: 4px;
 }
@@ -886,7 +895,7 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .method-kicker {
-  color: var(--warm);
+  color: var(--label);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -898,31 +907,90 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .method-meta {
-  margin-top: 8px;
   color: var(--ink);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 500;
 }
 
-.method-cta {
-  margin-top: 12px;
+.method-inline-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.method-inline-meta .method-meta {
+  position: relative;
+}
+
+.method-inline-meta .method-meta::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.8em;
+  margin-left: 12px;
+  background: var(--line-strong);
+  vertical-align: -0.08em;
 }
 
 .archive-page .hero-home {
-  padding-bottom: 14px;
+  padding-top: 6px;
+  padding-bottom: 12px;
 }
 
 .archive-page .hero-copy {
-  max-width: 34rem;
-  font-size: 0.94rem;
+  max-width: 48rem;
+  font-size: 0.9rem;
+  margin-top: 8px;
 }
 
 .archive-page-methods .method-list {
-  max-width: 42rem;
+  max-width: 56rem;
+}
+
+.archive-page-methods.site-shell-home {
+  width: min(calc(100% - 40px), 940px);
+}
+
+.archive-page-methods .hero-compact h1 {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  max-width: none;
+  line-height: 1.18;
+}
+
+.archive-page-methods .hero-copy {
+  max-width: 56ch;
+}
+
+html[lang="ko"] .archive-page-methods .hero-compact h1 {
+  font-size: clamp(1.18rem, 2.2vw, 1.5rem);
+  max-width: none;
+  line-height: 1.3;
+}
+
+.archive-page-work.site-shell-home {
+  width: min(calc(100% - 40px), 940px);
 }
 
 .archive-page-work .work-list {
-  max-width: 52rem;
+  max-width: 56rem;
+}
+
+.archive-page-work .hero-compact h1 {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  max-width: none;
+  line-height: 1.18;
+}
+
+.archive-page-work .hero-copy {
+  max-width: 56ch;
+}
+
+html[lang="ko"] .archive-page-work .hero-compact h1 {
+  font-size: clamp(1.18rem, 2.2vw, 1.5rem);
+  max-width: none;
+  line-height: 1.3;
 }
 
 .work-list-preview {
@@ -939,6 +1007,18 @@ html[lang="ko"] .detail-section h2 {
 
 .detail-section-results .detail-intro {
   max-width: 40rem;
+}
+
+.detail-section-flow .diagram-panel {
+  margin-top: 16px;
+}
+
+.detail-section-flow .diagram-image-flow {
+  max-width: 900px;
+}
+
+.detail-section-outputs .detail-stack {
+  max-width: 48rem;
 }
 
 .detail-section-takeaways {

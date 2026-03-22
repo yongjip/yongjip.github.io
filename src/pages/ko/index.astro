@@ -40,8 +40,8 @@ const copy = HOME_COPY[lang];
         <p class="section-label">Work</p>
         <h2>{copy.featuredHeading}</h2>
       </div>
-      <div class="work-list work-list-preview">
-        {featuredWork.map((entry) => <WorkCard entry={entry} mode="preview" />)}
+      <div class="work-list work-list-archive">
+        {featuredWork.map((entry) => <WorkCard entry={entry} mode="archive" />)}
       </div>
       <a class="text-link section-cta" href={getIndexPath("work", lang)}>전체 Work 아카이브 보기</a>
     </section>
@@ -69,9 +69,6 @@ const copy = HOME_COPY[lang];
             </a>
             <p class="method-summary">{entry.data.description}</p>
             <p class="method-meta">{`활용: ${entry.data.planningUse}`}</p>
-            <a class="text-link method-cta" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
-              노트 보기
-            </a>
           </article>
         ))}
       </div>

@@ -8,7 +8,6 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const mode = Astro.props.mode ?? "preview";
 const href = getEntryPath(entry.data.kind, entry.data.id, entry.data.lang);
 const kicker = entry.data.kind === "work"
   ? entry.data.lang === "ko"
@@ -23,7 +22,7 @@ const meta =
     : entry.data.lang === "ko"
       ? `형식: ${entry.data.format}`
       : `Format: ${entry.data.format}`;
-const cardClass = mode === "archive" ? "work-card work-card-archive" : "work-card work-card-preview";
+const cardClass = "work-card work-card-archive";
 ---
 
 <article class={cardClass}>
@@ -33,17 +32,8 @@ const cardClass = mode === "archive" ? "work-card work-card-archive" : "work-car
       <a class="work-title-link" href={href}>{entry.data.shortTitle}</a>
     </h3>
     <p class="work-summary">{entry.data.description}</p>
-  </div>
-  <div class="work-card-meta">
-    <p class="work-proof">{meta}</p>
-    <a class="text-link work-cta" href={href}>
-      {entry.data.kind === "work"
-        ? entry.data.lang === "ko"
-          ? "자세히 보기"
-          : "Read memo"
-        : entry.data.lang === "ko"
-          ? "노트 보기"
-          : "Read note"}
-    </a>
+    <div class="work-card-inline-meta">
+      <p class="work-proof">{meta}</p>
+    </div>
   </div>
 </article>

@@ -3,8 +3,8 @@ id: recommended-order-quantity
 lang: en
 title: Building a Recommended Order Quantity Engine for Perishable Inventory
 shortTitle: Recommended Order Quantity for Perishable Inventory
-description: Built a rule-based ordering engine for perishable inventory using forecast, lead time, shelf life, open PO, MOQ, and warehouse constraints.
-summary: Forecast was only one input. The system turned inventory, timing, freshness, and warehouse constraints into a usable order recommendation for perishable inventory.
+description: Built a perishable ordering engine that combined forecast with freshness, timing, and warehouse constraints.
+summary: Forecast was only one input. The system turned freshness, timing, and warehouse constraints into a usable purchase recommendation for perishables.
 kind: work
 featured: false
 order: 3
@@ -17,9 +17,9 @@ status: Used as operational ordering logic in PB Fresh
 scope: Perishable inventory ordering across forecast, inventory position, lead time, codelife, open PO, MOQ, pallet handling, and scheduling constraints.
 facts:
   - label: Scope
-    value: Forecast, inventory position, lead time, codelife, open PO, MOQ, pallet handling, and scheduling constraints.
+    value: Forecast, inventory, lead time, codelife, open PO, MOQ, pallet handling, and calendar constraints.
   - label: Output
-    value: Recommended order quantity with a decision explanation and inventory outlook.
+    value: Recommended order quantity with decision explanation and inventory outlook.
 resultSummary: "Decision engine: forecast plus freshness and handling constraints"
 ---
 
@@ -81,7 +81,7 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   </div>
 </section>
 
-<section class="detail-section">
+<section class="detail-section detail-section-flow">
   <p class="section-label">Decision logic</p>
   <h2>The system used staged logic to turn inputs and constraints into a usable order quantity.</h2>
   <ResponsiveDiagram
@@ -126,20 +126,29 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   </div>
 </section>
 
-<section class="detail-section">
+<section class="detail-section detail-section-outputs">
   <p class="section-label">Outputs</p>
   <h2>The useful output was a quantity plus an explanation.</h2>
-  <div class="detail-columns">
+  <p class="detail-intro">
+    The recommendation was meant to support a planner review, not replace it with a single opaque number.
+  </p>
+  <div class="detail-stack">
     <article class="detail-item">
-      <h3>Operational outputs</h3>
+      <h3>Recommended quantity</h3>
       <p>
-        The engine produced a recommended order quantity together with an inventory outlook. That made the recommendation easier to review in planning workflows than a single quantity alone.
+        The core output was a suggested purchase quantity that already reflected timing, freshness, and handling constraints.
       </p>
     </article>
     <article class="detail-item">
       <h3>Decision explanation</h3>
       <p>
-        The system also generated a concise explanation of why the recommendation looked the way it did. That made the logic easier to audit and easier to discuss with planning and operations teams.
+        The system also produced a short explanation of why the recommendation looked the way it did, which made review and discussion easier for planning and operations teams.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Inventory outlook</h3>
+      <p>
+        A simple inventory outlook helped reviewers judge whether the recommendation looked reasonable once current stock and incoming purchase orders were taken into account.
       </p>
     </article>
   </div>
