@@ -33,11 +33,15 @@ const entries = await getEntries("methods", lang);
       <div class="method-list">
         {entries.map((entry) => (
           <article class="method-item">
+            <p class="method-kicker">방법론 노트</p>
             <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
               {entry.data.shortTitle}
             </a>
-            <p>{entry.data.description}</p>
+            <p class="method-summary">{entry.data.description}</p>
             <p class="method-meta">{`활용: ${entry.data.planningUse}`}</p>
+            <a class="text-link method-cta" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+              방법론 노트 읽기
+            </a>
           </article>
         ))}
       </div>
