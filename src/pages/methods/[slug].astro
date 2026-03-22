@@ -4,8 +4,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import ArticleHeader from "../../components/ArticleHeader.astro";
-import RelatedWork from "../../components/RelatedWork.astro";
-import { getRelatedEntries } from "../../lib/content";
 import { getEntryPath, getIndexPath, getLanguagePartnerPath, getPageLabel, toAbsoluteUrl } from "../../lib/routes";
 
 export async function getStaticPaths() {
@@ -18,7 +16,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const related = await getRelatedEntries(entry);
 const lang = "en";
 ---
 
@@ -49,7 +46,6 @@ const lang = "en";
       facts={entry.data.facts}
     />
     <Content />
-    <RelatedWork entries={related} lang={lang} />
     <div class="detail-return">
       <a class="back-link" href={getIndexPath("method", lang)}>Back to all methods</a>
     </div>

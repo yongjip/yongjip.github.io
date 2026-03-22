@@ -17,13 +17,3 @@ export async function getMethodPreview(lang: Lang, limit = 2) {
   const entries = await getEntries("methods", lang);
   return entries.slice(0, limit);
 }
-
-export async function getRelatedEntries(
-  entry: CollectionEntry<"work"> | CollectionEntry<"methods">
-) {
-  const collection = entry.collection;
-  const candidates = await getCollection(collection, ({ data }) => data.lang === entry.data.lang);
-  return entry.data.related
-    .map((id) => candidates.find((candidate) => candidate.data.id === id))
-    .filter(Boolean) as Array<CollectionEntry<"work"> | CollectionEntry<"methods">>;
-}

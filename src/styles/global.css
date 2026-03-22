@@ -837,32 +837,6 @@ html[lang="ko"] .detail-section h2 {
   border-bottom: 1px solid var(--line-soft);
 }
 
-.related-list {
-  margin-top: 14px;
-  display: grid;
-  gap: 12px;
-  max-width: 40rem;
-}
-
-.related-item {
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.related-title {
-  display: inline-block;
-  color: var(--ink);
-  font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.related-item p {
-  margin-top: 6px;
-  color: var(--muted);
-}
-
 .method-list {
   margin-top: 12px;
   display: grid;
@@ -971,19 +945,6 @@ html[lang="ko"] .detail-section h2 {
 .detail-section-takeaways .detail-item h3 {
   font-size: 1.18rem;
   margin-bottom: 6px;
-}
-
-.detail-section-related {
-  margin-top: 52px;
-}
-
-.detail-section-related h2 {
-  font-size: clamp(1rem, 1.8vw, 1.18rem);
-  max-width: none;
-}
-
-.detail-section-related .section-label {
-  color: var(--muted);
 }
 
 .site-footer {
