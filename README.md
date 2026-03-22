@@ -50,6 +50,8 @@ Shared route, metadata, and language-link logic lives in `src/lib/` and `src/dat
 
 ## Commands
 
+Requires Node `22.12.0` or newer. `.nvmrc` is pinned to `22.12.0`.
+
 ```bash
 npm install
 npm run dev
@@ -62,4 +64,4 @@ npm run preview
 ## Documentation
 
 - `design-system.md`: site principles, URL policy, naming rules, and layout language
-- `docs/authoring-playbook.md`: repeatable workflow for adding pages, editing content, updating diagrams, and QA
+- `docs/authoring-playbook.md`: repeatable workflow for adding pages, editing content, updating diagrams, QA, and future LLM-agent guardrails

@@ -300,17 +300,190 @@ When reviewing the site, improve in this order:
 
 Do not jump to visual polish while the structure is still uneven.
 
-## 12. Future Automation
+## 12. Current Automation And Remaining Gaps
 
-Two improvements are worth adding later:
+The site already uses GitHub Actions for build and Pages deployment.
 
-- GitHub Actions build and deploy workflow
+Current automated path:
+
+- install dependencies
+- build Mermaid diagram PNG assets
+- run `astro check`
+- run Astro static build
+- deploy GitHub Pages
+
+Still worth adding later:
+
 - Lighthouse CI for a small quality gate
+- a lightweight screenshot or DOM regression check for key pages
+- a check that no production page loads Mermaid in the browser
 
-Good candidates for automation:
+Automation should support the content model, not replace manual judgment about hierarchy, copy, and page role.
 
-- build diagram assets from Mermaid source
-- verify no production page loads Mermaid in the browser
-- run a small regression check on key pages
+## 13. LLM Agent Best Practices
 
-These are useful, but only after the manual workflow is stable.
+Future LLM agents working in this repo should follow these rules.
+
+### Treat Astro As The Source Of Truth
+
+Do not reintroduce handwritten root HTML pages as the primary implementation.
+
+The real site lives in:
+
+- `src/pages/`
+- `src/components/`
+- `src/content/`
+- `src/styles/`
+
+Only keep legacy `.html` files as redirect stubs under `public/`.
+
+Do not edit `dist/` manually.
+
+### Respect The Current Stack Constraints
+
+This site currently assumes:
+
+- Astro `6.x`
+- Node `22.12.0` or newer
+- content collections loaded explicitly through `glob()` loaders
+- Mermaid used as source only, PNG used in production
+
+If Astro is upgraded again, check the official upgrade guide first and verify:
+
+- Node version requirements
+- content collection API changes
+- integration version compatibility
+- build and deploy workflow compatibility
+
+### Do Not Break The Collection Model
+
+The content model is intentionally split into:
+
+- `work`
+- `methods`
+
+Each entry is language-specific and paired by a shared `id`.
+
+Important rule:
+
+- preserve the current collection directories under `src/content/`
+- preserve explicit collection loaders in `src/content.config.ts`
+- preserve clean route generation from `data.id`
+
+Do not flatten EN and KR into one file unless the authoring model is intentionally redesigned.
+
+### Keep Route Logic Clean
+
+Canonical routes should stay clean:
+
+- `/`
+- `/ko/`
+- `/work/`
+- `/ko/work/`
+- `/methods/`
+- `/ko/methods/`
+
+When adding new pages:
+
+- use clean routes as canonical
+- preserve legacy `.html` URLs only through redirect stubs if backward compatibility matters
+- keep language switches inside the same page family
+
+Do not mix canonical clean routes with file-style navigation in normal page components.
+
+### Preserve The Navigation Roles
+
+The header is intentionally small.
+
+It is for:
+
+- LinkedIn profile
+- GitHub profile
+- language switch
+
+Project discovery belongs in page content, not in the global header.
+
+If a link appears in both header and footer, there must be a distinct reason. Avoid duplicate navigation by default.
+
+### Prefer Scan Hierarchy Over More Prose
+
+This portfolio is moving toward a skim-first model.
+
+When improving a page, prefer:
+
+- clearer headings
+- better card or list scan order
+- shorter summary text
+- stronger proof lines
+
+Avoid solving every clarity problem by adding more explanatory paragraphs.
+
+### Use Different Separation Rules For Different Levels
+
+Do not use the same divider pattern for:
+
+- major sections
+- repeated list items
+- intra-item content
+
+Major sections should be separated mostly by spacing.
+Repeated items may use soft dividers.
+Paragraphs inside an item should rely on typography and spacing only.
+
+### Treat `Work` And `Methods` As Different, But Related
+
+`Work` is the main archive.
+`Methods` is a quieter supporting archive.
+
+That means:
+
+- `Work` can use stronger cards
+- `Methods` should stay list-like or quieter
+- both should still share the same information grammar
+
+Do not make `Methods` feel like a second full portfolio homepage.
+
+### Diagrams: Edit Source, Ship Assets
+
+If a diagram changes:
+
+1. update the Mermaid source in `resources/diagrams/`
+2. regenerate PNG assets
+3. verify the page references the PNG output
+4. check desktop and mobile variants where applicable
+
+Do not put live Mermaid back into production pages to save time.
+
+If a flow becomes visually awkward, prefer:
+
+- a desktop/mobile asset split
+- a simpler layout
+- a different explanatory pattern
+
+not runtime Mermaid tweaks.
+
+### Verify Before Declaring Success
+
+Minimum check for meaningful changes:
+
+- `npm run check`
+- `npm run build`
+
+If the change affects routes, content, or diagrams, also verify:
+
+- target pages exist in the build output
+- collections are not empty
+- diagram assets are generated
+- local preview still works
+
+If a build passes but pages silently disappear, treat that as a regression.
+
+### Update The Docs When The Working Method Changes
+
+If an LLM agent changes how the site is authored or built, update at least one of:
+
+- `README.md`
+- `design-system.md`
+- `docs/authoring-playbook.md`
+
+Do not leave a new workflow undocumented.

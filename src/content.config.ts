@@ -1,4 +1,6 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 const factSchema = z.object({
   label: z.string(),
@@ -22,7 +24,7 @@ const baseSchema = z.object({
 });
 
 const work = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/work" }),
   schema: baseSchema.extend({
     kind: z.literal("work"),
     status: z.string(),
@@ -32,7 +34,7 @@ const work = defineCollection({
 });
 
 const methods = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/methods" }),
   schema: baseSchema.extend({
     kind: z.literal("method"),
     format: z.string(),
