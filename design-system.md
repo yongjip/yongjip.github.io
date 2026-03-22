@@ -50,8 +50,7 @@ Current structure:
 5. core mechanism or workflow
 6. results
 7. takeaways
-8. related work
-9. footer
+8. footer
 
 These pages should read like short internal memos first, and full writeups second.
 
@@ -67,24 +66,26 @@ Current structure:
 5. method
 6. why it matters
 7. source
-8. related work
-9. footer
+8. footer
 
 ## Navigation
 
-The header is intentionally minimal.
+The header is intentionally minimal, but it now carries stable internal navigation as well.
 
 It is reserved for:
 
+- Home
+- Work
+- Methods
 - LinkedIn profile
 - GitHub profile
 - language switch
 
-Project links do not appear in the global header. Project discovery happens inside the page through:
+Project discovery happens inside the page through:
 
-- the home hero CTA
-- selected work cards
-- related work links
+- featured work on home
+- work and methods archives
+- back links on detail pages
 
 This keeps the global navigation stable while letting the content carry the browsing flow.
 
@@ -125,7 +126,6 @@ Korean uses:
 Use the short display title in compact contexts such as:
 
 - home work cards
-- related work links
 - other list-based navigation
 
 Use the full page title in page-level contexts such as:
@@ -154,6 +154,32 @@ The fact row is intentionally plain. It is not treated as a set of badges or car
 
 The site uses a few structural rules to stay consistent.
 
+### Width Lanes
+
+The site uses exactly three width layers:
+
+- `shell`: page margins and overall container width
+- `reading`: default width for text-first content
+- `wide`: wider content such as diagrams and metric grids
+
+Use `reading` for:
+
+- hero copy
+- archive rows
+- article summary
+- fact rows
+- section intros
+- detail stacks
+- source lists
+
+Use `wide` only for content that actually benefits from extra horizontal space:
+
+- diagrams
+- metric grids
+- rare paired comparison blocks
+
+Do not add one-off `max-width` rules for individual sections unless there is a concrete, visual reason that cannot be handled by one of these three layers.
+
 ### Home
 
 - selected work is a small preview, not a full archive
@@ -165,7 +191,8 @@ The site uses a few structural rules to stay consistent.
 - default to single-column reading flow
 - use two columns only for naturally paired content
 - use full-width treatment for diagrams when helpful
-- keep related work visually quiet
+- article header and body text should share the same reading lane
+- metrics and diagrams may break wider, but text blocks should not invent separate width systems
 
 Good uses of two columns include:
 
@@ -194,7 +221,6 @@ English:
 - `Takeaways`
 - `Why it matters`
 - `Source`
-- `Related work`
 
 Korean:
 
@@ -229,7 +255,6 @@ Core structural components:
 - `detail-columns`
 - `detail-stack`
 - `metric-grid`
-- `related-list`
 - `site-footer`
 
 New pages should reuse these patterns before introducing new ones.

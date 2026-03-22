@@ -58,8 +58,7 @@ Order:
 5. core mechanism or workflow
 6. results
 7. takeaways
-8. related work
-9. footer
+8. footer
 
 Case pages should read memo-first:
 
@@ -78,8 +77,7 @@ Order:
 5. method
 6. why it matters
 7. source
-8. related work
-9. footer
+8. footer
 
 ## 3. Keep The Header Brief
 
@@ -114,7 +112,6 @@ Use:
 Compact contexts include:
 
 - home work cards
-- related work links
 - list-based navigation
 
 Page-level contexts include:
@@ -142,6 +139,44 @@ Good two-column pairs:
 - context and implication
 
 Do not use multi-column layout just to create visual variety.
+
+## 5A. Use Shared Width Lanes
+
+Do not tune width section by section.
+
+This site uses three width layers:
+
+- `shell`
+- `reading lane`
+- `wide lane`
+
+Default rule:
+
+- text content uses the `reading lane`
+- diagrams and metric grids may use the `wide lane`
+- page shells handle margins only; they should not be used to solve text wrapping problems
+
+Text-first content includes:
+
+- hero copy
+- archive rows
+- article summary
+- fact rows
+- section intros
+- detail stacks
+- source/source lists
+
+Avoid adding new ad hoc width rules such as:
+
+- random `40rem`, `44rem`, `52rem`, `56rem`
+- narrow `14ch`, `20ch`, `30ch` heading caps
+
+If text wraps awkwardly, prefer:
+
+- adjusting typography
+- using the shared lane
+
+before adding a new local width exception.
 
 ## 6. Diagram Rule: Mermaid As Source, PNG In Production
 
@@ -212,7 +247,6 @@ Default rules:
 - summary: one short paragraph
 - facts: exactly two items
 - section intros: one short paragraph at most
-- related work: short description only
 - archive rows: one scan sentence plus one proof line
 
 Try to avoid:
@@ -222,6 +256,7 @@ Try to avoid:
 - repeating the same claim in hero, body, and footer
 
 On archive pages, prefer denser rows over more decorative card treatment.
+On all page types, prefer shared lane behavior over per-section width tuning.
 
 ## 8. Preserve Navigation Roles
 
@@ -229,9 +264,9 @@ Do not let the same link appear everywhere without a reason.
 
 Current roles:
 
-- header: stable external profile links and language switch
+- header: stable internal navigation, external profile links, and language switch
 - home body: project discovery
-- detail pages: back link plus related work
+- detail pages: back link and document flow
 - home footer: quiet close, not duplicate navigation
 
 When a link appears in multiple places, each placement should have a distinct job.
@@ -278,7 +313,6 @@ Legacy `.html` redirects are preserved in `public/`, but the authoring model sho
 ### Links
 
 - language switch stays within the same page family
-- related work links point to same-language pages
 - external profile links open the correct profile
 
 ### Diagrams
