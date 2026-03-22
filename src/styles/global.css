@@ -803,6 +803,11 @@ html[lang="ko"] .article-header h1 {
   text-wrap: balance;
 }
 
+.detail-section > .section-label,
+.detail-section > h2 {
+  max-width: var(--lane-reading);
+}
+
 html[lang="ko"] .detail-section h2 {
   word-break: keep-all;
 }
