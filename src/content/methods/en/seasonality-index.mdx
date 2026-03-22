@@ -1,0 +1,86 @@
+---
+id: seasonality-index
+lang: en
+title: Seasonality Index for Inventory Planning
+shortTitle: Seasonality Index for Inventory Planning
+description: A practical method for estimating product-level seasonality and connecting it back to category-level planning logic.
+summary: A practical method for estimating product-level seasonality and mapping it back to category-level planning logic when category averages are not enough.
+kind: method
+featured: false
+order: 1
+related:
+  - text-to-sql
+  - warehouse-optimization
+ogTitle: Seasonality Index for Inventory Planning
+ogDescription: "Method note: a practical approach to product-level seasonality and category-level planning logic."
+format: Method note built around product-level seasonality and seasonal buckets.
+planningUse: Maps SKU-level signals back into a simpler category-level inventory model.
+facts:
+  - label: Format
+    value: Method note built around product-level seasonality and seasonal buckets.
+  - label: Planning use
+    value: Maps SKU-level signals back into a simpler category-level inventory model.
+---
+
+<section class="detail-section">
+  <p class="section-label">Overview</p>
+  <h2>Category-level seasonality can hide important differences between products.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Problem</h3>
+      <p>In inventory planning, it is tempting to assign one seasonal pattern to an entire category. In practice, that can be too coarse. Products in the same category may follow different demand curves across the year.</p>
+      <p>That creates a planning problem: category-level seasonality is simple, but product-level behavior is often what actually drives inventory risk.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Approach</h3>
+      <p>The method starts by calculating a seasonality index at the SKU level rather than relying only on category averages. Products can then be grouped into seasonal buckets based on similar patterns.</p>
+      <p>The point is not to create the most complex model. It is to keep the planning logic simple while making the seasonal signal more realistic.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Method</p>
+  <h2>A structured way to turn noisy product behavior into usable planning signals.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Product-level SI</h3>
+      <p>Estimate seasonality at the product level first so each SKU can reflect its own demand pattern across time.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Season buckets</h3>
+      <p>Group products into a smaller set of seasonal buckets so the result stays usable for business planning instead of becoming too fragmented.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Planning linkage</h3>
+      <p>Map those patterns back into category-level planning logic so teams can use a cleaner operational framework without ignoring product differences.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Why it matters</p>
+  <h2>Simple planning improves when the seasonal structure is better.</h2>
+  <p class="detail-intro">This method is useful when you want a planning model that remains explainable but still captures real variation inside a category. It is a practical middle ground between one-size-fits-all averages and overly complex forecasting systems.</p>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Operational use</h3>
+      <p>Teams can keep a clean planning framework without pretending that every product in a category behaves the same way.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Broader pattern</h3>
+      <p>I treat this as an example of a broader pattern in operations work: build a model that is simple enough to use, but structured enough to support better decisions.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Source</p>
+  <h2>Original note</h2>
+  <div class="source-list">
+    <article class="source-item">
+      <p>This page is a cleaned-up portfolio version of an earlier note.</p>
+      <a class="text-link" href="https://github.com/yongjip/gitbook/blob/master/seasonality-index.md">View original markdown</a>
+    </article>
+  </div>
+</section>

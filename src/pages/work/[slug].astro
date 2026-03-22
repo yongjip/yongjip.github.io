@@ -1,0 +1,55 @@
+---
+import { render, getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ArticleHeader from "../../components/ArticleHeader.astro";
+import RelatedWork from "../../components/RelatedWork.astro";
+import { getRelatedEntries } from "../../lib/content";
+import { getEntryPath, getIndexPath, getLanguagePartnerPath, getPageLabel, toAbsoluteUrl } from "../../lib/routes";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("work", ({ data }) => data.lang === "en");
+  return entries.map((entry) => ({
+    params: { slug: entry.data.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const related = await getRelatedEntries(entry);
+const lang = "en";
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${entry.data.title} | Yongjip Kim`}
+  description={entry.data.ogDescription ?? entry.data.description}
+  canonical={toAbsoluteUrl(getEntryPath(entry.data.kind, entry.data.id, lang))}
+  ogTitle={entry.data.ogTitle ?? entry.data.title}
+  ogDescription={entry.data.ogDescription ?? entry.data.description}
+  ogType="article"
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl(getEntryPath(entry.data.kind, entry.data.id, "en")) },
+    { hreflang: "ko", href: toAbsoluteUrl(getLanguagePartnerPath(entry)) },
+  ]}
+>
+  <main class="site-shell site-shell-detail">
+    <SiteHeader
+      lang={lang}
+      enHref={getEntryPath(entry.data.kind, entry.data.id, "en")}
+      koHref={getLanguagePartnerPath(entry)}
+    />
+    <a class="back-link" href={getIndexPath("work", lang)}>Back to all work</a>
+    <ArticleHeader
+      label={getPageLabel(entry.data.kind, lang)}
+      title={entry.data.title}
+      summary={entry.data.summary}
+      facts={entry.data.facts}
+    />
+    <Content />
+    <RelatedWork entries={related} lang={lang} />
+    <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />
+  </main>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import WorkCard from "../components/WorkCard.astro";
+import BriefList from "../components/BriefList.astro";
+import { EXPERIENCE_ITEMS, HOME_COPY } from "../data/site";
+import { getFeaturedWork, getMethodPreview } from "../lib/content";
+import { getEntryPath, getHomePath, getIndexPath, toAbsoluteUrl } from "../lib/routes";
+
+const lang = "en";
+const featuredWork = await getFeaturedWork(lang);
+const methods = await getMethodPreview(lang, 2);
+const copy = HOME_COPY[lang];
+---
+
+<BaseLayout
+  lang={lang}
+  title="Yongjip Kim | Data Systems Portfolio"
+  description="Yongjip Kim builds data platforms, analytics workflows, and AI-assisted internal tools for real business operations."
+  canonical={toAbsoluteUrl(getHomePath(lang))}
+  ogTitle="Building Data Systems with AI"
+  ogDescription="Yongjip Kim builds data platforms, analytics workflows, and practical internal systems with AI."
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/") },
+  ]}
+>
+  <main class="site-shell site-shell-home">
+    <SiteHeader lang={lang} enHref="/" koHref="/ko/" />
+
+    <section class="hero hero-home">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h1>{copy.title}</h1>
+      <p class="hero-copy">{copy.description}</p>
+      <p class="hero-note">{copy.note}</p>
+      <div class="action-row">
+        <a class="button button-primary" href="#selected-work">View selected work</a>
+        <a class="button button-secondary" href={getIndexPath("work", lang)}>View all work</a>
+        <a class="button button-secondary" href={getIndexPath("method", lang)}>View methods</a>
+      </div>
+    </section>
+
+    <section class="section section-work" id="selected-work">
+      <div class="section-heading section-heading-home">
+        <p class="section-label">Selected Work</p>
+        <h2>{copy.featuredHeading}</h2>
+      </div>
+      <div class="work-grid">
+        {featuredWork.map((entry) => <WorkCard entry={entry} />)}
+      </div>
+    </section>
+
+    <section class="section section-list">
+      <div class="section-heading section-heading-home">
+        <p class="section-label">Experience</p>
+        <h2>{copy.experienceHeading}</h2>
+      </div>
+      <BriefList items={EXPERIENCE_ITEMS[lang]} />
+    </section>
+
+    <section class="section section-list section-methods">
+      <div class="section-heading section-heading-home">
+        <p class="section-label">Methods</p>
+        <h2>{copy.methodsHeading}</h2>
+      </div>
+      <p class="section-intro">{copy.methodsIntro}</p>
+      <div class="method-list">
+        {methods.map((entry) => (
+          <article class="method-item">
+            <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+              {entry.data.shortTitle}
+            </a>
+            <p>{entry.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <SiteFooter text={copy.footer} />
+  </main>
+</BaseLayout>

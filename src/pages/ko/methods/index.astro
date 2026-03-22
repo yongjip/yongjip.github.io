@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SiteHeader from "../../../components/SiteHeader.astro";
+import SiteFooter from "../../../components/SiteFooter.astro";
+import { getEntries } from "../../../lib/content";
+import { getEntryPath, getIndexPath, toAbsoluteUrl } from "../../../lib/routes";
+
+const lang = "ko";
+const entries = await getEntries("methods", lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title="Methods | 김용집"
+  description="실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다."
+  canonical={toAbsoluteUrl(getIndexPath("method", lang))}
+  ogTitle="Methods | 김용집"
+  ogDescription="실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다."
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/methods/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
+  ]}
+>
+  <main class="site-shell site-shell-home">
+    <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
+    <section class="hero hero-home hero-compact">
+      <p class="eyebrow">Methods</p>
+      <h1>실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트</h1>
+      <p class="hero-copy">
+        블로그처럼 길게 늘리지 않고, 운영과 분석에 직접 연결되는 방법만 남깁니다.
+      </p>
+    </section>
+
+    <section class="section section-list section-methods">
+      <div class="method-list">
+        {entries.map((entry) => (
+          <article class="method-item">
+            <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+              {entry.data.shortTitle}
+            </a>
+            <p>{entry.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <SiteFooter text="데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다." />
+  </main>
+</BaseLayout>

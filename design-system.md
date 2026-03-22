@@ -85,26 +85,23 @@ This keeps the global navigation stable while letting the content carry the brow
 
 ## URL Strategy
 
-The English home page has one canonical URL:
+The site now uses clean canonical routes.
+
+English:
 
 - `https://yongjip.github.io/`
+- `https://yongjip.github.io/work/`
+- `https://yongjip.github.io/methods/`
 
-That root URL is the source of truth for:
+Korean:
 
-- the English home canonical URL
-- the English home `og:url`
-- canonical and metadata values
+- `https://yongjip.github.io/ko/`
+- `https://yongjip.github.io/ko/work/`
+- `https://yongjip.github.io/ko/methods/`
 
-Visible navigation should still prefer relative links such as `./` so the site works both on:
+Legacy `.html` URLs remain available only as redirect stubs. They should not be treated as canonical.
 
-- GitHub Pages at the root domain
-- local preview servers that mount the site under a subpath
-
-The Korean home page remains a distinct page:
-
-- `https://yongjip.github.io/index-ko.html`
-
-This avoids splitting the English home between `/` and `/index.html` in metadata, while keeping local preview links stable.
+This keeps metadata, navigation, and language links aligned around one route system instead of mixing root pages with ad hoc file names.
 
 ## Project Naming
 
@@ -203,7 +200,7 @@ The exact wording may vary slightly when needed, but pages should stay close to 
 
 ## Components
 
-The current site is built around a small set of reusable components defined in [`resources/css/styles.css`](./resources/css/styles.css).
+The current site is built around a small set of reusable Astro components and a shared global stylesheet in [`src/styles/global.css`](./src/styles/global.css).
 
 Core structural components:
 
@@ -226,6 +223,25 @@ Core structural components:
 
 New pages should reuse these patterns before introducing new ones.
 
+## Authoring Model
+
+The published site is generated from Astro content collections rather than handwritten standalone HTML files.
+
+Current collections:
+
+- `work`
+- `methods`
+
+Each entry is language-specific and paired through a shared stable `id`.
+
+This allows the site to keep:
+
+- clean canonical routes
+- reusable page shells
+- consistent metadata
+- stable related-work links
+- bilingual parity without duplicating templates
+
 For the step-by-step editing and review workflow, see [`docs/authoring-playbook.md`](./docs/authoring-playbook.md).
 
 ## Diagrams
@@ -236,7 +252,7 @@ For this site:
 
 - Mermaid source files live in `resources/diagrams/*.mmd`
 - Mermaid rendering is controlled by `resources/diagrams/mermaid-config.json`
-- published pages should use prebuilt PNG assets
+- published assets are generated into `public/resources/diagrams/`
 - production pages should not load Mermaid in the browser
 
 This keeps diagrams editable while avoiding browser-dependent clipping and layout drift.
@@ -244,7 +260,7 @@ This keeps diagrams editable while avoiding browser-dependent clipping and layou
 When diagrams are updated:
 
 - edit the Mermaid source
-- regenerate the PNG assets with `./scripts/build-diagrams.sh`
+- regenerate the PNG assets with `npm run build:diagrams`
 - keep the published pages pointing at the generated raster files
 
 ## Typography and Color

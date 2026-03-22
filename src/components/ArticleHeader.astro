@@ -1,0 +1,29 @@
+---
+interface Fact {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  label: string;
+  title: string;
+  summary: string;
+  facts: Fact[];
+}
+
+const { label, title, summary, facts } = Astro.props;
+---
+
+<section class="article-header">
+  <p class="eyebrow">{label}</p>
+  <h1>{title}</h1>
+  <p class="article-summary">{summary}</p>
+  <div class="article-facts">
+    {facts.map((fact) => (
+      <article class="article-fact">
+        <p class="article-fact-label">{fact.label}</p>
+        <p>{fact.value}</p>
+      </article>
+    ))}
+  </div>
+</section>

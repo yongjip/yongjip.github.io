@@ -1,34 +1,65 @@
 # yongjip.github.io
 
-Portfolio site for Yongjip Kim.
+Portfolio site for Yongjip Kim, rebuilt as an Astro static site with React available for future interactive islands.
 
-This repository hosts a simple static site focused on:
+## Stack
 
-- personal positioning around data platforms, analytics workflows, and AI-assisted internal tools
-- project writeups and method notes
-- a lightweight GitHub Pages setup that can be iterated quickly without a framework
+- Astro static output
+- React available for component islands and future app-like features
+- MDX content collections for bilingual case studies and methods
+- Mermaid as diagram source, prebuilt PNG as the published diagram format
+- GitHub Actions for build and Pages deployment
 
-Current pages:
+## Information Architecture
 
-- `index.html`: English home page served as `https://yongjip.github.io/`
-- `index-ko.html`: Korean home page and portfolio overview
-- `text-to-sql.html`: detailed project page for the AI-powered Text-to-SQL system
-- `text-to-sql-ko.html`: Korean version of the Text-to-SQL case study
-- `warehouse-optimization.html`: warehouse graph and simulation case study
-- `warehouse-optimization-ko.html`: Korean version of the warehouse case study
-- `seasonality-index.html`: method note on product-level seasonality and planning logic
-- `seasonality-index-ko.html`: Korean version of the seasonality method note
+Canonical routes:
 
-Diagram workflow:
+- `/`
+- `/ko/`
+- `/work/`
+- `/ko/work/`
+- `/methods/`
+- `/ko/methods/`
+- `/work/text-to-sql/`
+- `/ko/work/text-to-sql/`
+- `/work/warehouse-optimization/`
+- `/ko/work/warehouse-optimization/`
+- `/methods/seasonality-index/`
+- `/ko/methods/seasonality-index/`
+
+Legacy `.html` URLs are preserved as thin redirect files under `public/`.
+
+## Content Model
+
+Collections live under `src/content/`:
+
+- `src/content/work/en/*.mdx`
+- `src/content/work/ko/*.mdx`
+- `src/content/methods/en/*.mdx`
+- `src/content/methods/ko/*.mdx`
+
+Shared route, metadata, and language-link logic lives in `src/lib/` and `src/data/`.
+
+## Diagram Workflow
 
 - Mermaid source files live in `resources/diagrams/*.mmd`
 - Mermaid rendering is configured in `resources/diagrams/mermaid-config.json`
-- Production diagram assets are prebuilt PNG files in `resources/diagrams/`
-- Regenerate the published diagram assets with `./scripts/build-diagrams.sh`
-- Published pages should reference the generated PNG assets, not Mermaid runtime output
-- Mermaid is an authoring format only for this site. Production pages do not execute Mermaid in the browser.
+- Generated production assets are written to `public/resources/diagrams/`
+- Regenerate them with `npm run build:diagrams` or `./scripts/build-diagrams.sh`
+- Published pages reference only the generated PNG assets
 
-Site guidance:
+## Commands
 
-- `design-system.md`: page templates, URL policy, naming rules, navigation rules, and copy guidelines for keeping the site consistent
-- `docs/authoring-playbook.md`: reusable workflow for adding pages, updating diagrams, and reviewing site quality
+```bash
+npm install
+npm run dev
+npm run check
+npm run build:diagrams
+npm run build
+npm run preview
+```
+
+## Documentation
+
+- `design-system.md`: site principles, URL policy, naming rules, and layout language
+- `docs/authoring-playbook.md`: repeatable workflow for adding pages, editing content, updating diagrams, and QA

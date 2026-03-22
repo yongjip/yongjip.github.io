@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getEntryPath } from "../lib/routes";
+
+interface Props {
+  entry: CollectionEntry<"work"> | CollectionEntry<"methods">;
+}
+
+const { entry } = Astro.props;
+const href = getEntryPath(entry.data.kind, entry.data.id, entry.data.lang);
+const kicker = entry.data.kind === "work"
+  ? entry.data.lang === "ko"
+    ? "케이스 스터디"
+    : "Case study"
+  : entry.data.lang === "ko"
+    ? "방법론"
+    : "Method";
+const meta =
+  entry.data.kind === "work"
+    ? entry.data.resultSummary
+    : entry.data.lang === "ko"
+      ? `형식: ${entry.data.format}`
+      : `Format: ${entry.data.format}`;
+---
+
+<article class={`work-card ${entry.data.featured ? "work-card-featured" : "work-card-plain"}`}>
+  <p class="work-kicker">{kicker}</p>
+  <h3>{entry.data.shortTitle}</h3>
+  <p>{entry.data.description}</p>
+  <p class="work-meta">{meta}</p>
+  <a class="text-link" href={href}>
+    {entry.data.kind === "work"
+      ? entry.data.lang === "ko"
+        ? "케이스 스터디 읽기"
+        : "Read the case study"
+      : entry.data.lang === "ko"
+        ? "방법론 노트 읽기"
+        : "Read the method note"}
+  </a>
+</article>

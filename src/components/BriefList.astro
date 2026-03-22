@@ -1,0 +1,25 @@
+---
+interface Item {
+  title: string;
+  role: string;
+  paragraphs: readonly string[];
+}
+
+interface Props {
+  items: readonly Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="brief-list">
+  {items.map((item) => (
+    <article class="brief-item">
+      <h3>{item.title}</h3>
+      <p class="brief-role">{item.role}</p>
+      {item.paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </article>
+  ))}
+</div>

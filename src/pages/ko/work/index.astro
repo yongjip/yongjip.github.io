@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SiteHeader from "../../../components/SiteHeader.astro";
+import SiteFooter from "../../../components/SiteFooter.astro";
+import WorkCard from "../../../components/WorkCard.astro";
+import { getEntries } from "../../../lib/content";
+import { getIndexPath, toAbsoluteUrl } from "../../../lib/routes";
+
+const lang = "ko";
+const entries = await getEntries("work", lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title="Work | 김용집"
+  description="데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다."
+  canonical={toAbsoluteUrl(getIndexPath("work", lang))}
+  ogTitle="Work | 김용집"
+  ogDescription="데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다."
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/work/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/work/") },
+  ]}
+>
+  <main class="site-shell site-shell-home">
+    <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
+    <section class="hero hero-home hero-compact">
+      <p class="eyebrow">Work</p>
+      <h1>데이터 시스템과 운영 문제를 다룬 케이스 스터디</h1>
+      <p class="hero-copy">
+        데이터 접근성, 창고 모델링, 운영 의사결정 지원에 관한 프로젝트를 모았습니다.
+      </p>
+    </section>
+
+    <section class="section section-work">
+      <div class="work-grid">
+        {entries.map((entry) => <WorkCard entry={entry} />)}
+      </div>
+    </section>
+    <SiteFooter text="데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다." />
+  </main>
+</BaseLayout>

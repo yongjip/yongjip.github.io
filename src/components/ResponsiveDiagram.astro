@@ -1,0 +1,24 @@
+---
+interface Props {
+  alt: string;
+  src: string;
+  mobileSrc?: string;
+  variant?: "default" | "flow";
+}
+
+const { alt, src, mobileSrc, variant = "default" } = Astro.props;
+const className = variant === "flow" ? "diagram-image diagram-image-flow" : "diagram-image";
+---
+
+<div class="diagram-frame">
+  <div class="diagram-panel">
+    {mobileSrc ? (
+      <picture>
+        <source media="(max-width: 720px)" srcset={mobileSrc} />
+        <img class={className} src={src} alt={alt} />
+      </picture>
+    ) : (
+      <img class={className} src={src} alt={alt} />
+    )}
+  </div>
+</div>

@@ -1,0 +1,136 @@
+---
+id: text-to-sql
+lang: en
+title: Building an AI-Powered Text-to-SQL System to Scale Data Access
+shortTitle: AI-Powered Text-to-SQL System
+description: Structured metadata and AI agents turned repeated data research into a reusable workflow for ad-hoc analytics.
+summary: I turned repeated data research into a reusable knowledge system for AI, reducing ad-hoc analysis time from 4 to 10 hours to under 1 hour.
+kind: work
+featured: true
+order: 1
+related:
+  - warehouse-optimization
+  - seasonality-index
+ogTitle: Building an AI-Powered Text-to-SQL System to Scale Data Access
+ogDescription: "Case study: reducing ad-hoc analysis time from 4-10 hours to under 1 hour with structured metadata, AI agents, and validation."
+status: Internal workflow in production use
+scope: Structured metadata, execution, and validation around ad-hoc analytics requests.
+facts:
+  - label: Scope
+    value: Structured metadata, execution, and validation around ad-hoc analytics requests.
+  - label: Outcome
+    value: Turnaround dropped to under 1 hour, and monthly capacity grew from about 20 to 50+ requests.
+resultSummary: "Outcome: 4-10 hours to under 1 hour"
+---
+
+import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
+
+<section class="detail-section">
+  <p class="section-label">Overview</p>
+  <h2>The bottleneck was understanding, not SQL syntax.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Context</h3>
+      <p>
+        Ad-hoc requests were consuming too much analyst time. The repeated work was not
+        just query writing. It was identifying the right tables, interpreting column
+        meaning, mapping business logic correctly, and figuring out join patterns that
+        could be trusted.
+      </p>
+      <p>
+        That made even routine questions expensive. Complex requests often took 4 to 10
+        hours, which limited how many requests the team could realistically support each
+        month.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Approach</h3>
+      <p>
+        I built a structured knowledge layer in YAML that captured how analysts actually
+        reason about the data model: table definitions, column semantics, keys,
+        partitioning, join patterns, and business terminology.
+      </p>
+      <p>
+        The leverage came from structuring context well enough that AI agents could use it
+        repeatedly, not from treating the model as magic.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Workflow</p>
+  <h2>A practical validation loop around AI-generated SQL</h2>
+  <p class="detail-intro">
+    The workflow narrowed context first, then generated, executed, and checked SQL before
+    any result was handed back to a human.
+  </p>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Scoped context</h3>
+      <p>Tables were grouped by domain and narrowed through index files so the agent only saw the relevant slice of metadata.</p>
+    </article>
+    <article class="detail-item">
+      <h3>SQL generation</h3>
+      <p>AI coding agents used the structured metadata to generate and revise SQL based on the actual business question.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Execution and QA</h3>
+      <p>The workflow ran queries in Athena, checked execution success, and validated results before handing anything back to a human.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Reusable knowledge</h3>
+      <p>The resulting structure could be updated and reused so later requests started from a better base instead of from scratch.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">System flow</p>
+  <h2>From question to validated answer</h2>
+  <ResponsiveDiagram
+    src="/resources/diagrams/text-to-sql-en.png"
+    alt="Flow diagram from user question to validated answer through domain selection, structured knowledge, AI-generated SQL, Athena execution, result validation, and knowledge updates."
+  />
+  <p class="detail-intro">
+    The system did not stop at generation. It executed, checked, and iterated until the
+    result was reliable enough for review.
+  </p>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Results</p>
+  <h2>Structured context changed both speed and capacity.</h2>
+  <div class="metric-grid">
+    <article class="metric-item">
+      <p class="metric-label">Before</p>
+      <span class="metric-value">4 to 10 hrs</span>
+      <p>Typical ad-hoc turnaround before the system.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">After</p>
+      <span class="metric-value">Under 1 hr</span>
+      <p>Turnaround after structured context and validation loops.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">Capacity</p>
+      <span class="metric-value">20 to 50+</span>
+      <p>Approximate monthly ad-hoc capacity after the workflow improved.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Takeaways</p>
+  <h2>The real system was the knowledge architecture.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>What mattered</h3>
+      <p>The core problem was not generating SQL text. It was capturing how analysts interpret the data model and business logic in a form AI could actually reuse.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Why it worked</h3>
+      <p>By structuring table semantics, joins, and business terms well enough, the workflow reduced repeated research work instead of only accelerating typing.</p>
+    </article>
+  </div>
+</section>

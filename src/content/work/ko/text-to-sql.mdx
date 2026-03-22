@@ -1,0 +1,114 @@
+---
+id: text-to-sql
+lang: ko
+title: AI 기반 Text-to-SQL 시스템으로 데이터 접근성을 확장한 방법
+shortTitle: AI 기반 Text-to-SQL 시스템
+description: 구조화된 메타데이터와 AI 에이전트를 활용해 반복되던 데이터 탐색을 재사용 가능한 애드혹 분석 워크플로우로 바꿨습니다.
+summary: 반복되던 데이터 탐색 과정을 AI가 사용할 수 있는 지식 시스템으로 바꿔, 애드혹 분석 시간을 4~10시간에서 1시간 미만으로 줄였습니다.
+kind: work
+featured: true
+order: 1
+related:
+  - warehouse-optimization
+  - seasonality-index
+ogTitle: AI 기반 Text-to-SQL 시스템으로 데이터 접근성을 확장한 방법
+ogDescription: 구조화된 메타데이터, AI 에이전트, 검증 루프를 통해 애드혹 분석 시간을 4~10시간에서 1시간 미만으로 줄인 사례입니다.
+status: 내부 분석 워크플로우로 운영
+scope: 구조화된 메타데이터, 실행, 검증을 포함한 애드혹 분석 지원 시스템.
+facts:
+  - label: 범위
+    value: 구조화된 메타데이터, 실행, 검증을 포함한 애드혹 분석 지원 시스템.
+  - label: 결과
+    value: 분석 소요 시간을 1시간 미만으로 줄이고, 월간 처리량을 약 20건에서 50건 이상으로 늘렸습니다.
+resultSummary: "결과: 4~10시간에서 1시간 미만"
+---
+
+import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
+
+<section class="detail-section">
+  <p class="section-label">개요</p>
+  <h2>병목은 SQL 문법이 아니라 데이터 해석 과정에 있었습니다.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>상황</h3>
+      <p>애드혹 요청은 분석가의 시간을 많이 소모하고 있었습니다. 반복 작업의 핵심은 단순한 SQL 작성이 아니라, 어떤 테이블을 봐야 하는지, 컬럼이 실제로 무엇을 의미하는지, 어떤 비즈니스 로직을 어떻게 연결해야 하는지, 어떤 조인 패턴이 신뢰 가능한지를 매번 다시 복원하는 것이었습니다.</p>
+      <p>그래서 비교적 익숙한 질문도 비싸졌습니다. 복잡한 요청은 4~10시간이 걸리기도 했고, 팀이 한 달에 처리할 수 있는 요청 수 자체를 제한했습니다.</p>
+    </article>
+    <article class="detail-item">
+      <h3>접근</h3>
+      <p>분석가가 실제로 데이터 모델을 이해하는 방식을 YAML 기반 지식 레이어로 구조화했습니다. 테이블 정의, 컬럼 의미, 키, 파티셔닝, 조인 패턴, 비즈니스 용어를 모두 AI가 재사용할 수 있는 형태로 정리했습니다.</p>
+      <p>핵심은 모델을 마법처럼 쓰는 것이 아니라, AI가 반복해서 활용할 수 있을 만큼 맥락을 잘 구조화하는 데 있었습니다.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">워크플로우</p>
+  <h2>AI 생성 SQL을 실제 분석 시스템으로 바꾸는 검증 루프</h2>
+  <p class="detail-intro">먼저 맥락을 좁히고, 그 다음 SQL을 생성·실행·검증해 사람이 검토할 수 있는 결과만 넘기도록 했습니다.</p>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>맥락 축소</h3>
+      <p>테이블을 도메인별로 묶고 index 파일로 범위를 좁혀, 에이전트가 관련된 메타데이터만 보도록 했습니다.</p>
+    </article>
+    <article class="detail-item">
+      <h3>SQL 생성</h3>
+      <p>AI 코딩 에이전트가 구조화된 메타데이터를 기반으로 실제 비즈니스 질문에 맞는 SQL을 생성하고 수정했습니다.</p>
+    </article>
+    <article class="detail-item">
+      <h3>실행과 QA</h3>
+      <p>워크플로우는 Athena에서 쿼리를 실행하고, 실행 성공 여부와 결과 품질을 확인한 뒤에만 사람에게 전달했습니다.</p>
+    </article>
+    <article class="detail-item">
+      <h3>지식의 재사용</h3>
+      <p>한 번 구조화한 지식은 다음 요청에서 다시 쓸 수 있어, 매번 처음부터 데이터 모델을 복원하는 비용을 줄일 수 있었습니다.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">시스템 흐름</p>
+  <h2>질문에서 검증된 결과까지</h2>
+  <ResponsiveDiagram
+    src="/resources/diagrams/text-to-sql-ko.png"
+    alt="사용자 질문에서 도메인과 테이블 선택, 지식 레이어, AI 에이전트, Athena 실행, 결과 검증, 지식 업데이트로 이어지는 시스템 흐름도."
+  />
+  <p class="detail-intro">이 시스템은 SQL 생성에서 끝나지 않았습니다. 실행, 검증, 반복 수정을 거쳐 신뢰 가능한 결과만 전달했습니다.</p>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">결과</p>
+  <h2>구조화된 맥락이 속도와 처리량을 함께 바꿨습니다.</h2>
+  <div class="metric-grid">
+    <article class="metric-item">
+      <p class="metric-label">도입 전</p>
+      <span class="metric-value">4~10시간</span>
+      <p>일반적인 애드혹 분석 소요 시간.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">도입 후</p>
+      <span class="metric-value">1시간 미만</span>
+      <p>구조화된 맥락과 검증 루프 도입 후 소요 시간.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">처리량</p>
+      <span class="metric-value">20건에서 50건+</span>
+      <p>월간 애드혹 분석 처리 역량의 대략적 변화.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">배운 점</p>
+  <h2>실제 시스템의 핵심은 지식 아키텍처였습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>무엇이 중요했나</h3>
+      <p>문제는 SQL 문자열을 생성하는 것이 아니라, 분석가가 데이터 모델과 비즈니스 로직을 해석하는 방식을 AI가 재사용할 수 있는 구조로 바꾸는 것이었습니다.</p>
+    </article>
+    <article class="detail-item">
+      <h3>왜 효과가 있었나</h3>
+      <p>테이블 의미, 조인 패턴, 비즈니스 용어를 충분히 구조화했기 때문에 단순한 타이핑 속도보다 반복 탐색 비용 자체를 줄일 수 있었습니다.</p>
+    </article>
+  </div>
+</section>

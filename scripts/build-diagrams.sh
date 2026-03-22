@@ -4,6 +4,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIAGRAM_DIR="$ROOT_DIR/resources/diagrams"
+OUTPUT_DIR="$ROOT_DIR/public/resources/diagrams"
 CONFIG_FILE="$DIAGRAM_DIR/mermaid-config.json"
 NPM_CACHE_DIR="${NPM_CONFIG_CACHE:-/tmp/npm-cache}"
 MERMAID_HOME_DIR="${HOME:-/tmp}/.mermaid-build-home"
@@ -16,15 +17,10 @@ if [[ -z "${PUPPETEER_EXECUTABLE_PATH:-}" ]]; then
   fi
 fi
 
-if [[ -z "${PUPPETEER_EXECUTABLE_PATH:-}" ]]; then
-  echo "Chrome executable not found. Set PUPPETEER_EXECUTABLE_PATH before running this script." >&2
-  exit 1
-fi
-
 export NPM_CONFIG_CACHE="$NPM_CACHE_DIR"
 export HOME="$MERMAID_HOME_DIR"
 
-mkdir -p "$NPM_CONFIG_CACHE" "$HOME"
+mkdir -p "$NPM_CONFIG_CACHE" "$HOME" "$OUTPUT_DIR"
 
 render_diagram() {
   local input_name="$1"
@@ -32,7 +28,7 @@ render_diagram() {
 
   npx --yes @mermaid-js/mermaid-cli \
     -i "$DIAGRAM_DIR/$input_name" \
-    -o "$DIAGRAM_DIR/$output_name" \
+    -o "$OUTPUT_DIR/$output_name" \
     -c "$CONFIG_FILE" \
     -w 1400 \
     -s 2 \

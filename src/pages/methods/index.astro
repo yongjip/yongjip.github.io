@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import { getEntries } from "../../lib/content";
+import { getEntryPath, getIndexPath, toAbsoluteUrl } from "../../lib/routes";
+
+const lang = "en";
+const entries = await getEntries("methods", lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title="Methods | Yongjip Kim"
+  description="Short notes on planning models and practical methods used in analytics and operations work."
+  canonical={toAbsoluteUrl(getIndexPath("method", lang))}
+  ogTitle="Methods | Yongjip Kim"
+  ogDescription="Short notes on planning models and practical methods used in analytics and operations work."
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/methods/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
+  ]}
+>
+  <main class="site-shell site-shell-home">
+    <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
+    <section class="hero hero-home hero-compact">
+      <p class="eyebrow">Methods</p>
+      <h1>Short notes on practical models and planning methods.</h1>
+      <p class="hero-copy">
+        Applied notes that support operations work without turning the site into a blog archive.
+      </p>
+    </section>
+
+    <section class="section section-list section-methods">
+      <div class="method-list">
+        {entries.map((entry) => (
+          <article class="method-item">
+            <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+              {entry.data.shortTitle}
+            </a>
+            <p>{entry.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />
+  </main>
+</BaseLayout>

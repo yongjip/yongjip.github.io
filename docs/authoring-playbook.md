@@ -226,20 +226,27 @@ When a link appears in multiple places, each placement should have a distinct jo
 
 ## 9. Local Preview Workflow
 
-For local testing, use a simple static server.
+For local testing, use the Astro dev server.
 
 Example:
 
 ```bash
-python3 -m http.server 8000
+npm run dev
 ```
 
 Then open:
 
-- `http://127.0.0.1:8000/`
-- `http://127.0.0.1:8000/index-ko.html`
+- `http://127.0.0.1:4321/`
+- `http://127.0.0.1:4321/ko/`
 
-Visible navigation should prefer relative links so the site works both on GitHub Pages and on local preview servers mounted under a subpath.
+For production-style local testing, use:
+
+```bash
+npm run build
+npm run preview
+```
+
+Legacy `.html` redirects are preserved in `public/`, but the authoring model should treat the clean routes as the real page structure.
 
 ## 10. QA Checklist Before Finishing
 

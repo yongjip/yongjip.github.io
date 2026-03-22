@@ -2,5 +2,8 @@
 .idea/
 .vscode/
 *.log
+node_modules/
+dist/
+.astro/
 career_presence_handoff.md
 linkedin-profile-copy.md

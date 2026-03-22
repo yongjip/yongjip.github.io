@@ -1,0 +1,14 @@
+---
+interface Props {
+  enHref: string;
+  koHref: string;
+  lang: "en" | "ko";
+}
+
+const { enHref, koHref, lang } = Astro.props;
+---
+
+<nav class="lang-switch" aria-label="Language">
+  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en">EN</a>
+  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko">KR</a>
+</nav>

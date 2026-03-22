@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import WorkCard from "../../components/WorkCard.astro";
+import { getEntries } from "../../lib/content";
+import { getIndexPath, toAbsoluteUrl } from "../../lib/routes";
+
+const lang = "en";
+const entries = await getEntries("work", lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title="Work | Yongjip Kim"
+  description="Case studies on data systems, analytics workflows, and operational tooling."
+  canonical={toAbsoluteUrl(getIndexPath("work", lang))}
+  ogTitle="Work | Yongjip Kim"
+  ogDescription="Case studies on data systems, analytics workflows, and operational tooling."
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/work/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/work/") },
+  ]}
+>
+  <main class="site-shell site-shell-home">
+    <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
+    <section class="hero hero-home hero-compact">
+      <p class="eyebrow">Work</p>
+      <h1>Case studies on practical systems for analytics and operations.</h1>
+      <p class="hero-copy">
+        Projects focused on data access, warehouse modeling, and operational decision support.
+      </p>
+    </section>
+
+    <section class="section section-work">
+      <div class="work-grid">
+        {entries.map((entry) => <WorkCard entry={entry} />)}
+      </div>
+    </section>
+    <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />
+  </main>
+</BaseLayout>

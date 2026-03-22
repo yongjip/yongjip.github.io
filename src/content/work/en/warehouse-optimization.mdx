@@ -1,0 +1,135 @@
+---
+id: warehouse-optimization
+lang: en
+title: Building a Graph-Based Warehouse Optimization and Simulation Workflow
+shortTitle: Graph-Based Warehouse Optimization and Simulation
+description: Built a warehouse graph construction tool and simplified simulation model for inventory placement and picker travel-distance analysis.
+summary: I built a warehouse graph construction tool and a simplified simulation model to evaluate how inventory placement changes could reduce picker travel distance, and I am continuing to extend the system toward more realistic operational analysis.
+kind: work
+featured: true
+order: 2
+related:
+  - text-to-sql
+  - seasonality-index
+ogTitle: Building a Graph-Based Warehouse Optimization and Simulation Workflow
+ogDescription: "Case study: a warehouse graph construction tool and simplified simulation for inventory placement and travel distance analysis."
+status: Usable for directional analysis, but not a finished optimization engine
+scope: Warehouse graph construction plus simplified inventory reallocation simulation.
+facts:
+  - label: Scope
+    value: Warehouse graph construction plus simplified inventory reallocation simulation.
+  - label: Status
+    value: Usable for directional analysis, but not presented as a finished optimization engine.
+resultSummary: "Status: usable first system for directional analysis"
+---
+
+import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
+
+<section class="detail-section">
+  <p class="section-label">Overview</p>
+  <h2>The warehouse had node data, but not a usable graph.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Starting point</h3>
+      <p>We had storage node information such as coordinates, but no practical graph that represented how workers could actually move through the warehouse. That made it difficult to reason about layout, access, and inventory placement in a structured way.</p>
+      <p>The immediate problem was not optimization yet. It was building the path-aware model needed before any meaningful simulation or routing analysis could happen.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Current scope</h3>
+      <p>I am not presenting this as a finished warehouse optimization engine. The current system has two parts: a tool for constructing the warehouse graph, and a simplified simulation model for estimating the impact of inventory reallocation.</p>
+      <p>The goal is directional decision support, not a perfect digital twin.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Graph construction</p>
+  <h2>Turn storage nodes and walkable paths into an analyzable warehouse graph.</h2>
+  <p class="detail-intro">The graph comes first. Once movement is represented cleanly, routing and simulation become possible on top of it.</p>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Node grouping</h3>
+      <p>Storage nodes are grouped first. The current approach uses Manhattan distance to form practical groups before routing is computed at a larger scale.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Access points</h3>
+      <p>Each group is assigned one or more access points so the graph can represent how workers enter and interact with that part of the warehouse.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Path-based connections</h3>
+      <p>Users draw walkable paths, and the tool automatically connects nearby access points to those paths to generate a usable graph structure.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Why grouping matters</h3>
+      <p>Running shortest-path calculations directly across every storage node would be expensive. Grouping reduces graph complexity so later routing and simulation work remains tractable.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Flow</p>
+  <h2>How the warehouse model is constructed</h2>
+  <ResponsiveDiagram
+    src="/resources/diagrams/warehouse-en-desktop.png"
+    mobileSrc="/resources/diagrams/warehouse-en-mobile.png"
+    alt="Warehouse model construction flow from storage nodes to node grouping, access points, walkable paths, warehouse graph, shortest path logic, and simulation."
+    variant="flow"
+  />
+  <p class="detail-intro">Simulation and routing only become useful after the warehouse can be represented as a usable movement model.</p>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Simulation</p>
+  <h2>A simplified model for testing inventory reallocation ideas.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Rule-based ranking</h3>
+      <p>Products and storage nodes are ranked using a simplified grading logic instead of a full operational model.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Reallocation test</h3>
+      <p>Inventory is reassigned according to those grades, and the model compares estimated picker travel distance before and after reallocation.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Directional output</h3>
+      <p>The result is meant to explain whether better placement should materially reduce movement, not to claim an exact final operating result.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Results</p>
+  <h2>The number is useful as a signal, not as a final claim.</h2>
+  <div class="metric-grid">
+    <article class="metric-item">
+      <p class="metric-label">Estimated</p>
+      <span class="metric-value">~50%</span>
+      <p>Travel distance reduction in the simplified simulation.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">Interpretation</p>
+      <span class="metric-value">Not final</span>
+      <p>The result is directional and does not fully reflect real warehouse constraints.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">Key risk</p>
+      <span class="metric-value">Bottlenecks</span>
+      <p>Local congestion may appear if picking activity concentrates around specific locations.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Takeaways</p>
+  <h2>The important output is structured explanation, not just a number.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Signal</h3>
+      <p>Even a simplified model can show that inventory placement changes may have a meaningful effect on travel distance.</p>
+    </article>
+    <article class="detail-item">
+      <h3>Limit</h3>
+      <p>The current simulation does not fully model congestion or operational constraints, so the 50 percent figure should not be treated as a final operating result.</p>
+    </article>
+  </div>
+</section>

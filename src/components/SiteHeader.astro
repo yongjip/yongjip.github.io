@@ -1,0 +1,30 @@
+---
+import { PROFILE_LINKS, type Lang } from "../data/site";
+import { getHomePath, getIndexPath } from "../lib/routes";
+import LanguageSwitch from "./LanguageSwitch.astro";
+
+interface Props {
+  lang: Lang;
+  enHref: string;
+  koHref: string;
+}
+
+const { lang, enHref, koHref } = Astro.props;
+---
+
+<header class={`site-header ${Astro.url.pathname === getHomePath(lang) ? "site-header-home" : "site-header-detail"}`}>
+  <a class="brand" href={getHomePath(lang)}>Yongjip Kim</a>
+  <div class="header-actions">
+    <nav class="top-nav" aria-label="Primary">
+      <a href={getIndexPath("work", lang)}>{lang === "ko" ? "Work" : "Work"}</a>
+      <a href={getIndexPath("method", lang)}>{lang === "ko" ? "Methods" : "Methods"}</a>
+      <a href={PROFILE_LINKS.linkedin} target="_blank" rel="noopener noreferrer">
+        {lang === "ko" ? "LinkedIn 프로필" : "LinkedIn profile"}
+      </a>
+      <a href={PROFILE_LINKS.github} target="_blank" rel="noopener noreferrer">
+        {lang === "ko" ? "GitHub 프로필" : "GitHub profile"}
+      </a>
+    </nav>
+    <LanguageSwitch lang={lang} enHref={enHref} koHref={koHref} />
+  </div>
+</header>
