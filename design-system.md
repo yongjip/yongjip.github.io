@@ -6,14 +6,19 @@ It is intentionally simple. The goal is not to behave like a product site or a s
 
 ## Design Direction
 
-The site follows a restrained visual direction:
+The current direction is best described as a `systems memo`.
 
-- warm, quiet backgrounds instead of high-contrast themes
-- strong typography, but limited decorative treatment
-- clear section hierarchy over visual effects
-- document-like detail pages rather than poster-like heroes
+It should feel closer to a researcher or operator homepage than to a designer portfolio.
 
-The intent is to make the work easy to scan without making the site feel generic or over-designed.
+Core traits:
+
+- quiet, document-like backgrounds
+- strong but non-display typography
+- dense scanning on archive pages
+- memo-style detail-page framing
+- low-hype, low-template presentation
+
+The intent is to make the work easy to scan and easy to trust.
 
 ## Page Types
 
@@ -21,7 +26,7 @@ The site uses three page types.
 
 ### Home
 
-The home page introduces the overall profile and serves as the main navigation point.
+The home page is a front page, not the main archive.
 
 Current structure:
 1. header
@@ -31,7 +36,7 @@ Current structure:
 5. methods
 6. footer
 
-Only the selected work section uses stronger visual emphasis.
+Its job is to establish identity, credibility, and direction into the real archives.
 
 ### Case Pages
 
@@ -48,7 +53,7 @@ Current structure:
 8. related work
 9. footer
 
-These pages are written to be readable as standalone entry points.
+These pages should read like short internal memos first, and full writeups second.
 
 ### Method Pages
 
@@ -151,9 +156,9 @@ The site uses a few structural rules to stay consistent.
 
 ### Home
 
-- selected work may use cards
-- experience should remain a quiet list
-- methods should remain a quiet list
+- selected work is a small preview, not a full archive
+- experience should remain a compact credibility list
+- methods should remain a quiet preview with minimal weight
 
 ### Detail Pages
 
@@ -169,6 +174,12 @@ Good uses of two columns include:
 - context and approach
 
 The main rule is simple: layout should help the reading order, not compete with it.
+
+### Archives
+
+- `Work` is the main archive and should use dense memo rows, not showcase cards
+- `Methods` should use the same information grammar, but quieter
+- archive pages should feel faster and more index-like than home
 
 ## Section Vocabulary
 

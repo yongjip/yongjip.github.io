@@ -18,6 +18,7 @@ For this site, the default is:
 - factual
 - useful
 - not over-claimed
+- easy to scan before it asks for close reading
 
 If a sentence sounds like it belongs in a startup landing page, it is usually wrong for this portfolio.
 
@@ -44,6 +45,8 @@ Order:
 5. methods
 6. footer
 
+Use home as a front page only. It should not become the main archive.
+
 ### Case Page
 
 Order:
@@ -57,6 +60,12 @@ Order:
 7. takeaways
 8. related work
 9. footer
+
+Case pages should read memo-first:
+
+- short executive framing at the top
+- structured depth below
+- clear return path back to the archive
 
 ### Method Page
 
@@ -204,12 +213,15 @@ Default rules:
 - facts: exactly two items
 - section intros: one short paragraph at most
 - related work: short description only
+- archive rows: one scan sentence plus one proof line
 
 Try to avoid:
 
 - too many labels
 - stacked metrics without a real reason
 - repeating the same claim in hero, body, and footer
+
+On archive pages, prefer denser rows over more decorative card treatment.
 
 ## 8. Preserve Navigation Roles
 

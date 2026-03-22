@@ -50,6 +50,9 @@ const lang = "ko";
     />
     <Content />
     <RelatedWork entries={related} lang={lang} />
+    <div class="detail-return">
+      <a class="back-link" href={getIndexPath("work", lang)}>전체 Work로 돌아가기</a>
+    </div>
     <SiteFooter text="데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다." />
   </main>
 </BaseLayout>

@@ -4,11 +4,11 @@ import { getEntryPath } from "../lib/routes";
 
 interface Props {
   entry: CollectionEntry<"work"> | CollectionEntry<"methods">;
-  mode?: "featured" | "archive";
+  mode?: "preview" | "archive";
 }
 
 const { entry } = Astro.props;
-const mode = Astro.props.mode ?? "featured";
+const mode = Astro.props.mode ?? "preview";
 const href = getEntryPath(entry.data.kind, entry.data.id, entry.data.lang);
 const kicker = entry.data.kind === "work"
   ? entry.data.lang === "ko"
@@ -23,24 +23,25 @@ const meta =
     : entry.data.lang === "ko"
       ? `형식: ${entry.data.format}`
       : `Format: ${entry.data.format}`;
-const cardClass =
-  mode === "archive"
-    ? "work-card work-card-archive"
-    : `work-card ${entry.data.featured ? "work-card-featured" : "work-card-plain"}`;
+const cardClass = mode === "archive" ? "work-card work-card-archive" : "work-card work-card-preview";
 ---
 
 <article class={cardClass}>
-  <p class="work-kicker">{kicker}</p>
-  <h3>{entry.data.shortTitle}</h3>
-  <p class="work-summary">{entry.data.description}</p>
-  <p class="work-proof">{meta}</p>
-  <a class="text-link" href={href}>
-    {entry.data.kind === "work"
-      ? entry.data.lang === "ko"
-        ? "케이스 스터디 읽기"
-        : "Read the case study"
-      : entry.data.lang === "ko"
-        ? "방법론 노트 읽기"
-        : "Read the method note"}
-  </a>
+  <div class="work-card-main">
+    <p class="work-kicker">{kicker}</p>
+    <h3>{entry.data.shortTitle}</h3>
+    <p class="work-summary">{entry.data.description}</p>
+  </div>
+  <div class="work-card-meta">
+    <p class="work-proof">{meta}</p>
+    <a class="text-link work-cta" href={href}>
+      {entry.data.kind === "work"
+        ? entry.data.lang === "ko"
+          ? "자세히 보기"
+          : "Read memo"
+        : entry.data.lang === "ko"
+          ? "노트 보기"
+          : "Read note"}
+    </a>
+  </div>
 </article>

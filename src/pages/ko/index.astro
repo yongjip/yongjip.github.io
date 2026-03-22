@@ -10,7 +10,7 @@ import { getEntryPath, getHomePath, getIndexPath, toAbsoluteUrl } from "../../li
 
 const lang = "ko";
 const featuredWork = await getFeaturedWork(lang);
-const methods = await getMethodPreview(lang, 2);
+const methods = await getMethodPreview(lang, 1);
 const copy = HOME_COPY[lang];
 ---
 
@@ -41,12 +41,13 @@ const copy = HOME_COPY[lang];
 
     <section class="section section-work" id="selected-work">
       <div class="section-heading section-heading-home">
-        <p class="section-label">주요 작업</p>
+        <p class="section-label">Work</p>
         <h2>{copy.featuredHeading}</h2>
       </div>
-      <div class="work-grid">
-        {featuredWork.map((entry) => <WorkCard entry={entry} />)}
+      <div class="work-list work-list-preview">
+        {featuredWork.map((entry) => <WorkCard entry={entry} mode="preview" />)}
       </div>
+      <a class="text-link section-cta" href={getIndexPath("work", lang)}>전체 Work 아카이브 보기</a>
     </section>
 
     <section class="section section-list">
@@ -63,16 +64,22 @@ const copy = HOME_COPY[lang];
         <h2>{copy.methodsHeading}</h2>
       </div>
       <p class="section-intro">{copy.methodsIntro}</p>
-      <div class="method-list">
+      <div class="method-list method-list-preview">
         {methods.map((entry) => (
           <article class="method-item">
+            <p class="method-kicker">방법론 노트</p>
             <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
               {entry.data.shortTitle}
             </a>
-            <p>{entry.data.description}</p>
+            <p class="method-summary">{entry.data.description}</p>
+            <p class="method-meta">{`활용: ${entry.data.planningUse}`}</p>
+            <a class="text-link method-cta" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+              노트 보기
+            </a>
           </article>
         ))}
       </div>
+      <a class="text-link section-cta" href={getIndexPath("method", lang)}>전체 Methods 보기</a>
     </section>
 
     <SiteFooter text={copy.footer} />

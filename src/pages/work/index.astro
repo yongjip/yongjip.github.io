@@ -26,12 +26,12 @@ const entries = await getEntries("work", lang);
     <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Work</p>
-      <h1>Case studies you can scan quickly before reading deeply.</h1>
-      <p class="hero-copy">Projects on data access, warehouse modeling, and operational decision support.</p>
+      <h1>Case studies on systems, analysis, and operational tooling.</h1>
+      <p class="hero-copy">A dense archive of work on data access, warehouse modeling, and decision support.</p>
     </section>
 
     <section class="section section-work">
-      <div class="work-grid">
+      <div class="work-list work-list-archive">
         {entries.map((entry) => <WorkCard entry={entry} mode="archive" />)}
       </div>
     </section>
