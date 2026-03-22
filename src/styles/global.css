@@ -194,6 +194,25 @@ ol {
   border-bottom-color: var(--line);
 }
 
+.text-link,
+.back-link,
+.method-link,
+.work-title-link {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(36, 92, 87, 0.28);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 160ms ease, text-decoration-color 160ms ease, opacity 160ms ease;
+}
+
+.text-link:hover,
+.back-link:hover,
+.method-link:hover,
+.work-title-link:hover {
+  color: var(--accent);
+  text-decoration-color: rgba(36, 92, 87, 0.68);
+}
+
 .profile-links {
   display: flex;
   align-items: center;
@@ -257,12 +276,6 @@ ol {
 .lang-switch a.is-active {
   background: var(--ink);
   color: #fffaf0;
-}
-
-.text-link,
-.back-link {
-  color: var(--accent);
-  text-decoration: none;
 }
 
 .text-link:hover,
@@ -634,6 +647,11 @@ html[lang="ko"] .article-header h1 {
   line-height: 1.18;
 }
 
+.work-title-link {
+  color: var(--ink);
+  text-decoration-color: rgba(29, 45, 47, 0.18);
+}
+
 .work-card p,
 .theme-card p,
 .feature-card p,
@@ -652,6 +670,7 @@ html[lang="ko"] .article-header h1 {
   display: inline-block;
   margin-top: 0;
   font-weight: 600;
+  color: var(--accent);
 }
 
 .work-card-preview {
@@ -859,7 +878,6 @@ html[lang="ko"] .detail-section h2 {
   font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
-  text-decoration: none;
   margin-top: 4px;
 }
 
@@ -982,6 +1000,7 @@ html[lang="ko"] .detail-section h2 {
   display: inline-block;
   margin-bottom: 14px;
   font-weight: 600;
+  color: var(--accent);
 }
 
 .detail-return {

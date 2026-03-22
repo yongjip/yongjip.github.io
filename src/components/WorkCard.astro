@@ -29,7 +29,9 @@ const cardClass = mode === "archive" ? "work-card work-card-archive" : "work-car
 <article class={cardClass}>
   <div class="work-card-main">
     <p class="work-kicker">{kicker}</p>
-    <h3>{entry.data.shortTitle}</h3>
+    <h3>
+      <a class="work-title-link" href={href}>{entry.data.shortTitle}</a>
+    </h3>
     <p class="work-summary">{entry.data.description}</p>
   </div>
   <div class="work-card-meta">
