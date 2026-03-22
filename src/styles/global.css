@@ -7,6 +7,8 @@
   --ink: #1d2d2f;
   --muted: #536363;
   --line: rgba(41, 68, 69, 0.14);
+  --line-strong: rgba(41, 68, 69, 0.16);
+  --line-soft: rgba(41, 68, 69, 0.09);
   --accent: #245c57;
   --accent-soft: #d7e5df;
   --warm: #a25b39;
@@ -222,13 +224,13 @@ ol {
 .hero-home {
   padding-top: 26px;
   padding-bottom: 28px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .hero-detail {
   padding-top: 10px;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .hero-compact {
@@ -309,7 +311,7 @@ html[lang="ko"] .hero-detail h1 {
 
 .article-header {
   padding: 6px 0 24px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .article-header h1 {
@@ -342,7 +344,7 @@ html[lang="ko"] .article-header h1 {
 
 .article-fact {
   padding-top: 14px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line-soft);
 }
 
 .article-fact-label {
@@ -396,7 +398,7 @@ html[lang="ko"] .article-header h1 {
 .section-grid,
 .closing-panel,
 .impact-strip {
-  margin-top: 40px;
+  margin-top: 52px;
 }
 
 .section-grid,
@@ -413,11 +415,11 @@ html[lang="ko"] .article-header h1 {
 }
 
 .section-heading {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .section-heading-home {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .section-heading h2 {
@@ -576,18 +578,17 @@ html[lang="ko"] .article-header h1 {
 }
 
 .section-list {
-  border-top: 1px solid var(--line);
-  padding-top: 28px;
+  padding-top: 0;
 }
 
 .brief-list {
   display: grid;
-  gap: 20px;
+  gap: 0;
 }
 
 .brief-item {
-  padding: 0 0 18px;
-  border-bottom: 1px solid var(--line);
+  padding: 0 0 22px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .brief-item:last-child {
@@ -615,9 +616,8 @@ html[lang="ko"] .article-header h1 {
 }
 
 .detail-section {
-  margin-top: 26px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  margin-top: 42px;
+  padding-top: 0;
 }
 
 .detail-section h2 {
@@ -658,8 +658,8 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .detail-item {
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .detail-stack .detail-item:last-child {
@@ -680,9 +680,7 @@ html[lang="ko"] .detail-section h2 {
 
 .diagram-frame {
   margin-top: 20px;
-  padding: 18px 0 8px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  padding: 8px 0 0;
 }
 
 .metric-grid {
@@ -694,8 +692,8 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .metric-item {
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .metric-label {
@@ -721,8 +719,8 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .source-item {
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .related-list {
@@ -733,8 +731,8 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .related-item {
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .related-title {
@@ -754,12 +752,12 @@ html[lang="ko"] .detail-section h2 {
 .method-list {
   margin-top: 16px;
   display: grid;
-  gap: 14px;
+  gap: 0;
 }
 
 .method-item {
-  padding: 0 0 14px;
-  border-bottom: 1px solid var(--line);
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .method-item:last-child {
@@ -783,7 +781,7 @@ html[lang="ko"] .detail-section h2 {
 .site-footer {
   margin-top: 52px;
   padding-top: 22px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line-strong);
   display: flex;
   align-items: center;
   justify-content: space-between;
