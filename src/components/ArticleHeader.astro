@@ -22,7 +22,7 @@ const { label, title, summary, facts } = Astro.props;
     {facts.map((fact) => (
       <article class="article-fact">
         <p class="article-fact-label">{fact.label}</p>
-        <p>{fact.value}</p>
+        <p class="article-fact-value">{fact.value}</p>
       </article>
     ))}
   </div>

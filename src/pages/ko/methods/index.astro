@@ -21,14 +21,12 @@ const entries = await getEntries("methods", lang);
     { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
   ]}
 >
-  <main class="site-shell site-shell-home">
+  <main class="site-shell site-shell-home archive-page archive-page-methods">
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Methods</p>
       <h1>실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트</h1>
-      <p class="hero-copy">
-        블로그처럼 길게 늘리지 않고, 운영과 분석에 직접 연결되는 방법만 남깁니다.
-      </p>
+      <p class="hero-copy">Work를 보완하는 실무 노트만 남기고, 케이스 스터디보다 더 조용하게 구성합니다.</p>
     </section>
 
     <section class="section section-list section-methods">
@@ -39,6 +37,7 @@ const entries = await getEntries("methods", lang);
               {entry.data.shortTitle}
             </a>
             <p>{entry.data.description}</p>
+            <p class="method-meta">{`활용: ${entry.data.planningUse}`}</p>
           </article>
         ))}
       </div>

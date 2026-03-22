@@ -222,8 +222,8 @@ ol {
 }
 
 .hero-home {
-  padding-top: 26px;
-  padding-bottom: 28px;
+  padding-top: 18px;
+  padding-bottom: 22px;
   border-bottom: 1px solid var(--line-strong);
 }
 
@@ -234,7 +234,7 @@ ol {
 }
 
 .hero-compact {
-  padding-top: 18px;
+  padding-top: 12px;
 }
 
 .eyebrow,
@@ -253,26 +253,26 @@ ol {
 }
 
 body.home-page .hero-home h1 {
-  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  font-size: clamp(1.85rem, 3.8vw, 2.95rem);
   max-width: 16ch;
   line-height: 1.04;
 }
 
 html[lang="ko"] body.home-page .hero-home h1 {
-  font-size: clamp(2.25rem, 5vw, 3.8rem);
+  font-size: clamp(2.1rem, 4.7vw, 3.4rem);
   max-width: 15ch;
   word-break: keep-all;
 }
 
 .hero-compact h1 {
-  font-size: clamp(2.7rem, 6vw, 4.4rem);
-  max-width: 13ch;
+  font-size: clamp(1.7rem, 3.3vw, 2.45rem);
+  max-width: 18ch;
 }
 
 .hero-copy {
-  font-size: 1.12rem;
-  max-width: 48rem;
-  margin-top: 20px;
+  font-size: 1.03rem;
+  max-width: 40rem;
+  margin-top: 16px;
   color: var(--muted);
 }
 
@@ -328,22 +328,22 @@ html[lang="ko"] .article-header h1 {
 }
 
 .article-summary {
-  max-width: 54rem;
-  margin-top: 18px;
+  max-width: 44rem;
+  margin-top: 14px;
   color: var(--muted);
-  font-size: 1.06rem;
+  font-size: 1rem;
 }
 
 .article-facts {
   max-width: 56rem;
-  margin-top: 24px;
+  margin-top: 18px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 26px;
+  gap: 14px 22px;
 }
 
 .article-fact {
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid var(--line-soft);
 }
 
@@ -355,17 +355,20 @@ html[lang="ko"] .article-header h1 {
   text-transform: uppercase;
 }
 
-.article-fact p:last-child {
+.article-fact-value {
   margin-top: 8px;
   color: var(--ink);
+  font-weight: 600;
+  max-width: 28ch;
+  line-height: 1.5;
 }
 
 .action-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 28px;
+  margin-top: 22px;
 }
 
 .button {
@@ -426,6 +429,21 @@ html[lang="ko"] .article-header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-top: 10px;
   max-width: 13ch;
+}
+
+.home-front-page .section-work {
+  margin-top: 40px;
+}
+
+.home-front-page .section-list,
+.home-front-page .section-methods {
+  margin-top: 60px;
+}
+
+.section-list .section-heading h2,
+.section-methods .section-heading h2 {
+  font-size: clamp(1.45rem, 2.6vw, 2.05rem);
+  max-width: 18ch;
 }
 
 .panel,
@@ -490,7 +508,7 @@ html[lang="ko"] .article-header h1 {
 .work-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .work-card {
@@ -542,11 +560,17 @@ html[lang="ko"] .article-header h1 {
   text-transform: uppercase;
 }
 
-.work-meta {
-  margin-top: 16px;
+.work-summary {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.work-proof {
+  margin-top: 14px;
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   font-weight: 600;
+  line-height: 1.5;
 }
 
 .work-card h3,
@@ -566,10 +590,27 @@ html[lang="ko"] .article-header h1 {
   color: var(--muted);
 }
 
+.work-card .work-proof {
+  color: var(--ink);
+}
+
 .text-link {
   display: inline-block;
   margin-top: 18px;
   font-weight: 600;
+}
+
+.work-card-archive {
+  background: rgba(255, 252, 245, 0.78);
+  box-shadow: none;
+  border-color: var(--line-soft);
+  padding: 20px 22px;
+}
+
+.work-card-archive h3 {
+  font-size: 1.32rem;
+  margin-top: 10px;
+  max-width: 18ch;
 }
 
 .theme-grid,
@@ -611,8 +652,9 @@ html[lang="ko"] .article-header h1 {
 }
 
 .section-intro {
-  max-width: 42rem;
+  max-width: 34rem;
   color: var(--muted);
+  font-size: 0.98rem;
 }
 
 .detail-section {
@@ -776,6 +818,30 @@ html[lang="ko"] .detail-section h2 {
 
 .method-item p {
   margin-top: 6px;
+}
+
+.method-meta {
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.archive-page .hero-home {
+  padding-bottom: 18px;
+}
+
+.archive-page .hero-copy {
+  max-width: 36rem;
+  font-size: 0.98rem;
+}
+
+.archive-page-methods .method-list {
+  max-width: 46rem;
+}
+
+.archive-page-methods .method-link {
+  font-size: 1.12rem;
 }
 
 .site-footer {

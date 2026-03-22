@@ -4,9 +4,11 @@ import { getEntryPath } from "../lib/routes";
 
 interface Props {
   entry: CollectionEntry<"work"> | CollectionEntry<"methods">;
+  mode?: "featured" | "archive";
 }
 
 const { entry } = Astro.props;
+const mode = Astro.props.mode ?? "featured";
 const href = getEntryPath(entry.data.kind, entry.data.id, entry.data.lang);
 const kicker = entry.data.kind === "work"
   ? entry.data.lang === "ko"
@@ -21,13 +23,17 @@ const meta =
     : entry.data.lang === "ko"
       ? `형식: ${entry.data.format}`
       : `Format: ${entry.data.format}`;
+const cardClass =
+  mode === "archive"
+    ? "work-card work-card-archive"
+    : `work-card ${entry.data.featured ? "work-card-featured" : "work-card-plain"}`;
 ---
 
-<article class={`work-card ${entry.data.featured ? "work-card-featured" : "work-card-plain"}`}>
+<article class={cardClass}>
   <p class="work-kicker">{kicker}</p>
   <h3>{entry.data.shortTitle}</h3>
-  <p>{entry.data.description}</p>
-  <p class="work-meta">{meta}</p>
+  <p class="work-summary">{entry.data.description}</p>
+  <p class="work-proof">{meta}</p>
   <a class="text-link" href={href}>
     {entry.data.kind === "work"
       ? entry.data.lang === "ko"

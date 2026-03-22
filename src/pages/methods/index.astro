@@ -21,14 +21,12 @@ const entries = await getEntries("methods", lang);
     { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
   ]}
 >
-  <main class="site-shell site-shell-home">
+  <main class="site-shell site-shell-home archive-page archive-page-methods">
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Methods</p>
       <h1>Short notes on practical models and planning methods.</h1>
-      <p class="hero-copy">
-        Applied notes that support operations work without turning the site into a blog archive.
-      </p>
+      <p class="hero-copy">Supporting notes for operations and analytics work, kept shorter and quieter than the case studies.</p>
     </section>
 
     <section class="section section-list section-methods">
@@ -39,6 +37,7 @@ const entries = await getEntries("methods", lang);
               {entry.data.shortTitle}
             </a>
             <p>{entry.data.description}</p>
+            <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
           </article>
         ))}
       </div>

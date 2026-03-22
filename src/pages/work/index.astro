@@ -22,19 +22,17 @@ const entries = await getEntries("work", lang);
     { hreflang: "ko", href: toAbsoluteUrl("/ko/work/") },
   ]}
 >
-  <main class="site-shell site-shell-home">
+  <main class="site-shell site-shell-home archive-page archive-page-work">
     <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Work</p>
-      <h1>Case studies on practical systems for analytics and operations.</h1>
-      <p class="hero-copy">
-        Projects focused on data access, warehouse modeling, and operational decision support.
-      </p>
+      <h1>Case studies you can scan quickly before reading deeply.</h1>
+      <p class="hero-copy">Projects on data access, warehouse modeling, and operational decision support.</p>
     </section>
 
     <section class="section section-work">
       <div class="work-grid">
-        {entries.map((entry) => <WorkCard entry={entry} />)}
+        {entries.map((entry) => <WorkCard entry={entry} mode="archive" />)}
       </div>
     </section>
     <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />

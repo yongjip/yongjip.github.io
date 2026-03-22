@@ -10,13 +10,13 @@ export const HOME_COPY = {
     eyebrow: "Director, Data Platform at Techtaka",
     title: "I use AI to turn data problems into simple, scalable systems.",
     description:
-      "I build data platforms, analytics workflows, and practical internal systems for real business operations. My work combines data engineering, analytics, and AI-assisted development to make ambiguous problems easier to structure and ship.",
+      "I build data platforms, analytics workflows, and internal systems for real business operations.",
     note: "I prefer simple systems that are easy to explain, maintain, and improve.",
-    featuredHeading: "Projects and methods that support real operations",
+    featuredHeading: "Selected case studies",
     experienceHeading: "Recent roles",
-    methodsHeading: "Applied notes",
+    methodsHeading: "Methods preview",
     methodsIntro:
-      "Short notes on practical models and methods I have used in analytics and operations work.",
+      "Short applied notes that support the project work.",
     footer:
       "A bilingual portfolio of case studies and methods for data systems and operations work.",
   },
@@ -24,12 +24,12 @@ export const HOME_COPY = {
     eyebrow: "테크타카 Director, Data Platform",
     title: "AI를 활용해 데이터 문제를 단순하고 확장 가능한 시스템으로 만듭니다.",
     description:
-      "실제 비즈니스 운영을 위한 데이터 플랫폼, 분석 워크플로우, 내부 시스템을 구축합니다. 데이터 엔지니어링과 분석을 기반으로, AI 코딩 에이전트를 활용해 모호한 문제를 구조화하고 실용적인 시스템으로 바꾸는 데 집중합니다.",
+      "실제 비즈니스 운영을 위한 데이터 플랫폼, 분석 워크플로우, 내부 시스템을 구축합니다.",
     note: "설명하기 쉽고, 유지하기 쉽고, 개선하기 쉬운 단순한 시스템을 선호합니다.",
-    featuredHeading: "실제 운영을 뒷받침하는 프로젝트와 방법론",
+    featuredHeading: "대표 케이스 스터디",
     experienceHeading: "최근 역할",
-    methodsHeading: "실무 노트",
-    methodsIntro: "실무에서 사용한 모델과 방법을 짧게 정리한 노트입니다.",
+    methodsHeading: "Methods 미리보기",
+    methodsIntro: "프로젝트를 보완하는 짧은 실무 노트입니다.",
     footer:
       "데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다.",
   },
