@@ -6,6 +6,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIAGRAM_DIR="$ROOT_DIR/resources/diagrams"
 OUTPUT_DIR="$ROOT_DIR/public/resources/diagrams"
 CONFIG_FILE="$DIAGRAM_DIR/mermaid-config.json"
+PUPPETEER_CONFIG_FILE="$DIAGRAM_DIR/puppeteer-config.json"
 NPM_CACHE_DIR="${NPM_CONFIG_CACHE:-/tmp/npm-cache}"
 PUPPETEER_CACHE_DIR="${PUPPETEER_CACHE_DIR:-${HOME:-/tmp}/.cache/puppeteer}"
 
@@ -30,6 +31,7 @@ render_diagram() {
     -i "$DIAGRAM_DIR/$input_name" \
     -o "$OUTPUT_DIR/$output_name" \
     -c "$CONFIG_FILE" \
+    -p "$PUPPETEER_CONFIG_FILE" \
     -w 1400 \
     -s 2 \
     -b transparent \
