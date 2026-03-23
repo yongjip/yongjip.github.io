@@ -1,0 +1,141 @@
+---
+id: practical-demand-forecasting
+lang: en
+title: Practical Demand Forecasting for Small Marketplace Sellers
+shortTitle: Practical Demand Forecasting for Small Sellers
+description: A simple forecasting method built from cleaned demand history, short-window averages, and day-of-week adjustments.
+summary: For small sellers, a usable forecast often starts with cleaned historical demand and simple statistics rather than a complex model.
+kind: method
+featured: false
+order: 1
+related:
+  - recommended-order-quantity
+  - sales-forecasting-competition
+ogTitle: Practical Demand Forecasting for Small Marketplace Sellers
+ogDescription: "Method note: clean past demand first, then use simple averages and day-of-week adjustments for practical forecasting."
+format: Method note built around cleaned demand history, 7-day and 28-day averages, and day-of-week adjustments.
+planningUse: Supports replenishment timing by connecting forecast, inventory days, and lead time.
+facts:
+  - label: Date
+    value: "2026"
+  - label: Planning use
+    value: Supports replenishment timing by connecting forecast, inventory days, and lead time.
+---
+
+<section class="detail-section">
+  <p class="section-label">Overview</p>
+  <h2>Accurate forecasting starts with accurate past demand.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Problem</h3>
+      <p>
+        For small marketplace sellers, forecasting is not mainly about academic accuracy.
+        It is about avoiding excess inventory, preventing stockouts, and making better
+        replenishment decisions.
+      </p>
+      <p>
+        The problem is that observed sales history is often not the same as true demand.
+        Past sales can be suppressed by out-of-stock periods or stranded inventory, and
+        they can also be inflated by promotions such as coupons, special discounts, or
+        banner exposure.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Approach</h3>
+      <p>
+        I prefer a simple forecasting workflow: first clean the historical demand signal,
+        then build a baseline from 7-day and 28-day averages, and finally apply a
+        day-of-week index to estimate expected sales by weekday.
+      </p>
+      <p>
+        The point is not to avoid sophisticated models forever. It is to start from a
+        method that remains explainable and does not overreact when the data is sparse or
+        unstable.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Method</p>
+  <h2>Clean the history first, then keep the forecast logic disciplined.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Recover the demand signal</h3>
+      <p>
+        Before forecasting, review whether past sales were distorted by stockouts,
+        stranded inventory, or promotional uplifts. Forecasting from raw sales without
+        those corrections can make the model learn the wrong demand level.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Build a simple baseline</h3>
+      <p>
+        Use recent 7-day and 28-day average order volumes as the baseline demand level.
+        The 7-day window is practical because it helps normalize day-of-week effects
+        instead of mixing weekday and weekend behavior into one number.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Apply a day-of-week index</h3>
+      <p>
+        Once the baseline is set, apply a day-of-week index so each weekday receives a
+        more realistic expected sales value than a flat average would provide.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Use judgment for event demand</h3>
+      <p>
+        Holiday or event demand can matter, but small sellers often do not have enough
+        long-run data to model those effects reliably. In those cases, direct review of
+        past patterns is often safer than pretending the data supports a fully automated
+        seasonal model.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Connect the forecast to replenishment</h3>
+      <p>
+        The forecast becomes useful when it is combined with inventory days and production
+        or supply lead time. If projected inventory falls below a practical threshold, it
+        is time to reorder before lost sales become expensive.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Why it matters</p>
+  <h2>Simple methods are often safer when the data is limited.</h2>
+  <p class="detail-intro">
+    Complex models can look more advanced, but they may also overreact to sudden spikes,
+    drops, or short-term patterns. For smaller sellers, an explainable forecast that can
+    be corrected and reviewed is often more useful than a black-box prediction.
+  </p>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Why simplicity helps</h3>
+      <p>
+        A simpler baseline makes it easier to see when a forecast is being distorted by
+        abnormal history rather than by real demand change.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Why cleaned history matters</h3>
+      <p>
+        Forecast accuracy depends on historical demand accuracy first. If the past signal
+        is wrong because of OOS, stranded inventory, or promotion effects, the forecast
+        will inherit those errors.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Source</p>
+  <h2>Origin</h2>
+  <div class="source-list">
+    <article class="source-item">
+      <p>This page is a cleaned-up portfolio version of a practical note on seller-side forecasting and replenishment.</p>
+    </article>
+  </div>
+</section>

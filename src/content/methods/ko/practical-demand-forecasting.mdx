@@ -1,0 +1,137 @@
+---
+id: practical-demand-forecasting
+lang: ko
+title: 소규모 셀러를 위한 실용적인 Demand Forecasting
+shortTitle: 소규모 셀러를 위한 Demand Forecasting
+description: 정제된 과거 수요, 짧은 기간 평균, 요일별 지수를 바탕으로 만드는 단순하고 실용적인 수요예측 방법입니다.
+summary: 소규모 셀러에게는 복잡한 모델보다, 정제된 과거 수요와 단순한 통계로 만드는 설명 가능한 forecast가 더 실용적일 때가 많습니다.
+kind: method
+featured: false
+order: 1
+related:
+  - recommended-order-quantity
+  - sales-forecasting-competition
+ogTitle: 소규모 셀러를 위한 실용적인 Demand Forecasting
+ogDescription: 과거 수요를 먼저 정제한 뒤 7일·28일 평균과 요일별 지수로 예측하는 실무 방법론 노트입니다.
+format: 정제된 과거 수요, 7일·28일 평균, 요일별 지수를 바탕으로 한 방법론 노트.
+planningUse: forecast, 재고일수, 리드타임을 연결해 발주 시점을 판단합니다.
+facts:
+  - label: 날짜
+    value: 2026년
+  - label: 활용
+    value: forecast, 재고일수, 리드타임을 연결해 발주 시점을 판단합니다.
+---
+
+<section class="detail-section">
+  <p class="section-label">개요</p>
+  <h2>정확한 수요예측은 정확한 과거 수요 데이터에서 시작합니다.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>문제</h3>
+      <p>
+        소규모 마켓플레이스 셀러에게 수요예측의 목적은 학술적인 정확도 자체가 아닙니다.
+        excess inventory를 줄이고, 품절을 막고, 더 나은 발주 결정을 만드는 것이 더
+        중요합니다.
+      </p>
+      <p>
+        문제는 관측된 과거 판매가 곧 실제 수요가 아니라는 점입니다. 과거 판매는 OOS나
+        stranded inventory 때문에 눌릴 수 있고, 반대로 coupon, special discount,
+        banner exposure 같은 promotion 때문에 부풀려질 수도 있습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>접근</h3>
+      <p>
+        저는 먼저 과거 수요 신호를 정제한 뒤, 7일과 28일 평균으로 baseline을 만들고,
+        마지막에 day-of-week index를 적용해 요일별 예상 판매량을 계산하는 단순한
+        forecasting workflow를 선호합니다.
+      </p>
+      <p>
+        핵심은 복잡한 모델을 영원히 쓰지 말자는 것이 아니라, 데이터가 적거나 불안정할 때
+        과하게 반응하지 않는 설명 가능한 방법에서 시작하자는 것입니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">방법</p>
+  <h2>먼저 과거 데이터를 정제하고, 그 다음 예측 로직을 절제되게 유지합니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>수요 신호 복원</h3>
+      <p>
+        forecast 전에 먼저 과거 판매가 OOS, stranded inventory, promotion uplift에
+        의해 왜곡되었는지 확인해야 합니다. 이런 보정 없이 raw sales만 보고 예측하면,
+        모델은 잘못된 수요 수준을 학습하게 됩니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>단순한 baseline 만들기</h3>
+      <p>
+        최근 7일과 28일 평균 주문 수를 baseline demand로 사용합니다. 특히 7일 단위는
+        weekday와 weekend 행동 차이를 어느 정도 정규화하기에 실용적입니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>요일별 지수 적용</h3>
+      <p>
+        baseline이 정해지면 day-of-week index를 적용해 요일별 예상 판매량을 만듭니다.
+        이렇게 하면 단순 평균보다 더 현실적인 일별 forecast를 얻을 수 있습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>이벤트 수요는 사람이 보정</h3>
+      <p>
+        명절이나 이벤트 수요는 분명 중요하지만, 소규모 셀러는 장기 데이터가 부족해 이를
+        안정적으로 모델링하기 어렵습니다. 그런 경우에는 과거 패턴을 직접 보고 사람의
+        판단으로 보정하는 편이 더 안전합니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>발주로 연결</h3>
+      <p>
+        forecast는 재고일수와 생산 또는 공급 리드타임과 결합될 때 비로소 유용해집니다.
+        예상 재고가 실무적으로 정한 기준 아래로 떨어지면, lost sales가 커지기 전에
+        발주를 넣어야 합니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">왜 중요한가</p>
+  <h2>데이터가 제한적일수록 단순한 방법이 더 안전할 때가 많습니다.</h2>
+  <p class="detail-intro">
+    복잡한 모델은 더 진보해 보일 수 있지만, 갑작스러운 spike, drop, 짧은 패턴 변화에
+    과하게 반응할 수도 있습니다. 소규모 셀러에게는 수정과 검토가 가능한 explainable
+    forecast가 black-box prediction보다 더 유용한 경우가 많습니다.
+  </p>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>왜 단순함이 도움이 되나</h3>
+      <p>
+        단순한 baseline은 forecast가 진짜 수요 변화 때문인지, 아니면 비정상적인 과거
+        이력 때문인지를 더 쉽게 구분하게 해줍니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>왜 과거 수요 정제가 중요한가</h3>
+      <p>
+        forecast의 정확도는 먼저 과거 수요 데이터의 정확도에 달려 있습니다. OOS, stranded
+        inventory, promotion 효과로 과거 신호가 왜곡되어 있으면, 이후 예측도 그 오류를
+        그대로 물려받게 됩니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">원문</p>
+  <h2>출처</h2>
+  <div class="source-list">
+    <article class="source-item">
+      <p>이 페이지는 셀러 측 forecasting과 replenishment에 대한 실무 메모를 포트폴리오용으로 다듬은 버전입니다.</p>
+    </article>
+  </div>
+</section>
