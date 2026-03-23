@@ -1,0 +1,124 @@
+---
+id: vitamin-me
+lang: ko
+title: 상품·리뷰 데이터를 활용한 영양제 추천 프로토타입
+shortTitle: 영양제 추천 프로토타입
+description: 공개 상품·리뷰 데이터를 바탕으로, 사용자 프로필 입력에 맞춰 영양제를 추천하는 웹 프로토타입을 만들었습니다.
+summary: 사용자 프로필 입력과 상품·리뷰 데이터를 결합해, 추천 흐름을 더 구체적으로 설계해 본 개인 프로젝트입니다.
+kind: work
+featured: false
+order: 6
+related:
+  - sales-forecasting-competition
+  - tweet-sentiment-tracker
+ogTitle: 상품·리뷰 데이터를 활용한 영양제 추천 프로토타입
+ogDescription: 설문 입력과 공개 상품·리뷰 데이터를 연결해 만든 영양제 추천 프로토타입 케이스 스터디입니다.
+status: 개인 프로토타입
+scope: 사용자 프로필 입력과 공개 상품 정보를 바탕으로 영양제를 제안하는 웹 프로토타입.
+facts:
+  - label: 범위
+    value: 사용자 프로필 입력과 공개 상품·리뷰 데이터를 결합한 영양제 추천.
+  - label: 형식
+    value: Python과 browser automation으로 만든 개인 웹 프로토타입.
+resultSummary: "데이터 수집부터 추천 흐름까지 만든 end-to-end 프로토타입"
+---
+
+<section class="detail-section detail-section-results">
+  <p class="section-label">개요</p>
+  <h2>출발점은 단순한 질문이었습니다. 추천 로직은 무엇에 기대야 하는가?</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>상황</h3>
+      <p>
+        이 프로젝트의 목표는 나이, 성별, 라이프스타일, 생활 습관, 목표, 임신 여부 같은
+        프로필 입력에 따라 영양제를 제안하는 웹 애플리케이션을 만드는 것이었습니다.
+      </p>
+      <p>
+        저는 추천 흐름이 추상적인 일반론이 아니라 실제 상품과 리뷰 데이터에 기반하길
+        원했습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>접근</h3>
+      <p>
+        공개 상품 정보와 리뷰 데이터를 수집한 뒤, 그 데이터를 바탕으로 사용자 프로필
+        입력을 더 구체적인 상품 후보군과 연결하는 추천 프로토타입을 만들었습니다.
+      </p>
+      <p>
+        이 프로젝트는 clinical advice를 제시하기 위한 것이 아니라, usable한 추천
+        흐름을 탐색해 보는 실험적인 작업이었습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section detail-section-takeaways">
+  <p class="section-label">워크플로우</p>
+  <h2>프로토타입은 설문 입력을 검색 가능한 상품 기반과 연결했습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>프로필 입력</h3>
+      <p>
+        인터페이스는 어떤 영양제 카테고리가 관련 있을지 판단하는 데 도움이 되는 사용자
+        특성과 목표를 입력받았습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>공개 상품 데이터</h3>
+      <p>
+        추천 흐름이 추상적인 예시에 머무르지 않도록, 공개 상품 정보와 리뷰 텍스트를
+        수집해 실제 catalog를 기반으로 삼았습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>추천 로직</h3>
+      <p>
+        프로토타입은 프로필 레이어와 catalog 레이어를 연결해, 설문 응답에서 더 좁은
+        상품 후보군으로 이동할 수 있게 했습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">결과</p>
+  <h2>유용한 결과는 end-to-end research prototype을 만든 것이었습니다.</h2>
+  <div class="metric-grid">
+    <article class="metric-item">
+      <p class="metric-label">유형</p>
+      <span class="metric-value">프로토타입</span>
+      <p>완성형 소비자 제품이 아니라 recommendation flow를 실험하는 프로젝트였습니다.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">입력</p>
+      <span class="metric-value">프로필 + catalog</span>
+      <p>사용자 프로필 필드와 공개 상품 정보를 결합했습니다.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">스택</p>
+      <span class="metric-value">Python</span>
+      <p>데이터 수집과 프로토타이핑에 Python과 browser automation을 사용했습니다.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">배운 점</p>
+  <h2>추천 프로젝트는 데이터와 사용자 흐름을 함께 설계할 때 더 좋아집니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>무엇이 중요했나</h3>
+      <p>
+        흥미로운 부분은 복잡한 실제 상품 정보를 단순한 questionnaire-driven interface와
+        연결하는 일이었습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>왜 유용했나</h3>
+      <p>
+        이 프로젝트는 상품 데이터, 사용자 특성, 추천 로직이 하나의 흐름 안에서 어떻게
+        연결돼야 하는지를 구체적으로 생각하게 해줬습니다.
+      </p>
+    </article>
+  </div>
+</section>

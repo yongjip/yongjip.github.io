@@ -1,0 +1,142 @@
+---
+id: sales-forecasting-competition
+lang: en
+title: Winning a Sales Forecasting Competition with a Simple Time-Series Approach
+shortTitle: Sales Forecasting Competition
+description: Won a public forecasting competition by matching the preprocessing and forecast logic to the competition's asymmetric scoring rule.
+summary: The key was not model complexity. It was understanding the scoring rule, reducing variance in the data, and making conservative forecasts with a simple ARIMA-based approach.
+kind: work
+featured: false
+order: 5
+related:
+  - recommended-order-quantity
+  - seasonality-index
+ogTitle: Winning a Sales Forecasting Competition with a Simple Time-Series Approach
+ogDescription: Case study on winning a public sales forecasting competition by combining careful preprocessing, asymmetric scoring logic, and ARIMA.
+status: First place in a public forecasting competition
+scope: Forecasting 100-day sales for 200 small businesses under an asymmetric return-based scoring rule.
+facts:
+  - label: Format
+    value: Public competition forecasting 100-day sales for 200 small businesses.
+  - label: Outcome
+    value: First place among roughly 70 participants.
+resultSummary: "First place by matching preprocessing and forecasts to the scoring rule"
+---
+
+<section class="detail-section detail-section-results">
+  <p class="section-label">Overview</p>
+  <h2>The important step was understanding what the competition actually rewarded.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>Context</h3>
+      <p>
+        The competition asked participants to forecast 100 days of future sales for 200
+        small businesses. It was framed as a lending problem, so the score was not based
+        on plain forecast error alone. Over-forecasting was penalized much more heavily
+        than under-forecasting.
+      </p>
+      <p>
+        Many participants used more complex modeling approaches, but the scoring setup made
+        problem framing and risk-aware forecasting more important than adding complexity
+        for its own sake.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Approach</h3>
+      <p>
+        I used ARIMA, but the real work happened before and after the model step. I
+        cleaned cancellation noise, aggregated transactions to reduce day-level variance,
+        applied log transformation, and then adjusted the forecast direction to fit the
+        competition's asymmetric objective.
+      </p>
+      <p>
+        The result was a conservative, interpretable workflow that fit the evaluation rule
+        instead of optimizing a generic notion of accuracy.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section detail-section-takeaways">
+  <p class="section-label">Method</p>
+  <h2>The model was simple, but the forecast logic was not naive.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>Cancellation cleanup</h3>
+      <p>
+        The raw data included negative transactions that represented cancellations. I
+        removed those together with their corresponding positive transactions so the series
+        would reflect actual realized sales rather than inflated variance.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Adaptive aggregation</h3>
+      <p>
+        Each store's transaction history was aggregated into 28-day, 14-day, or 7-day
+        buckets depending on how much history was available. That reduced day-of-week noise
+        while preserving enough structure to forecast short series.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Log scale and zero-sales adjustment</h3>
+      <p>
+        Forecasting on the log scale made the aggregated series more stable. When a store
+        showed zero-sales periods, I adjusted the final forecast using the observed
+        probability of no sales rather than ignoring that pattern.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Conservative forecast shift</h3>
+      <p>
+        Because over-forecasting was much more expensive under the competition rule, I
+        shifted forecasts downward using the model's estimated uncertainty instead of
+        submitting the raw point estimate.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Results</p>
+  <h2>A simple time-series model won because it matched the evaluation rule.</h2>
+  <div class="metric-grid">
+    <article class="metric-item">
+      <p class="metric-label">Ranking</p>
+      <span class="metric-value">1st</span>
+      <p>Finished first in the competition.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">Field</p>
+      <span class="metric-value">~70</span>
+      <p>Approximate number of participants in the event.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">Lesson</p>
+      <span class="metric-value">Objective first</span>
+      <p>The scoring rule mattered as much as the model choice.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">Takeaways</p>
+  <h2>Forecasting quality depends on matching the model to the decision context.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>What mattered</h3>
+      <p>
+        The important choice was not chasing a more fashionable model. It was recognizing
+        that the competition rewarded cautious forecasts under uncertainty, then shaping
+        the preprocessing and prediction logic around that fact.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>Why it worked</h3>
+      <p>
+        A restrained ARIMA workflow performed well because the signal was cleaned, the
+        variance was reduced, and the final forecast was adjusted to fit the real scoring
+        objective instead of a generic benchmark.
+      </p>
+    </article>
+  </div>
+</section>

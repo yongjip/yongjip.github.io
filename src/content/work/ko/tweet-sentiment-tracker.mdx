@@ -1,0 +1,125 @@
+---
+id: tweet-sentiment-tracker
+lang: ko
+title: 공개 소셜 데이터를 활용한 트윗 감성 추적기
+shortTitle: 트윗 감성 추적기
+description: 과거 공개 트윗을 수집해 PostgreSQL에 저장하고, 시간에 따른 감성 변화를 점수화한 개인 분석 프로젝트입니다.
+summary: 대규모 공개 트윗 이력을 대상으로 수집, 저장, 감성 점수화를 하나의 흐름으로 연결해 tone change를 추적했습니다.
+kind: work
+featured: false
+order: 7
+related:
+  - vitamin-me
+  - sales-forecasting-competition
+ogTitle: 공개 소셜 데이터를 활용한 트윗 감성 추적기
+ogDescription: 공개 트윗 이력을 PostgreSQL과 AWS에 저장하고 시간에 따른 감성 변화를 분석한 케이스 스터디입니다.
+status: 개인 분석 프로젝트
+scope: 공개 소셜 데이터 수집, 저장, 감성 분석 워크플로우.
+facts:
+  - label: 범위
+    value: 과거 트윗 수집, 감성 점수화, 시간축 기반 분석.
+  - label: 스택
+    value: Python, NLTK, PostgreSQL, AWS 인프라.
+resultSummary: "공개 소셜 데이터를 다루는 end-to-end 텍스트 분석 파이프라인"
+---
+
+<section class="detail-section detail-section-results">
+  <p class="section-label">개요</p>
+  <h2>이 프로젝트의 핵심은 점수보다 파이프라인을 만드는 일이었습니다.</h2>
+  <div class="detail-columns">
+    <article class="detail-item">
+      <h3>상황</h3>
+      <p>
+        저는 대규모 공개 트윗 이력에서 tone이 시간에 따라 어떻게 달라지는지 보고
+        싶었습니다. 흥미로운 부분은 감성 점수 자체만이 아니라, 그 텍스트를 꾸준히 수집하고
+        저장하고 처리하는 전체 흐름을 만드는 일이었습니다.
+      </p>
+      <p>
+        공개 소셜 데이터는 멀리서 보면 단순해 보이지만, 수집과 저장을 진지하게 다루기
+        시작하면 바로 data engineering 문제가 됩니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>접근</h3>
+      <p>
+        과거 트윗을 수집해 AWS 위 PostgreSQL에 저장하고, NLTK의 VADER sentiment
+        scoring을 적용해 감정 변화의 시간축 뷰를 만들었습니다.
+      </p>
+      <p>
+        이 프로젝트가 유용했던 이유는 scoring step만 따로 떼지 않고, 텍스트 분석을
+        실제 저장·조회 레이어와 연결했기 때문입니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section detail-section-takeaways">
+  <p class="section-label">워크플로우</p>
+  <h2>수집, 저장, 점수화가 하나의 시스템처럼 동작해야 했습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>수집</h3>
+      <p>
+        과거 트윗을 모으고 정규화해, 이후 처리 단계에서 일관된 형식으로 다룰 수 있게
+        했습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>저장</h3>
+      <p>
+        데이터가 단순한 로컬 실험 수준을 넘어가면서, AWS 위 PostgreSQL은 트윗 이력을
+        저장하고 조회하는 실용적인 기반이 됐습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>감성 점수화</h3>
+      <p>
+        VADER sentiment scoring을 적용해, 전체 corpus에서 tone이 어떻게 움직였는지
+        보여 주는 간단한 시간축 신호를 만들었습니다.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">결과</p>
+  <h2>주요 산출물은 usable한 텍스트 분석 파이프라인이었습니다.</h2>
+  <div class="metric-grid">
+    <article class="metric-item">
+      <p class="metric-label">데이터</p>
+      <span class="metric-value">공개 트윗</span>
+      <p>대규모 공개 트윗 이력을 source dataset으로 사용했습니다.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">저장</p>
+      <span class="metric-value">PostgreSQL</span>
+      <p>프로젝트를 notebook-only 실험에 머무르지 않게 했습니다.</p>
+    </article>
+    <article class="metric-item">
+      <p class="metric-label">분석</p>
+      <span class="metric-value">VADER</span>
+      <p>가벼운 sentiment 접근으로 추적 가능한 trend signal을 만들었습니다.</p>
+    </article>
+  </div>
+</section>
+
+<section class="detail-section">
+  <p class="section-label">배운 점</p>
+  <h2>텍스트 분석은 데이터 흐름이 명확할 때 더 신뢰할 수 있습니다.</h2>
+  <div class="detail-stack">
+    <article class="detail-item">
+      <h3>무엇이 중요했나</h3>
+      <p>
+        오래 남는 부분은 감성 점수 숫자 자체보다, 수집부터 저장, 점수화까지 이어지는
+        end-to-end workflow였습니다.
+      </p>
+    </article>
+    <article class="detail-item">
+      <h3>왜 유용했나</h3>
+      <p>
+        이 프로젝트는 텍스트 분석을 정적인 파일 위 데모가 아니라, 반복 가능한 데이터
+        파이프라인처럼 보이게 만들었습니다.
+      </p>
+    </article>
+  </div>
+</section>
