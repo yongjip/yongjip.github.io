@@ -40,6 +40,23 @@ Collections live under `src/content/`:
 
 Shared route, metadata, and language-link logic lives in `src/lib/` and `src/data/`.
 
+## SEO And Discovery
+
+The site ships a static SEO baseline suitable for GitHub Pages:
+
+- clean self-canonical routes
+- bilingual `hreflang` links with `x-default`
+- shared `og:*` and `twitter:*` metadata
+- JSON-LD structured data for home, archive, and detail pages
+- `robots.txt` with sitemap reference
+- Astro sitemap generation with per-URL `lastmod` values derived from git history
+
+Current SEO helpers live in:
+
+- `src/lib/seo.ts`
+- `src/layouts/BaseLayout.astro`
+- `scripts/sitemap-lastmod.mjs`
+
 ## Diagram Workflow
 
 - Mermaid source files live in `resources/diagrams/*.mmd`

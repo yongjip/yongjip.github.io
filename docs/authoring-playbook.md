@@ -58,7 +58,8 @@ Order:
 5. core mechanism or workflow
 6. results
 7. takeaways
-8. footer
+8. related pages
+9. footer
 
 Case pages should read memo-first:
 
@@ -77,7 +78,8 @@ Order:
 5. method
 6. why it matters
 7. source
-8. footer
+8. related pages
+9. footer
 
 ## 3. Keep The Header Brief
 
@@ -266,7 +268,7 @@ Current roles:
 
 - header: stable internal navigation, external profile links, and language switch
 - home body: project discovery
-- detail pages: back link and document flow
+- detail pages: document flow, related pages, and back link
 - home footer: quiet close, not duplicate navigation
 
 When a link appears in multiple places, each placement should have a distinct job.
@@ -325,14 +327,26 @@ Legacy `.html` redirects are preserved in `public/`, but the authoring model sho
 ### Metadata
 
 - `title`
+- `meta description`
+- `meta robots`
 - `canonical`
+- `hreflang` alternates including `x-default`
 - `og:title`
 - `og:description`
+- `og:site_name`
+- `og:locale`
 - `og:url`
 - `twitter:title`
 - `twitter:description`
+- JSON-LD structured data
 
 Metadata should match the visible page framing.
+
+### Discovery
+
+- `robots.txt` points at the sitemap index
+- sitemap output should include `lastmod`
+- legacy `.html` redirect stubs should not appear as canonical sitemap URLs
 
 ## 11. Improvement Priorities
 
@@ -523,6 +537,13 @@ If the change affects routes, content, or diagrams, also verify:
 - local preview still works
 
 If a build passes but pages silently disappear, treat that as a regression.
+
+If the change affects metadata or crawl behavior, also verify:
+
+- target page source contains the expected `hreflang` tags
+- target page source contains the expected JSON-LD block
+- `dist/sitemap-0.xml` still includes the expected clean routes
+- sitemap entries still include `lastmod`
 
 ### Update The Docs When The Working Method Changes
 

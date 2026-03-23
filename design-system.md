@@ -50,7 +50,8 @@ Current structure:
 5. core mechanism or workflow
 6. results
 7. takeaways
-8. footer
+8. related pages
+9. footer
 
 These pages should read like short internal memos first, and full writeups second.
 
@@ -66,7 +67,8 @@ Current structure:
 5. method
 6. why it matters
 7. source
-8. footer
+8. related pages
+9. footer
 
 ## Navigation
 
@@ -85,7 +87,7 @@ Project discovery happens inside the page through:
 
 - featured work on home
 - work and methods archives
-- back links on detail pages
+- related pages plus back links on detail pages
 
 This keeps the global navigation stable while letting the content carry the browsing flow.
 
@@ -278,7 +280,7 @@ This allows the site to keep:
 - clean canonical routes
 - reusable page shells
 - consistent metadata
-- stable related-work links
+- stable related-page links
 - bilingual parity without duplicating templates
 
 For the step-by-step editing and review workflow, see [`docs/authoring-playbook.md`](./docs/authoring-playbook.md).
@@ -396,12 +398,20 @@ Each page should have:
 
 - `title`
 - `meta description`
+- `meta robots`
 - `canonical`
+- `hreflang` alternates
 - `og:title`
 - `og:description`
+- `og:site_name`
+- `og:locale`
 - `og:url`
 - `twitter:title`
 - `twitter:description`
+- JSON-LD structured data
+
+The site should also publish a sitemap with per-URL `lastmod` values so search engines can
+see which pages changed most recently.
 
 Metadata should match the visible framing of the page rather than describing the entire site in generic terms.
 
