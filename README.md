@@ -102,3 +102,4 @@ This uses the standard site-wide `gtag.js` snippet from the shared layout.
 
 - `design-system.md`: site principles, URL policy, naming rules, and layout language
 - `docs/authoring-playbook.md`: repeatable workflow for adding pages, editing content, updating diagrams, QA, and future LLM-agent guardrails
+- `docs/stack-best-practices.md`: repo-specific best practices for Astro, MDX, React islands, TypeScript, and Mermaid
