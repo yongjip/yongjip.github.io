@@ -1,10 +1,7 @@
 ---
 import { render, getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import SiteHeader from "../../components/SiteHeader.astro";
-import SiteFooter from "../../components/SiteFooter.astro";
-import ArticleHeader from "../../components/ArticleHeader.astro";
-import { getEntryPath, getIndexPath, getLanguagePartnerPath, getPageLabel, toAbsoluteUrl } from "../../lib/routes";
+import DetailPageLayout from "../../components/DetailPageLayout.astro";
+import { getEntryPath, getIndexPath, getLanguagePartnerPath, toAbsoluteUrl } from "../../lib/routes";
 
 export async function getStaticPaths() {
   const entries = await getCollection("methods", ({ data }) => data.lang === "en");
@@ -19,36 +16,16 @@ const { Content } = await render(entry);
 const lang = "en";
 ---
 
-<BaseLayout
+<DetailPageLayout
+  entry={entry}
   lang={lang}
-  title={`${entry.data.title} | Yongjip Kim`}
-  description={entry.data.ogDescription ?? entry.data.description}
-  canonical={toAbsoluteUrl(getEntryPath(entry.data.kind, entry.data.id, lang))}
-  ogTitle={entry.data.ogTitle ?? entry.data.title}
-  ogDescription={entry.data.ogDescription ?? entry.data.description}
-  ogType="article"
+  enHref={getEntryPath(entry.data.kind, entry.data.id, "en")}
+  koHref={getLanguagePartnerPath(entry)}
+  backHref={getIndexPath("method", lang)}
   alternates={[
     { hreflang: "en", href: toAbsoluteUrl(getEntryPath(entry.data.kind, entry.data.id, "en")) },
     { hreflang: "ko", href: toAbsoluteUrl(getLanguagePartnerPath(entry)) },
   ]}
 >
-  <main class="site-shell site-shell-detail">
-    <SiteHeader
-      lang={lang}
-      enHref={getEntryPath(entry.data.kind, entry.data.id, "en")}
-      koHref={getLanguagePartnerPath(entry)}
-    />
-    <a class="back-link" href={getIndexPath("method", lang)}>Back to all methods</a>
-    <ArticleHeader
-      label={getPageLabel(entry.data.kind, lang)}
-      title={entry.data.title}
-      summary={entry.data.summary}
-      facts={entry.data.facts}
-    />
-    <Content />
-    <div class="detail-return">
-      <a class="back-link" href={getIndexPath("method", lang)}>Back to all methods</a>
-    </div>
-    <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />
-  </main>
-</BaseLayout>
+  <Content />
+</DetailPageLayout>

@@ -23,11 +23,27 @@ const isMethods = pathname === methodsHref || pathname.startsWith(methodsHref);
   <span class="brand">Yongjip Kim</span>
   <div class="header-actions">
     <nav class="top-nav" aria-label="Primary">
-      <a class={`nav-link ${isHome ? "is-active" : ""}`.trim()} href={homeHref}>
+      <a
+        class={`nav-link ${isHome ? "is-active" : ""}`.trim()}
+        href={homeHref}
+        aria-current={isHome ? "page" : undefined}
+      >
         {lang === "ko" ? "Home" : "Home"}
       </a>
-      <a class={`nav-link ${isWork ? "is-active" : ""}`.trim()} href={workHref}>Work</a>
-      <a class={`nav-link ${isMethods ? "is-active" : ""}`.trim()} href={methodsHref}>Methods</a>
+      <a
+        class={`nav-link ${isWork ? "is-active" : ""}`.trim()}
+        href={workHref}
+        aria-current={isWork ? "page" : undefined}
+      >
+        Work
+      </a>
+      <a
+        class={`nav-link ${isMethods ? "is-active" : ""}`.trim()}
+        href={methodsHref}
+        aria-current={isMethods ? "page" : undefined}
+      >
+        Methods
+      </a>
     </nav>
     <div class="profile-links" aria-label="Profiles">
       <a

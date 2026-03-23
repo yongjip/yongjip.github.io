@@ -14,13 +14,14 @@
   --warm: #8b553e;
   --label: #667372;
   --shadow: 0 16px 36px rgba(42, 47, 39, 0.05);
+  --focus-ring: rgba(36, 92, 87, 0.22);
   --radius-lg: 18px;
   --radius-md: 14px;
   --radius-sm: 999px;
   --shell: 1120px;
   --shell-narrow: 920px;
   --lane-reading: 48rem;
-  --lane-wide: 48rem;
+  --lane-wide: 58rem;
 }
 
 * {
@@ -53,8 +54,32 @@ body.detail-page .page-glow {
   display: none;
 }
 
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 20px;
+  z-index: 10;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fffaf0;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus-visible {
+  top: 16px;
+}
+
 a {
   color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
 img {

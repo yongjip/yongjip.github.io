@@ -10,7 +10,7 @@
     "build:diagrams": "./scripts/build-diagrams.sh",
     "build": "npm run build:diagrams && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "node ./scripts/check-site-consistency.mjs && astro check"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

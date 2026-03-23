@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { METHOD_LIST_COPY } from "../data/site";
+import { getEntryPath } from "../lib/routes";
+
+interface Props {
+  entries: Array<CollectionEntry<"methods">>;
+  preview?: boolean;
+}
+
+const { entries, preview = false } = Astro.props;
+const lang = entries[0]?.data.lang ?? "en";
+const copy = METHOD_LIST_COPY[lang];
+const listClass = ["method-list", preview ? "method-list-preview" : ""].filter(Boolean).join(" ");
+---
+
+<div class={listClass}>
+  {entries.map((entry) => (
+    <article class="method-item">
+      <p class="method-kicker">{copy.kicker}</p>
+      <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
+        {entry.data.shortTitle}
+      </a>
+      <p class="method-summary">{entry.data.description}</p>
+      <div class="method-inline-meta">
+        <p class="method-meta">{`${copy.planningUsePrefix}: ${entry.data.planningUse}`}</p>
+      </div>
+    </article>
+  ))}
+</div>

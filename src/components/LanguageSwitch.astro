@@ -9,6 +9,6 @@ const { enHref, koHref, lang } = Astro.props;
 ---
 
 <nav class="lang-switch" aria-label="Language">
-  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en">EN</a>
-  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko">KR</a>
+  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en" aria-current={lang === "en" ? "page" : undefined}>EN</a>
+  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko" aria-current={lang === "ko" ? "page" : undefined}>KR</a>
 </nav>

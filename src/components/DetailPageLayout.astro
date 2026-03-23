@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { DETAIL_BACK_LINKS, SITE_FOOTER, SITE_OWNER, type Lang } from "../data/site";
+import { getEntryPath, getPageLabel, toAbsoluteUrl } from "../lib/routes";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
+import ArticleHeader from "./ArticleHeader.astro";
+
+interface Alternate {
+  hreflang: string;
+  href: string;
+}
+
+interface Props {
+  entry: CollectionEntry<"work"> | CollectionEntry<"methods">;
+  lang: Lang;
+  enHref: string;
+  koHref: string;
+  backHref: string;
+  alternates: Alternate[];
+}
+
+const { entry, lang, enHref, koHref, backHref, alternates } = Astro.props;
+const entryPath = getEntryPath(entry.data.kind, entry.data.id, lang);
+const siteOwner = SITE_OWNER[lang];
+const footerText = SITE_FOOTER[lang];
+const backLabel = DETAIL_BACK_LINKS[lang][entry.data.kind];
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${entry.data.title} | ${siteOwner}`}
+  description={entry.data.ogDescription ?? entry.data.description}
+  canonical={toAbsoluteUrl(entryPath)}
+  ogTitle={entry.data.ogTitle ?? entry.data.title}
+  ogDescription={entry.data.ogDescription ?? entry.data.description}
+  ogType="article"
+  alternates={alternates}
+>
+  <main id="main-content" class="site-shell site-shell-detail">
+    <SiteHeader lang={lang} enHref={enHref} koHref={koHref} />
+    <a class="back-link" href={backHref}>{backLabel}</a>
+    <ArticleHeader
+      label={getPageLabel(entry.data.kind, lang)}
+      title={entry.data.title}
+      summary={entry.data.summary}
+      facts={entry.data.facts}
+    />
+    <slot />
+    <div class="detail-return">
+      <a class="back-link" href={backHref}>{backLabel}</a>
+    </div>
+    <SiteFooter text={footerText} />
+  </main>
+</BaseLayout>

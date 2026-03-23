@@ -1,10 +1,7 @@
 ---
 import { render, getCollection } from "astro:content";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import SiteHeader from "../../../components/SiteHeader.astro";
-import SiteFooter from "../../../components/SiteFooter.astro";
-import ArticleHeader from "../../../components/ArticleHeader.astro";
-import { getEntryPath, getIndexPath, getLanguagePartnerPath, getPageLabel, toAbsoluteUrl } from "../../../lib/routes";
+import DetailPageLayout from "../../../components/DetailPageLayout.astro";
+import { getEntryPath, getIndexPath, getLanguagePartnerPath, toAbsoluteUrl } from "../../../lib/routes";
 
 export async function getStaticPaths() {
   const entries = await getCollection("work", ({ data }) => data.lang === "ko");
@@ -19,36 +16,16 @@ const { Content } = await render(entry);
 const lang = "ko";
 ---
 
-<BaseLayout
+<DetailPageLayout
+  entry={entry}
   lang={lang}
-  title={`${entry.data.title} | 김용집`}
-  description={entry.data.ogDescription ?? entry.data.description}
-  canonical={toAbsoluteUrl(getEntryPath(entry.data.kind, entry.data.id, lang))}
-  ogTitle={entry.data.ogTitle ?? entry.data.title}
-  ogDescription={entry.data.ogDescription ?? entry.data.description}
-  ogType="article"
+  enHref={getLanguagePartnerPath(entry)}
+  koHref={getEntryPath(entry.data.kind, entry.data.id, "ko")}
+  backHref={getIndexPath("work", lang)}
   alternates={[
     { hreflang: "en", href: toAbsoluteUrl(getLanguagePartnerPath(entry)) },
     { hreflang: "ko", href: toAbsoluteUrl(getEntryPath(entry.data.kind, entry.data.id, "ko")) },
   ]}
 >
-  <main class="site-shell site-shell-detail">
-    <SiteHeader
-      lang={lang}
-      enHref={getLanguagePartnerPath(entry)}
-      koHref={getEntryPath(entry.data.kind, entry.data.id, "ko")}
-    />
-    <a class="back-link" href={getIndexPath("work", lang)}>전체 Work로 돌아가기</a>
-    <ArticleHeader
-      label={getPageLabel(entry.data.kind, lang)}
-      title={entry.data.title}
-      summary={entry.data.summary}
-      facts={entry.data.facts}
-    />
-    <Content />
-    <div class="detail-return">
-      <a class="back-link" href={getIndexPath("work", lang)}>전체 Work로 돌아가기</a>
-    </div>
-    <SiteFooter text="데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다." />
-  </main>
-</BaseLayout>
+  <Content />
+</DetailPageLayout>

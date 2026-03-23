@@ -1,9 +1,41 @@
 export type Lang = "en" | "ko";
 
+export const SITE_OWNER = {
+  en: "Yongjip Kim",
+  ko: "김용집",
+} as const;
+
 export const PROFILE_LINKS = {
   linkedin: "https://www.linkedin.com/in/yongjip/",
   github: "https://github.com/yongjip",
 };
+
+export const SITE_FOOTER = {
+  en: "A bilingual portfolio of case studies and methods for data systems and operations work.",
+  ko: "데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다.",
+} as const;
+
+export const DETAIL_BACK_LINKS = {
+  en: {
+    work: "Back to all work",
+    method: "Back to all methods",
+  },
+  ko: {
+    work: "전체 Work로 돌아가기",
+    method: "전체 Methods로 돌아가기",
+  },
+} as const;
+
+export const METHOD_LIST_COPY = {
+  en: {
+    kicker: "Method note",
+    planningUsePrefix: "Planning use",
+  },
+  ko: {
+    kicker: "방법론 노트",
+    planningUsePrefix: "활용",
+  },
+} as const;
 
 export const HOME_COPY = {
   en: {
@@ -17,8 +49,7 @@ export const HOME_COPY = {
     methodsHeading: "Methods",
     methodsIntro:
       "Short notes on planning and operational methods behind the case studies.",
-    footer:
-      "A bilingual portfolio of case studies and methods for data systems and operations work.",
+    footer: SITE_FOOTER.en,
   },
   ko: {
     eyebrow: "테크타카 Director, Data Platform",
@@ -30,8 +61,7 @@ export const HOME_COPY = {
     experienceHeading: "경력",
     methodsHeading: "방법론",
     methodsIntro: "케이스 스터디를 뒷받침하는 짧은 계획·운영 노트입니다.",
-    footer:
-      "데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다.",
+    footer: SITE_FOOTER.ko,
   },
 } as const;
 

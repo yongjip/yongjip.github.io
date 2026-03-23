@@ -72,6 +72,7 @@ const ogImage = "https://yongjip.github.io/resources/og/portfolio-cover.png";
     <slot name="head" />
   </head>
   <body class={Astro.url.pathname === "/" || Astro.url.pathname === "/ko/" ? "home-page" : "detail-page"}>
+    <a class="skip-link" href="#main-content">{lang === "ko" ? "본문으로 건너뛰기" : "Skip to content"}</a>
     <slot />
     <CloudflareAnalytics />
   </body>

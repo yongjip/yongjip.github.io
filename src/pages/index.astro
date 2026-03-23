@@ -4,9 +4,10 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import WorkCard from "../components/WorkCard.astro";
 import BriefList from "../components/BriefList.astro";
+import MethodList from "../components/MethodList.astro";
 import { EXPERIENCE_ITEMS, HOME_COPY } from "../data/site";
 import { getFeaturedWork, getMethodPreview } from "../lib/content";
-import { getEntryPath, getHomePath, getIndexPath, toAbsoluteUrl } from "../lib/routes";
+import { getHomePath, getIndexPath, toAbsoluteUrl } from "../lib/routes";
 
 const lang = "en";
 const featuredWork = await getFeaturedWork(lang);
@@ -26,7 +27,7 @@ const copy = HOME_COPY[lang];
     { hreflang: "ko", href: toAbsoluteUrl("/ko/") },
   ]}
 >
-  <main class="site-shell site-shell-home home-front-page">
+  <main id="main-content" class="site-shell site-shell-home home-front-page">
     <SiteHeader lang={lang} enHref="/" koHref="/ko/" />
 
     <section class="hero hero-home">
@@ -65,18 +66,7 @@ const copy = HOME_COPY[lang];
       </div>
       <div class="section-group">
         <p class="section-intro">{copy.methodsIntro}</p>
-        <div class="method-list method-list-preview">
-          {methods.map((entry) => (
-            <article class="method-item">
-              <p class="method-kicker">Method note</p>
-              <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
-                {entry.data.shortTitle}
-              </a>
-              <p class="method-summary">{entry.data.description}</p>
-              <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
-            </article>
-          ))}
-        </div>
+        <MethodList entries={methods} preview />
         <a class="text-link section-cta" href={getIndexPath("method", lang)}>Browse all methods</a>
       </div>
     </section>

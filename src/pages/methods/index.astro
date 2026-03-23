@@ -2,8 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
+import MethodList from "../../components/MethodList.astro";
+import { SITE_FOOTER } from "../../data/site";
 import { getEntries } from "../../lib/content";
-import { getEntryPath, getIndexPath, toAbsoluteUrl } from "../../lib/routes";
+import { getIndexPath, toAbsoluteUrl } from "../../lib/routes";
 
 const lang = "en";
 const entries = await getEntries("methods", lang);
@@ -21,7 +23,7 @@ const entries = await getEntries("methods", lang);
     { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
   ]}
 >
-  <main class="site-shell site-shell-home archive-page archive-page-methods">
+  <main id="main-content" class="site-shell site-shell-home archive-page archive-page-methods">
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Methods</p>
@@ -30,21 +32,8 @@ const entries = await getEntries("methods", lang);
     </section>
 
     <section class="section section-list section-methods">
-      <div class="method-list">
-        {entries.map((entry) => (
-          <article class="method-item">
-            <p class="method-kicker">Method note</p>
-            <a class="method-link" href={getEntryPath(entry.data.kind, entry.data.id, entry.data.lang)}>
-              {entry.data.shortTitle}
-            </a>
-            <p class="method-summary">{entry.data.description}</p>
-            <div class="method-inline-meta">
-              <p class="method-meta">{`Planning use: ${entry.data.planningUse}`}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      <MethodList entries={entries} />
     </section>
-    <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />
+    <SiteFooter text={SITE_FOOTER[lang]} />
   </main>
 </BaseLayout>

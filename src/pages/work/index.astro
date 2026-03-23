@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import WorkCard from "../../components/WorkCard.astro";
+import { SITE_FOOTER } from "../../data/site";
 import { getEntries } from "../../lib/content";
 import { getIndexPath, toAbsoluteUrl } from "../../lib/routes";
 
@@ -22,7 +23,7 @@ const entries = await getEntries("work", lang);
     { hreflang: "ko", href: toAbsoluteUrl("/ko/work/") },
   ]}
 >
-  <main class="site-shell site-shell-home archive-page archive-page-work">
+  <main id="main-content" class="site-shell site-shell-home archive-page archive-page-work">
     <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
     <section class="hero hero-home hero-compact">
       <p class="eyebrow">Work</p>
@@ -35,6 +36,6 @@ const entries = await getEntries("work", lang);
         {entries.map((entry) => <WorkCard entry={entry} mode="archive" />)}
       </div>
     </section>
-    <SiteFooter text="A bilingual portfolio of case studies and methods for data systems and operations work." />
+    <SiteFooter text={SITE_FOOTER[lang]} />
   </main>
 </BaseLayout>
