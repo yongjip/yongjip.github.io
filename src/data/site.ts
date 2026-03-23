@@ -10,6 +10,27 @@ export const PROFILE_LINKS = {
   github: "https://github.com/yongjip",
 };
 
+export const SHARED_UI_COPY = {
+  nav: {
+    home: "Home",
+    work: "Work",
+    methods: "Methods",
+  },
+  language: {
+    label: "Language",
+    en: "EN",
+    ko: "KO",
+  },
+  archiveEyebrows: {
+    work: "Work",
+    methods: "Methods",
+  },
+  archiveCtas: {
+    work: "Browse the full work archive",
+    methods: "Browse all methods",
+  },
+} as const;
+
 export const SITE_FOOTER = {
   en: "A bilingual portfolio of case studies and methods for data systems and operations work.",
   ko: "데이터 시스템과 운영 문제를 다루는 케이스 스터디와 방법론을 한글과 영어로 정리한 포트폴리오입니다.",
@@ -21,8 +42,8 @@ export const DETAIL_BACK_LINKS = {
     method: "Back to all methods",
   },
   ko: {
-    work: "전체 Work로 돌아가기",
-    method: "전체 Methods로 돌아가기",
+    work: "Back to all work",
+    method: "Back to all methods",
   },
 } as const;
 

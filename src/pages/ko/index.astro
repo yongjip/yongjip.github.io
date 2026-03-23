@@ -5,7 +5,7 @@ import SiteFooter from "../../components/SiteFooter.astro";
 import WorkCard from "../../components/WorkCard.astro";
 import BriefList from "../../components/BriefList.astro";
 import MethodList from "../../components/MethodList.astro";
-import { EXPERIENCE_ITEMS, HOME_COPY } from "../../data/site";
+import { EXPERIENCE_ITEMS, HOME_COPY, SHARED_UI_COPY } from "../../data/site";
 import { getFeaturedWork, getMethodPreview } from "../../lib/content";
 import { getHomePath, getIndexPath, toAbsoluteUrl } from "../../lib/routes";
 import { buildHomeSchemas } from "../../lib/seo";
@@ -47,7 +47,7 @@ const copy = HOME_COPY[lang];
         <div class="work-list work-list-archive">
           {featuredWork.map((entry) => <WorkCard entry={entry} mode="archive" />)}
         </div>
-        <a class="text-link section-cta" href={getIndexPath("work", lang)}>전체 Work 아카이브 보기</a>
+        <a class="text-link section-cta" href={getIndexPath("work", lang)}>{SHARED_UI_COPY.archiveCtas.work}</a>
       </div>
     </section>
 
@@ -69,7 +69,7 @@ const copy = HOME_COPY[lang];
       <div class="section-group">
         <p class="section-intro">{copy.methodsIntro}</p>
         <MethodList entries={methods} preview />
-        <a class="text-link section-cta" href={getIndexPath("method", lang)}>전체 Methods 보기</a>
+        <a class="text-link section-cta" href={getIndexPath("method", lang)}>{SHARED_UI_COPY.archiveCtas.methods}</a>
       </div>
     </section>
 

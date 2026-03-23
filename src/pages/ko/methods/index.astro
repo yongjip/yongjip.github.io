@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import SiteHeader from "../../../components/SiteHeader.astro";
 import SiteFooter from "../../../components/SiteFooter.astro";
 import MethodList from "../../../components/MethodList.astro";
-import { SITE_FOOTER } from "../../../data/site";
+import { SHARED_UI_COPY, SITE_FOOTER } from "../../../data/site";
 import { getEntries } from "../../../lib/content";
 import { getIndexPath, toAbsoluteUrl } from "../../../lib/routes";
 import { buildCollectionPageSchema } from "../../../lib/seo";
@@ -31,7 +31,7 @@ const canonical = toAbsoluteUrl(getIndexPath("method", lang));
   <main id="main-content" class="site-shell site-shell-home archive-page archive-page-methods">
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
     <section class="hero hero-home hero-compact">
-      <p class="eyebrow">Methods</p>
+      <p class="eyebrow">{SHARED_UI_COPY.archiveEyebrows.methods}</p>
       <h1>계획 로직과 운영 방법을 정리한 짧은 노트</h1>
       <p class="hero-copy">케이스 스터디를 보완하는 방법을 모아 둔 조용한 아카이브입니다.</p>
     </section>

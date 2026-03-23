@@ -45,7 +45,7 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 <section class="detail-section detail-section-takeaways">
   <p class="section-label">워크플로우</p>
   <h2>AI 생성 SQL을 실제 분석 시스템으로 바꾸는 검증 루프</h2>
-  <p class="detail-intro">먼저 맥락을 좁히고, 그 다음 SQL을 생성·실행·검증해 사람이 검토할 수 있는 결과만 넘기도록 했습니다.</p>
+  <div class="detail-intro">먼저 맥락을 좁히고, 그 다음 SQL을 생성·실행·검증해 사람이 검토할 수 있는 결과만 넘기도록 했습니다.</div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>맥락 축소</h3>
@@ -72,8 +72,10 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <ResponsiveDiagram
     src="/resources/diagrams/text-to-sql-ko.png"
     alt="사용자 질문에서 도메인과 테이블 선택, 지식 레이어, AI 에이전트, Athena 실행, 결과 검증, 지식 업데이트로 이어지는 시스템 흐름도."
+    width={1980}
+    height={2760}
   />
-  <p class="detail-intro">이 시스템은 SQL 생성에서 끝나지 않았습니다. 실행, 검증, 반복 수정을 거쳐 신뢰 가능한 결과만 전달했습니다.</p>
+  <div class="detail-intro">이 시스템은 SQL 생성에서 끝나지 않았습니다. 실행, 검증, 반복 수정을 거쳐 신뢰 가능한 결과만 전달했습니다.</div>
 </section>
 
 <section class="detail-section">

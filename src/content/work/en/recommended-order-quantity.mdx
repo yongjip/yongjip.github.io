@@ -31,21 +31,21 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-columns">
     <article class="detail-item">
       <h3>Problem</h3>
-      <p>
+        <div class="detail-copy">
         Fresh inventory ordering could not rely on demand forecast alone. A usable recommendation had to account for current inventory, open purchase orders, vendor lead time, minimum order quantities, and the number of days a product could still be sold after inbounding.
-      </p>
-      <p>
-        The hard part was not prediction by itself. It was making ordering decisions that balanced stockout risk against freshness perception, waste exposure, and warehouse feasibility.
-      </p>
+        
+                The hard part was not prediction by itself. It was making ordering decisions that balanced stockout risk against freshness perception, waste exposure, and warehouse feasibility.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Approach</h3>
-      <p>
+        <div class="detail-copy">
         I built a rule-based ordering engine that translated forecast and inventory signals into a constrained purchase recommendation. The logic also produced a decision explanation and an inventory outlook so the recommendation could be reviewed operationally rather than treated as a black box.
-      </p>
-      <p>
-        The result was not a single formula. It was a staged decision system that encoded how perishables should be ordered under real warehouse and vendor constraints.
-      </p>
+        
+                The result was not a single formula. It was a staged decision system that encoded how perishables should be ordered under real warehouse and vendor constraints.
+      </div>
+
     </article>
   </div>
 </section>
@@ -56,27 +56,31 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-stack">
     <article class="detail-item">
       <h3>Inventory and demand</h3>
-      <p>
+        <div class="detail-copy">
         The recommendation started from current inventory position, demand forecast, and open purchase orders rather than from forecast alone.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Lead time and codelife</h3>
-      <p>
+        <div class="detail-copy">
         Order timing had to reflect vendor lead time and usable codelife. For perishables, pulling inventory too early can create a different failure mode even if it lowers nominal stockout risk.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>MOQ and pallet handling</h3>
-      <p>
+        <div class="detail-copy">
         Minimum order and pallet-unit constraints were not only commercial rules. They also mattered for warehouse efficiency, because pallet-aligned ordering reduced unnecessary depalletizing work when inventory moved from cross-dock to outbound operations.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Orderable calendar</h3>
-      <p>
+        <div class="detail-copy">
         The logic also had to respect weekends, holidays, and non-deliverable dates, so the recommendation reflected when orders could actually be placed and received.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
@@ -88,41 +92,50 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
     src="/resources/diagrams/roq-en.png"
     mobileSrc="/resources/diagrams/roq-en-mobile.png"
     alt="Decision flow from forecast, inventory position, open purchase orders, lead time, and usable sell window through order spreading, MOQ and pallet fit, and orderable calendar checks to recommended order quantity, decision explanation, and inventory outlook."
+    width={1890}
+    height={666}
+    mobileWidth={1030}
+    mobileHeight={904}
     variant="flow"
   />
-  <p class="detail-intro">
+  <div class="detail-intro">
     The recommendation was built in stages so the system could explain how timing, freshness, and handling constraints changed the final quantity.
-  </p>
+  </div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>Target coverage first</h3>
-      <p>
+        <div class="detail-copy">
         The engine first established a target coverage level using forecast, lead time, and a freshness-aware buffer. That created a starting point for how much inventory should be on hand.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Baseline quantity</h3>
-      <p>
+        <div class="detail-copy">
         From that target, the system estimated a baseline purchase quantity after accounting for current inventory and open purchase orders. This gave a first recommendation before warehouse and scheduling constraints were applied.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Order spreading control</h3>
-      <p>
+        <div class="detail-copy">
         A purchase-order cap was used to spread orders across time. The purpose was to avoid pulling inventory in too early just to chase a small reduction in stockout risk.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Freshness and demand volatility</h3>
-      <p>
+        <div class="detail-copy">
         That mattered even for items with longer codelife. Excess early inventory could still reduce freshness perception for customers or become vulnerable to demand shifts caused by competitor pricing.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>MOQ, pallet, and exception handling</h3>
-      <p>
+        <div class="detail-copy">
         The system then adjusted the recommendation to MOQ and pallet units, and applied explicit exception handling when operational risk remained too high under the normal rule path.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
@@ -130,27 +143,30 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 <section class="detail-section detail-section-outputs">
   <p class="section-label">Results</p>
   <h2>The useful output was a quantity plus an explanation.</h2>
-  <p class="detail-intro">
+  <div class="detail-intro">
     The recommendation was meant to support a planner review, not replace it with a single opaque number.
-  </p>
+  </div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>Recommended quantity</h3>
-      <p>
+        <div class="detail-copy">
         The core output was a suggested purchase quantity that already reflected timing, freshness, and handling constraints.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Decision explanation</h3>
-      <p>
+        <div class="detail-copy">
         The system also produced a short explanation of why the recommendation looked the way it did, which made review and discussion easier for planning and operations teams.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Inventory outlook</h3>
-      <p>
+        <div class="detail-copy">
         A simple inventory outlook helped reviewers judge whether the recommendation looked reasonable once current stock and incoming purchase orders were taken into account.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
@@ -161,15 +177,17 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-stack">
     <article class="detail-item">
       <h3>What mattered</h3>
-      <p>
+        <div class="detail-copy">
         The important design problem was not forecast generation alone. It was deciding how forecast should be constrained by freshness, timing, warehouse handling, and purchasing rules.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Why the system was useful</h3>
-      <p>
+        <div class="detail-copy">
         The engine made ordering decisions more consistent by balancing stockout risk against waste risk, freshness perception, and operating efficiency in one reusable logic.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>

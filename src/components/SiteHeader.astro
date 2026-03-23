@@ -1,5 +1,5 @@
 ---
-import { PROFILE_LINKS, type Lang } from "../data/site";
+import { PROFILE_LINKS, SHARED_UI_COPY, type Lang } from "../data/site";
 import { getHomePath, getIndexPath } from "../lib/routes";
 import LanguageSwitch from "./LanguageSwitch.astro";
 
@@ -28,21 +28,21 @@ const isMethods = pathname === methodsHref || pathname.startsWith(methodsHref);
         href={homeHref}
         aria-current={isHome ? "page" : undefined}
       >
-        {lang === "ko" ? "Home" : "Home"}
+        {SHARED_UI_COPY.nav.home}
       </a>
       <a
         class={`nav-link ${isWork ? "is-active" : ""}`.trim()}
         href={workHref}
         aria-current={isWork ? "page" : undefined}
       >
-        Work
+        {SHARED_UI_COPY.nav.work}
       </a>
       <a
         class={`nav-link ${isMethods ? "is-active" : ""}`.trim()}
         href={methodsHref}
         aria-current={isMethods ? "page" : undefined}
       >
-        Methods
+        {SHARED_UI_COPY.nav.methods}
       </a>
     </nav>
     <div class="profile-links" aria-label="Profiles">

@@ -31,30 +31,30 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-columns">
     <article class="detail-item">
       <h3>Context</h3>
-      <p>
+        <div class="detail-copy">
         Ad-hoc analytics requests were consuming too much analyst time. In practice, the
-        slow part was not SQL syntax. It was finding the right tables, understanding what
-        columns meant, mapping business logic correctly, and figuring out join patterns
-        that could actually be trusted.
-      </p>
-      <p>
-        That made even routine questions expensive. Complex requests often took 4 to 10
-        hours, which limited how many requests the team could realistically support each
-        month.
-      </p>
+                slow part was not SQL syntax. It was finding the right tables, understanding what
+                columns meant, mapping business logic correctly, and figuring out join patterns
+                that could actually be trusted.
+        
+                That made even routine questions expensive. Complex requests often took 4 to 10
+                hours, which limited how many requests the team could realistically support each
+                month.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Approach</h3>
-      <p>
+        <div class="detail-copy">
         I built a structured metadata layer in YAML that captured how analysts actually
-        reason about the data model: table definitions, column semantics, keys,
-        partitioning, join patterns, and business terminology.
-      </p>
-      <p>
-        The workflow then used AI coding agents to generate SQL, execute it in Athena,
-        and validate results before anything was handed back. The leverage came from
-        structuring context well enough that the system could reuse it repeatedly.
-      </p>
+                reason about the data model: table definitions, column semantics, keys,
+                partitioning, join patterns, and business terminology.
+        
+                The workflow then used AI coding agents to generate SQL, execute it in Athena,
+                and validate results before anything was handed back. The leverage came from
+                structuring context well enough that the system could reuse it repeatedly.
+      </div>
+
     </article>
   </div>
 </section>
@@ -62,10 +62,10 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 <section class="detail-section detail-section-takeaways">
   <p class="section-label">Workflow</p>
   <h2>A practical validation loop around AI-generated SQL</h2>
-  <p class="detail-intro">
+  <div class="detail-intro">
     The workflow narrowed context first, then generated, executed, and checked SQL before
     any result was handed back to a human.
-  </p>
+  </div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>Scoped context</h3>
@@ -92,11 +92,13 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <ResponsiveDiagram
     src="/resources/diagrams/text-to-sql-en.png"
     alt="Flow diagram from user question to validated answer through domain selection, structured knowledge, AI-generated SQL, Athena execution, result validation, and knowledge updates."
+    width={2174}
+    height={2824}
   />
-  <p class="detail-intro">
+  <div class="detail-intro">
     The system did not stop at generation. It executed, checked, and iterated until the
     result was reliable enough for review.
-  </p>
+  </div>
 </section>
 
 <section class="detail-section">

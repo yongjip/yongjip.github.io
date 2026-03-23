@@ -2,23 +2,47 @@
 interface Props {
   alt: string;
   src: string;
+  width: number;
+  height: number;
   mobileSrc?: string;
+  mobileWidth?: number;
+  mobileHeight?: number;
   variant?: "default" | "flow";
 }
 
-const { alt, src, mobileSrc, variant = "default" } = Astro.props;
+const { alt, src, width, height, mobileSrc, mobileWidth, mobileHeight, variant = "default" } = Astro.props;
 const className = variant === "flow" ? "diagram-image diagram-image-flow" : "diagram-image";
+const mediaStyle =
+  mobileSrc && mobileWidth && mobileHeight
+    ? `--diagram-ratio: ${width} / ${height}; --diagram-ratio-mobile: ${mobileWidth} / ${mobileHeight};`
+    : undefined;
 ---
 
 <div class="diagram-frame">
   <div class="diagram-panel">
     {mobileSrc ? (
-      <picture>
+      <picture class="diagram-media" style={mediaStyle}>
         <source media="(max-width: 720px)" srcset={mobileSrc} />
-        <img class={className} src={src} alt={alt} />
+        <img
+          class={className}
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+        />
       </picture>
     ) : (
-      <img class={className} src={src} alt={alt} />
+      <img
+        class={className}
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+      />
     )}
   </div>
 </div>

@@ -29,30 +29,30 @@ resultSummary: "First place by matching preprocessing and forecasts to the scori
   <div class="detail-columns">
     <article class="detail-item">
       <h3>Context</h3>
-      <p>
+        <div class="detail-copy">
         The competition asked participants to forecast 100 days of future sales for 200
-        small businesses. It was framed as a lending problem, so the score was not based
-        on plain forecast error alone. Over-forecasting was penalized much more heavily
-        than under-forecasting.
-      </p>
-      <p>
-        Many participants used more complex modeling approaches, but the scoring setup made
-        problem framing and risk-aware forecasting more important than adding complexity
-        for its own sake.
-      </p>
+                small businesses. It was framed as a lending problem, so the score was not based
+                on plain forecast error alone. Over-forecasting was penalized much more heavily
+                than under-forecasting.
+        
+                Many participants used more complex modeling approaches, but the scoring setup made
+                problem framing and risk-aware forecasting more important than adding complexity
+                for its own sake.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Approach</h3>
-      <p>
+        <div class="detail-copy">
         I used ARIMA, but the real work happened before and after the model step. I
-        cleaned cancellation noise, aggregated transactions to reduce day-level variance,
-        applied log transformation, and then adjusted the forecast direction to fit the
-        competition's asymmetric objective.
-      </p>
-      <p>
-        The result was a conservative, interpretable workflow that fit the evaluation rule
-        instead of optimizing a generic notion of accuracy.
-      </p>
+                cleaned cancellation noise, aggregated transactions to reduce day-level variance,
+                applied log transformation, and then adjusted the forecast direction to fit the
+                competition's asymmetric objective.
+        
+                The result was a conservative, interpretable workflow that fit the evaluation rule
+                instead of optimizing a generic notion of accuracy.
+      </div>
+
     </article>
   </div>
 </section>
@@ -63,35 +63,39 @@ resultSummary: "First place by matching preprocessing and forecasts to the scori
   <div class="detail-stack">
     <article class="detail-item">
       <h3>Cancellation cleanup</h3>
-      <p>
+        <div class="detail-copy">
         The raw data included negative transactions that represented cancellations. I
-        removed those together with their corresponding positive transactions so the series
-        would reflect actual realized sales rather than inflated variance.
-      </p>
+                removed those together with their corresponding positive transactions so the series
+                would reflect actual realized sales rather than inflated variance.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Adaptive aggregation</h3>
-      <p>
+        <div class="detail-copy">
         Each store's transaction history was aggregated into 28-day, 14-day, or 7-day
-        buckets depending on how much history was available. That reduced day-of-week noise
-        while preserving enough structure to forecast short series.
-      </p>
+                buckets depending on how much history was available. That reduced day-of-week noise
+                while preserving enough structure to forecast short series.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Log scale and zero-sales adjustment</h3>
-      <p>
+        <div class="detail-copy">
         Forecasting on the log scale made the aggregated series more stable. When a store
-        showed zero-sales periods, I adjusted the final forecast using the observed
-        probability of no sales rather than ignoring that pattern.
-      </p>
+                showed zero-sales periods, I adjusted the final forecast using the observed
+                probability of no sales rather than ignoring that pattern.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Conservative forecast shift</h3>
-      <p>
+        <div class="detail-copy">
         Because over-forecasting was much more expensive under the competition rule, I
-        shifted forecasts downward using the model's estimated uncertainty instead of
-        submitting the raw point estimate.
-      </p>
+                shifted forecasts downward using the model's estimated uncertainty instead of
+                submitting the raw point estimate.
+      </div>
+
     </article>
   </div>
 </section>
@@ -124,19 +128,21 @@ resultSummary: "First place by matching preprocessing and forecasts to the scori
   <div class="detail-stack">
     <article class="detail-item">
       <h3>What mattered</h3>
-      <p>
+        <div class="detail-copy">
         The important choice was not chasing a more fashionable model. It was recognizing
-        that the competition rewarded cautious forecasts under uncertainty, then shaping
-        the preprocessing and prediction logic around that fact.
-      </p>
+                that the competition rewarded cautious forecasts under uncertainty, then shaping
+                the preprocessing and prediction logic around that fact.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>Why it worked</h3>
-      <p>
+        <div class="detail-copy">
         A restrained ARIMA workflow performed well because the signal was cleaned, the
-        variance was reduced, and the final forecast was adjusted to fit the real scoring
-        objective instead of a generic benchmark.
-      </p>
+                variance was reduced, and the final forecast was adjusted to fit the real scoring
+                objective instead of a generic benchmark.
+      </div>
+
     </article>
   </div>
 </section>

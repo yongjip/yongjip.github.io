@@ -1,4 +1,6 @@
 ---
+import { SHARED_UI_COPY } from "../data/site";
+
 interface Props {
   enHref: string;
   koHref: string;
@@ -8,7 +10,7 @@ interface Props {
 const { enHref, koHref, lang } = Astro.props;
 ---
 
-<nav class="lang-switch" aria-label="Language">
-  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en" aria-current={lang === "en" ? "page" : undefined}>EN</a>
-  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko" aria-current={lang === "ko" ? "page" : undefined}>KR</a>
+<nav class="lang-switch" aria-label={SHARED_UI_COPY.language.label}>
+  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en" aria-current={lang === "en" ? "page" : undefined}>{SHARED_UI_COPY.language.en}</a>
+  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko" aria-current={lang === "ko" ? "page" : undefined}>{SHARED_UI_COPY.language.ko}</a>
 </nav>

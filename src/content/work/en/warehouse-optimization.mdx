@@ -45,7 +45,7 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 <section class="detail-section detail-section-takeaways">
   <p class="section-label">Graph construction</p>
   <h2>Turn storage nodes and walkable paths into an analyzable warehouse graph.</h2>
-  <p class="detail-intro">The graph comes first. Once movement is represented cleanly, routing and simulation become possible on top of it.</p>
+  <div class="detail-intro">The graph comes first. Once movement is represented cleanly, routing and simulation become possible on top of it.</div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>Node grouping</h3>
@@ -73,9 +73,13 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
     src="/resources/diagrams/warehouse-en-desktop.png"
     mobileSrc="/resources/diagrams/warehouse-en-mobile.png"
     alt="Warehouse model construction flow from storage nodes to node grouping, access points, walkable paths, warehouse graph, shortest path logic, and simulation."
+    width={2166}
+    height={114}
+    mobileWidth={350}
+    mobileHeight={1070}
     variant="flow"
   />
-  <p class="detail-intro">Simulation and routing only become useful after the warehouse can be represented as a usable movement model.</p>
+  <div class="detail-intro">Simulation and routing only become useful after the warehouse can be represented as a usable movement model.</div>
 </section>
 
 <section class="detail-section">

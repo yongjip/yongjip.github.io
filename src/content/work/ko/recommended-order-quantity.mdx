@@ -31,21 +31,21 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-columns">
     <article class="detail-item">
       <h3>문제</h3>
-      <p>
+        <div class="detail-copy">
         신선식품 발주는 수요 forecast만으로 결정할 수 없었습니다. 실제 추천값을 만들려면 현재 재고, open purchase order, vendor lead time, minimum order quantity, 그리고 입고 후 며칠이나 판매 가능한지를 함께 봐야 했습니다.
-      </p>
-      <p>
-        어려운 점은 예측 자체보다도, stockout risk와 freshness perception, waste exposure, warehouse feasibility를 동시에 균형 있게 다루는 발주 결정을 만드는 것이었습니다.
-      </p>
+        
+                어려운 점은 예측 자체보다도, stockout risk와 freshness perception, waste exposure, warehouse feasibility를 동시에 균형 있게 다루는 발주 결정을 만드는 것이었습니다.
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>접근</h3>
-      <p>
+        <div class="detail-copy">
         저는 forecast와 inventory signal을 실제 발주 결정으로 바꾸는 rule-based ordering engine을 만들었습니다. 이 로직은 추천값만 내는 것이 아니라 결정 설명과 재고 전망까지 함께 남겨, black box처럼 보이지 않도록 했습니다.
-      </p>
-      <p>
-        핵심은 하나의 공식이 아니라, 신선식품을 실제 운영 제약 아래에서 발주할 수 있도록 만드는 단계형 decision system이었습니다.
-      </p>
+        
+                핵심은 하나의 공식이 아니라, 신선식품을 실제 운영 제약 아래에서 발주할 수 있도록 만드는 단계형 decision system이었습니다.
+      </div>
+
     </article>
   </div>
 </section>
@@ -56,27 +56,31 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-stack">
     <article class="detail-item">
       <h3>재고와 수요</h3>
-      <p>
+        <div class="detail-copy">
         추천값은 forecast만이 아니라 현재 재고 상태와 open purchase order를 함께 본 상태에서 시작했습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>lead time과 codelife</h3>
-      <p>
+        <div class="detail-copy">
         주문 시점은 vendor lead time과 usable codelife를 함께 반영해야 했습니다. 신선식품은 재고를 너무 일찍 들여오는 것 자체가 다른 실패를 만들 수 있기 때문입니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>MOQ와 pallet handling</h3>
-      <p>
+        <div class="detail-copy">
         minimum order와 pallet-unit 제약은 단순한 vendor rule이 아니었습니다. cross-dock warehouse에서 outbound warehouse로 재고를 이동할 때 pallet 단위로 주문하면 불필요한 depalletizing 작업을 줄일 수 있어 창고 운영 효율에도 직접 연결됐습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>주문 가능 일정</h3>
-      <p>
+        <div class="detail-copy">
         로직은 주말, 휴일, 비주문일도 반영해야 했습니다. 즉 추천값은 이론적 수치가 아니라 실제로 언제 주문하고 받을 수 있는지를 함께 고려한 결과여야 했습니다.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
@@ -88,41 +92,50 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
     src="/resources/diagrams/roq-ko.png"
     mobileSrc="/resources/diagrams/roq-ko-mobile.png"
     alt="forecast, 재고 상태, open purchase order, lead time, 판매 가능 기간을 받아 주문 분산, MOQ 및 pallet 반영, 주문 가능 일정 확인을 거쳐 추천 발주량, 결정 설명, 재고 전망으로 이어지는 흐름도."
+    width={1508}
+    height={666}
+    mobileWidth={974}
+    mobileHeight={860}
     variant="flow"
   />
-  <p class="detail-intro">
+  <div class="detail-intro">
     추천값은 한 번에 계산된 숫자가 아니라, 시점과 신선도, 창고 제약이 최종 수량을 어떻게 바꾸는지 설명할 수 있도록 단계적으로 만들어졌습니다.
-  </p>
+  </div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>목표 coverage 설정</h3>
-      <p>
+        <div class="detail-copy">
         먼저 forecast, lead time, 신선도 buffer를 반영해 목표 coverage를 설정했습니다. 이 값이 어느 정도 재고를 보유해야 하는지에 대한 출발점이 됐습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>기본 주문량 산출</h3>
-      <p>
+        <div class="detail-copy">
         그 다음 목표 coverage에서 현재 재고 상태와 open purchase order를 반영해 기본 주문량을 만들었습니다. 이 값은 창고와 일정 제약을 적용하기 전의 출발점 역할을 했습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>주문 분산 제어</h3>
-      <p>
+        <div class="detail-copy">
         purchase-order cap은 주문을 시간에 걸쳐 분산시키기 위한 장치였습니다. 목적은 작은 OOS 개선만을 위해 재고를 너무 일찍 많이 들여오지 않도록 하는 것이었습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>신선도와 수요 변동성</h3>
-      <p>
+        <div class="detail-copy">
         이 제어는 상대적으로 codelife가 긴 SKU에도 중요했습니다. 너무 일찍 들여온 재고는 고객 입장에선 충분히 신선하지 않다고 느껴질 수 있고, competitor pricing 때문에 수요가 흔들리면 과잉 재고가 되어 waste나 markdown risk로 이어질 수 있기 때문입니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>MOQ, pallet, 예외 처리</h3>
-      <p>
+        <div class="detail-copy">
         마지막으로 추천값을 MOQ와 pallet unit에 맞게 조정하고, 일반 경로만으로는 운영 리스크가 너무 큰 경우엔 예외 처리를 적용했습니다.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
@@ -130,27 +143,30 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 <section class="detail-section detail-section-outputs">
   <p class="section-label">결과</p>
   <h2>유용한 출력은 숫자 하나가 아니라 설명 가능한 결정이었습니다.</h2>
-  <p class="detail-intro">
+  <div class="detail-intro">
     이 추천값은 사람의 판단을 대체하는 black box가 아니라, planning review를 더 빠르고 일관되게 만드는 보조 도구여야 했습니다.
-  </p>
+  </div>
   <div class="detail-stack">
     <article class="detail-item">
       <h3>추천 발주량</h3>
-      <p>
+        <div class="detail-copy">
         핵심 출력은 시점, 신선도, handling 제약이 이미 반영된 추천 발주량이었습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>결정 설명</h3>
-      <p>
+        <div class="detail-copy">
         또한 왜 그 추천이 나왔는지를 짧게 설명할 수 있도록 해, planning과 operations 팀이 로직을 더 쉽게 해석하고 논의할 수 있게 했습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>재고 전망</h3>
-      <p>
+        <div class="detail-copy">
         간단한 재고 전망을 함께 보여줘, 현재 재고와 입고 예정 물량을 반영했을 때 추천값이 합리적인지 검토할 수 있게 했습니다.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
@@ -161,15 +177,17 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
   <div class="detail-stack">
     <article class="detail-item">
       <h3>무엇이 중요했나</h3>
-      <p>
+        <div class="detail-copy">
         중요한 설계 문제는 forecast 자체보다, forecast를 신선도, 시점, 창고 handling, 구매 제약으로 어떻게 제한할 것인가였습니다.
-      </p>
+      </div>
+
     </article>
     <article class="detail-item">
       <h3>왜 유용했나</h3>
-      <p>
+        <div class="detail-copy">
         이 엔진은 stockout risk, waste risk, freshness perception, operating efficiency를 하나의 reusable logic 안에서 함께 다뤄, 발주 결정을 더 일관되게 만들었습니다.
-      </p>
+      </div>
+
     </article>
   </div>
 </section>
