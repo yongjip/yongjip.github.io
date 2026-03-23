@@ -7,6 +7,8 @@ const factSchema = z.object({
   value: z.string(),
 });
 
+const isoDateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/u, "Expected YYYY-MM-DD date.");
+
 const baseSchema = z.object({
   id: z.string(),
   lang: z.enum(["en", "ko"]),
@@ -18,9 +20,11 @@ const baseSchema = z.object({
   featured: z.boolean(),
   order: z.number(),
   related: z.array(z.string()),
+  publishedAt: isoDateSchema,
+  updatedAt: isoDateSchema,
   ogTitle: z.string().optional(),
   ogDescription: z.string().optional(),
-  facts: z.array(factSchema).length(2),
+  facts: z.array(factSchema).min(1),
 });
 
 const work = defineCollection({

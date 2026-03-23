@@ -107,8 +107,6 @@ Korean:
 - `https://yongjip.github.io/ko/work/`
 - `https://yongjip.github.io/ko/methods/`
 
-Legacy `.html` URLs remain available only as redirect stubs. They should not be treated as canonical.
-
 This keeps metadata, navigation, and language links aligned around one route system instead of mixing root pages with ad hoc file names.
 
 ## Project Naming

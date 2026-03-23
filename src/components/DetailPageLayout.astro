@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { DETAIL_BACK_LINKS, SITE_FOOTER, SITE_OWNER, type Lang } from "../data/site";
+import { ARTICLE_DATE_COPY, DETAIL_BACK_LINKS, SITE_FOOTER, SITE_OWNER, type Lang } from "../data/site";
+import { formatDisplayDate, toIsoDateTime } from "../lib/dates";
 import { getEntryPath, getPageLabel, toAbsoluteUrl } from "../lib/routes";
 import { getRelatedEntries } from "../lib/content";
 import { buildArticleSchema } from "../lib/seo";
@@ -30,6 +31,13 @@ const siteOwner = SITE_OWNER[lang];
 const footerText = SITE_FOOTER[lang];
 const backLabel = DETAIL_BACK_LINKS[lang][entry.data.kind];
 const canonical = toAbsoluteUrl(entryPath);
+const articlePublishedTime = toIsoDateTime(entry.data.publishedAt);
+const articleModifiedTime = toIsoDateTime(entry.data.updatedAt);
+const dateCopy = ARTICLE_DATE_COPY[lang];
+const dateFacts = [
+  { label: dateCopy.published, value: formatDisplayDate(entry.data.publishedAt, lang) },
+  { label: dateCopy.updated, value: formatDisplayDate(entry.data.updatedAt, lang) },
+];
 const relatedEntries = await getRelatedEntries(entry, lang);
 const relatedLabel = lang === "ko" ? "관련 페이지" : "Related";
 const relatedHeading = lang === "ko" ? "함께 보면 좋은 페이지" : "Continue with connected pages";
@@ -48,6 +56,8 @@ const relatedIntro = lang === "ko"
   ogType="article"
   alternates={alternates}
   schema={buildArticleSchema({ entry, lang, canonical })}
+  articlePublishedTime={articlePublishedTime}
+  articleModifiedTime={articleModifiedTime}
 >
   <main id="main-content" class="site-shell site-shell-detail">
     <SiteHeader lang={lang} enHref={enHref} koHref={koHref} />
@@ -56,6 +66,7 @@ const relatedIntro = lang === "ko"
       label={getPageLabel(entry.data.kind, lang)}
       title={entry.data.title}
       summary={entry.data.summary}
+      dateFacts={dateFacts}
       facts={entry.data.facts}
     />
     <slot />

@@ -5,7 +5,7 @@ Portfolio site for Yongjip Kim, rebuilt as an Astro static site with React avail
 ## Stack
 
 - Astro static output
-- React available for component islands and future app-like features
+- React available for future interactive islands
 - MDX content collections for bilingual case studies and methods
 - Mermaid as diagram source, prebuilt PNG as the published diagram format
 - GitHub Actions for build and Pages deployment
@@ -26,8 +26,6 @@ Canonical routes:
 - `/ko/work/warehouse-optimization/`
 - `/methods/seasonality-index/`
 - `/ko/methods/seasonality-index/`
-
-Legacy `.html` URLs are preserved as thin redirect files under `public/`.
 
 ## Content Model
 

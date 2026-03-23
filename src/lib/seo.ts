@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import { HOME_COPY, PROFILE_LINKS, SITE_OWNER, type Lang } from "../data/site";
+import { toIsoDateTime } from "./dates";
 import { getHomePath, toAbsoluteUrl } from "./routes";
 
 type Entry = CollectionEntry<"work"> | CollectionEntry<"methods">;
@@ -103,6 +104,8 @@ export function buildArticleSchema({
       description,
       url: canonical,
       image: SITE_OG_IMAGE_URL,
+      datePublished: toIsoDateTime(entry.data.publishedAt),
+      dateModified: toIsoDateTime(entry.data.updatedAt),
       inLanguage: getSeoLocale(lang).schemaLanguage,
       mainEntityOfPage: {
         "@type": "WebPage",

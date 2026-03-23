@@ -476,11 +476,51 @@ html[lang="ko"] .article-header h1 {
   font-size: 0.97rem;
 }
 
+.article-date-line {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.article-date-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.article-date-item + .article-date-item::before {
+  content: "\00b7";
+  color: var(--line-strong);
+  margin-right: 6px;
+}
+
+.article-date-label {
+  color: var(--label);
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.article-date-value {
+  color: var(--muted);
+  font-weight: 400;
+}
+
 .article-facts {
   margin-top: 16px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px 24px;
+}
+
+.article-facts-single {
+  grid-template-columns: 1fr;
 }
 
 .article-fact {

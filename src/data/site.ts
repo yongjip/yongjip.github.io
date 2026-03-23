@@ -58,6 +58,17 @@ export const METHOD_LIST_COPY = {
   },
 } as const;
 
+export const ARTICLE_DATE_COPY = {
+  en: {
+    published: "Published",
+    updated: "Updated",
+  },
+  ko: {
+    published: "게시일",
+    updated: "수정일",
+  },
+} as const;
+
 export const HOME_COPY = {
   en: {
     eyebrow: "Director, Data Platform at Techtaka",
