@@ -817,6 +817,10 @@ html[lang="ko"] .article-header h1 {
   padding-top: 0;
 }
 
+.detail-section > * {
+  width: min(100%, var(--lane-reading));
+}
+
 .article-header + .detail-section {
   margin-top: 28px;
 }
@@ -828,9 +832,9 @@ html[lang="ko"] .article-header h1 {
   text-wrap: balance;
 }
 
-.detail-section > .section-label,
-.detail-section > h2 {
-  max-width: var(--lane-reading);
+.detail-section > .metric-grid,
+.detail-section > .diagram-frame {
+  width: min(100%, var(--lane-wide));
 }
 
 html[lang="ko"] .detail-section h2 {
@@ -844,14 +848,12 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .detail-intro {
-  max-width: var(--lane-reading);
   color: var(--muted);
   margin-top: 10px;
   font-size: 0.97rem;
 }
 
 .detail-columns {
-  max-width: var(--lane-reading);
   display: grid;
   gap: 0;
   grid-template-columns: 1fr;
@@ -859,7 +861,6 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .detail-stack {
-  max-width: var(--lane-reading);
   margin-top: 18px;
   display: grid;
   gap: 0;
@@ -928,7 +929,6 @@ html[lang="ko"] .detail-section h2 {
 
 .source-list {
   margin-top: 18px;
-  max-width: var(--lane-reading);
 }
 
 .source-item {
