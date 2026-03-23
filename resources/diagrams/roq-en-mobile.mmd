@@ -1,0 +1,17 @@
+%%{init: {
+  "themeVariables": {
+    "fontSize": "15px"
+  },
+  "flowchart": {
+    "nodeSpacing": 28,
+    "rankSpacing": 34,
+    "padding": 12
+  }
+}}%%
+flowchart TD
+    A["Forecast, inventory, open PO"] --> X["ROQ Engine"]
+    B["Lead time and usable sell window"] --> X
+    X --> C["Order spreading<br/>MOQ and pallet fit<br/>Orderable calendar"]
+    C --> D["Recommended order quantity"]
+    D --> E["Decision explanation"]
+    D --> F["Inventory outlook"]
