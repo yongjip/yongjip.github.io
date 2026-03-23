@@ -178,6 +178,9 @@ Use `wide` only for content that actually benefits from extra horizontal space:
 - metric grids
 - rare paired comparison blocks
 
+Apply lane changes at the section level, not inside child components. Diagrams and metric grids should inherit their section width, and only sections that genuinely benefit from extra width should opt into the `wide` lane.
+Metric cards should read as compact evidence blocks inside the section lane, not as full-row panels stretched to the shell. Let them wrap within the lane instead of forcing equal-width columns across the entire row.
+
 Do not add one-off `max-width` rules for individual sections unless there is a concrete, visual reason that cannot be handled by one of these three layers.
 
 ### Home

@@ -813,12 +813,17 @@ html[lang="ko"] .article-header h1 {
 }
 
 .detail-section {
+  --detail-section-lane: var(--lane-reading);
   margin-top: 36px;
   padding-top: 0;
 }
 
+.detail-section-wide {
+  --detail-section-lane: var(--lane-wide);
+}
+
 .detail-section > * {
-  width: min(100%, var(--lane-reading));
+  width: min(100%, var(--detail-section-lane));
 }
 
 .article-header + .detail-section {
@@ -830,11 +835,6 @@ html[lang="ko"] .article-header h1 {
   margin-top: 8px;
   max-width: none;
   text-wrap: balance;
-}
-
-.detail-section > .metric-grid,
-.detail-section > .diagram-frame {
-  width: min(100%, var(--lane-wide));
 }
 
 html[lang="ko"] .detail-section h2 {
@@ -896,14 +896,16 @@ html[lang="ko"] .detail-section h2 {
 }
 
 .metric-grid {
-  width: min(100%, var(--lane-wide));
-  display: grid;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
   gap: 14px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 16px;
 }
 
 .metric-item {
+  flex: 0 1 14.5rem;
   padding: 14px 14px 12px;
   border: 1px solid var(--line-soft);
   border-radius: 10px;
@@ -1149,7 +1151,7 @@ html[lang="ko"] .archive-page-work .hero-compact h1 {
 }
 
 .diagram-panel {
-  width: min(100%, var(--lane-wide));
+  width: 100%;
   margin-top: 22px;
   overflow-x: auto;
   padding: 10px 0;
@@ -1206,9 +1208,12 @@ html[lang="ko"] .archive-page-work .hero-compact h1 {
   .theme-grid,
   .feature-grid,
   .impact-strip,
-  .detail-columns,
-  .metric-grid {
+  .detail-columns {
     grid-template-columns: 1fr;
+  }
+
+  .metric-item {
+    flex-basis: 100%;
   }
 
   .work-card,
