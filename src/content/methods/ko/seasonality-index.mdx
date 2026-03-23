@@ -3,8 +3,8 @@ id: seasonality-index
 lang: ko
 title: 재고 계획을 위한 Seasonality Index
 shortTitle: 재고 계획을 위한 Seasonality Index
-description: 상품 단위의 계절성을 추정하고 이를 카테고리 단위의 계획 로직에 다시 연결하는 방법입니다.
-summary: 상품 단위 계절성을 추정하고 이를 더 단순한 카테고리 단위 계획 로직에 다시 연결하는 실무 노트입니다.
+description: SKU 단위 계절성을 추정하고 seasonal bucket으로 묶은 뒤 이를 카테고리 단위 재고 계획에 다시 연결하는 방법입니다.
+summary: SKU 단위 seasonality, seasonal bucket, 카테고리 단위 계획 로직을 연결하는 재고 계획 실무 노트입니다.
 kind: method
 featured: false
 order: 2
@@ -12,7 +12,7 @@ related:
   - text-to-sql
   - warehouse-optimization
 ogTitle: 재고 계획을 위한 Seasonality Index
-ogDescription: 상품 단위 계절성과 카테고리 단위 계획 로직을 연결하는 실무 방법론 노트입니다.
+ogDescription: SKU 단위 계절성을 seasonal bucket으로 묶어 카테고리 단위 재고 계획에 연결하는 실무 방법론 노트입니다.
 format: 상품 단위 seasonality와 seasonal bucket을 바탕으로 정리한 방법론 노트.
 planningUse: SKU 단위 신호를 더 단순한 카테고리 단위 재고 계획 로직에 다시 연결합니다.
 facts:
@@ -24,7 +24,7 @@ facts:
 
 <section class="detail-section">
   <p class="section-label">개요</p>
-  <h2>카테고리 단위 계절성만으로는 상품 간 차이를 설명하기 어렵습니다.</h2>
+  <h2>재고 계획은 카테고리보다 더 아래 단위에서 계절성을 봐야 좋아집니다.</h2>
   <div class="detail-columns">
     <article class="detail-item">
       <h3>문제</h3>

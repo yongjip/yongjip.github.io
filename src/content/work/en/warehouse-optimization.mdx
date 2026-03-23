@@ -3,8 +3,8 @@ id: warehouse-optimization
 lang: en
 title: Building a Graph-Based Warehouse Optimization and Simulation Workflow
 shortTitle: Graph-Based Warehouse Optimization and Simulation
-description: Built a warehouse graph construction tool and simplified simulation model for inventory placement and picker travel-distance analysis.
-summary: A warehouse graph tool and simplified simulation model made inventory placement ideas testable before building a full optimization engine.
+description: Built a warehouse optimization workflow that combined graph construction and simulation to test inventory placement and picker travel distance before a full optimizer existed.
+summary: A warehouse graph model and simplified simulation made warehouse optimization ideas testable before building a full optimization engine.
 kind: work
 featured: true
 order: 2
@@ -12,7 +12,7 @@ related:
   - text-to-sql
   - seasonality-index
 ogTitle: Building a Graph-Based Warehouse Optimization and Simulation Workflow
-ogDescription: "Case study: a warehouse graph construction tool and simplified simulation for inventory placement and travel distance analysis."
+ogDescription: "Case study: a warehouse optimization workflow used graph construction and simulation to test inventory placement and picker travel distance."
 status: Usable for directional analysis, but not a finished optimization engine
 scope: Warehouse graph construction plus simplified inventory reallocation simulation.
 facts:
@@ -27,16 +27,16 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 
 <section class="detail-section detail-section-results">
   <p class="section-label">Overview</p>
-  <h2>The warehouse had node data, but not a usable graph.</h2>
+  <h2>Warehouse optimization started with building a graph the team could actually analyze.</h2>
   <div class="detail-columns">
     <article class="detail-item">
       <h3>Starting point</h3>
-      <p>We had storage node information such as coordinates, but no practical graph that represented how workers could actually move through the warehouse. That made it difficult to reason about layout, access, and inventory placement in a structured way.</p>
+      <p>We had storage node information such as coordinates, but no practical graph that represented how workers could actually move through the warehouse. That made it difficult to reason about layout, access, inventory placement, or picker travel distance in a structured way.</p>
       <p>The immediate problem was not optimization yet. It was building the path-aware model needed before any meaningful simulation or routing analysis could happen.</p>
     </article>
     <article class="detail-item">
       <h3>Current scope</h3>
-      <p>I am not presenting this as a finished warehouse optimization engine. The current system has two parts: a tool for constructing the warehouse graph, and a simplified simulation model for estimating the impact of inventory reallocation.</p>
+      <p>I am not presenting this as a finished warehouse optimization engine. The current system has two parts: a tool for constructing the warehouse graph, and a simplified simulation model for estimating how inventory reallocation changes picker travel distance.</p>
       <p>The goal is directional decision support, not a perfect digital twin.</p>
     </article>
   </div>

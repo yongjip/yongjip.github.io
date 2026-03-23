@@ -3,8 +3,8 @@ id: text-to-sql
 lang: en
 title: Building an AI-Powered Text-to-SQL System to Scale Data Access
 shortTitle: AI-Powered Text-to-SQL System
-description: Structured metadata and AI agents turned repeated data research into a reusable workflow for ad-hoc analytics.
-summary: A structured metadata and validation workflow turned repeated ad-hoc analytics work into a reusable internal system.
+description: Built an AI-powered Text-to-SQL system that used structured metadata, Athena execution, and validation loops to speed up ad-hoc analytics.
+summary: Structured metadata, AI SQL agents, and Athena-based validation turned repeated ad-hoc analytics into a reusable Text-to-SQL workflow.
 kind: work
 featured: true
 order: 1
@@ -12,7 +12,7 @@ related:
   - warehouse-optimization
   - seasonality-index
 ogTitle: Building an AI-Powered Text-to-SQL System to Scale Data Access
-ogDescription: "Case study: reducing ad-hoc analysis time from 4-10 hours to under 1 hour with structured metadata, AI agents, and validation."
+ogDescription: "Case study: an AI-powered Text-to-SQL system used structured metadata, Athena execution, and validation loops to cut ad-hoc analysis from 4-10 hours to under 1 hour."
 status: Internal workflow in production use
 scope: Structured metadata, execution, and validation around ad-hoc analytics requests.
 facts:
@@ -27,15 +27,15 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
 
 <section class="detail-section detail-section-results">
   <p class="section-label">Overview</p>
-  <h2>The bottleneck was understanding, not SQL syntax.</h2>
+  <h2>Text-to-SQL only became useful after the data model was made explicit.</h2>
   <div class="detail-columns">
     <article class="detail-item">
       <h3>Context</h3>
       <p>
-        Ad-hoc requests were consuming too much analyst time. The repeated work was not
-        just query writing. It was identifying the right tables, interpreting column
-        meaning, mapping business logic correctly, and figuring out join patterns that
-        could be trusted.
+        Ad-hoc analytics requests were consuming too much analyst time. In practice, the
+        slow part was not SQL syntax. It was finding the right tables, understanding what
+        columns meant, mapping business logic correctly, and figuring out join patterns
+        that could actually be trusted.
       </p>
       <p>
         That made even routine questions expensive. Complex requests often took 4 to 10
@@ -46,13 +46,14 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
     <article class="detail-item">
       <h3>Approach</h3>
       <p>
-        I built a structured knowledge layer in YAML that captured how analysts actually
+        I built a structured metadata layer in YAML that captured how analysts actually
         reason about the data model: table definitions, column semantics, keys,
         partitioning, join patterns, and business terminology.
       </p>
       <p>
-        The leverage came from structuring context well enough that AI agents could use it
-        repeatedly, not from treating the model as magic.
+        The workflow then used AI coding agents to generate SQL, execute it in Athena,
+        and validate results before anything was handed back. The leverage came from
+        structuring context well enough that the system could reuse it repeatedly.
       </p>
     </article>
   </div>

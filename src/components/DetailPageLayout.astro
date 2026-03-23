@@ -2,11 +2,13 @@
 import type { CollectionEntry } from "astro:content";
 import { DETAIL_BACK_LINKS, SITE_FOOTER, SITE_OWNER, type Lang } from "../data/site";
 import { getEntryPath, getPageLabel, toAbsoluteUrl } from "../lib/routes";
+import { getRelatedEntries } from "../lib/content";
 import { buildArticleSchema } from "../lib/seo";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "./SiteHeader.astro";
 import SiteFooter from "./SiteFooter.astro";
 import ArticleHeader from "./ArticleHeader.astro";
+import WorkCard from "./WorkCard.astro";
 
 interface Alternate {
   hreflang: string;
@@ -28,6 +30,12 @@ const siteOwner = SITE_OWNER[lang];
 const footerText = SITE_FOOTER[lang];
 const backLabel = DETAIL_BACK_LINKS[lang][entry.data.kind];
 const canonical = toAbsoluteUrl(entryPath);
+const relatedEntries = await getRelatedEntries(entry, lang);
+const relatedLabel = lang === "ko" ? "관련 페이지" : "Related";
+const relatedHeading = lang === "ko" ? "함께 보면 좋은 페이지" : "Continue with connected pages";
+const relatedIntro = lang === "ko"
+  ? "같은 문제를 다른 각도에서 다루는 케이스 스터디와 방법론입니다."
+  : "Case studies and methods that connect to the same operational questions.";
 ---
 
 <BaseLayout
@@ -51,6 +59,16 @@ const canonical = toAbsoluteUrl(entryPath);
       facts={entry.data.facts}
     />
     <slot />
+    {relatedEntries.length > 0 && (
+      <section class="detail-section">
+        <p class="section-label">{relatedLabel}</p>
+        <h2>{relatedHeading}</h2>
+        <p class="detail-intro">{relatedIntro}</p>
+        <div class="work-list work-list-archive">
+          {relatedEntries.map((relatedEntry) => <WorkCard entry={relatedEntry} mode="archive" />)}
+        </div>
+      </section>
+    )}
     <div class="detail-return">
       <a class="back-link" href={backHref}>{backLabel}</a>
     </div>
