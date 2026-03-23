@@ -8,6 +8,7 @@ import MethodList from "../components/MethodList.astro";
 import { EXPERIENCE_ITEMS, HOME_COPY } from "../data/site";
 import { getFeaturedWork, getMethodPreview } from "../lib/content";
 import { getHomePath, getIndexPath, toAbsoluteUrl } from "../lib/routes";
+import { buildHomeSchemas } from "../lib/seo";
 
 const lang = "en";
 const featuredWork = await getFeaturedWork(lang);
@@ -26,6 +27,7 @@ const copy = HOME_COPY[lang];
     { hreflang: "en", href: toAbsoluteUrl("/") },
     { hreflang: "ko", href: toAbsoluteUrl("/ko/") },
   ]}
+  schema={buildHomeSchemas(lang)}
 >
   <main id="main-content" class="site-shell site-shell-home home-front-page">
     <SiteHeader lang={lang} enHref="/" koHref="/ko/" />

@@ -6,22 +6,27 @@ import MethodList from "../../../components/MethodList.astro";
 import { SITE_FOOTER } from "../../../data/site";
 import { getEntries } from "../../../lib/content";
 import { getIndexPath, toAbsoluteUrl } from "../../../lib/routes";
+import { buildCollectionPageSchema } from "../../../lib/seo";
 
 const lang = "ko";
 const entries = await getEntries("methods", lang);
+const title = "Methods | 김용집";
+const description = "실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다.";
+const canonical = toAbsoluteUrl(getIndexPath("method", lang));
 ---
 
 <BaseLayout
   lang={lang}
-  title="Methods | 김용집"
-  description="실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다."
-  canonical={toAbsoluteUrl(getIndexPath("method", lang))}
-  ogTitle="Methods | 김용집"
-  ogDescription="실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다."
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogTitle={title}
+  ogDescription={description}
   alternates={[
     { hreflang: "en", href: toAbsoluteUrl("/methods/") },
     { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
   ]}
+  schema={buildCollectionPageSchema({ lang, title, description, canonical })}
 >
   <main id="main-content" class="site-shell site-shell-home archive-page archive-page-methods">
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />

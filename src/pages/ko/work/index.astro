@@ -6,22 +6,27 @@ import WorkCard from "../../../components/WorkCard.astro";
 import { SITE_FOOTER } from "../../../data/site";
 import { getEntries } from "../../../lib/content";
 import { getIndexPath, toAbsoluteUrl } from "../../../lib/routes";
+import { buildCollectionPageSchema } from "../../../lib/seo";
 
 const lang = "ko";
 const entries = await getEntries("work", lang);
+const title = "Work | 김용집";
+const description = "데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다.";
+const canonical = toAbsoluteUrl(getIndexPath("work", lang));
 ---
 
 <BaseLayout
   lang={lang}
-  title="Work | 김용집"
-  description="데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다."
-  canonical={toAbsoluteUrl(getIndexPath("work", lang))}
-  ogTitle="Work | 김용집"
-  ogDescription="데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다."
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogTitle={title}
+  ogDescription={description}
   alternates={[
     { hreflang: "en", href: toAbsoluteUrl("/work/") },
     { hreflang: "ko", href: toAbsoluteUrl("/ko/work/") },
   ]}
+  schema={buildCollectionPageSchema({ lang, title, description, canonical })}
 >
   <main id="main-content" class="site-shell site-shell-home archive-page archive-page-work">
     <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />

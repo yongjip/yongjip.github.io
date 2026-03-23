@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { DETAIL_BACK_LINKS, SITE_FOOTER, SITE_OWNER, type Lang } from "../data/site";
 import { getEntryPath, getPageLabel, toAbsoluteUrl } from "../lib/routes";
+import { buildArticleSchema } from "../lib/seo";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "./SiteHeader.astro";
 import SiteFooter from "./SiteFooter.astro";
@@ -26,17 +27,19 @@ const entryPath = getEntryPath(entry.data.kind, entry.data.id, lang);
 const siteOwner = SITE_OWNER[lang];
 const footerText = SITE_FOOTER[lang];
 const backLabel = DETAIL_BACK_LINKS[lang][entry.data.kind];
+const canonical = toAbsoluteUrl(entryPath);
 ---
 
 <BaseLayout
   lang={lang}
   title={`${entry.data.title} | ${siteOwner}`}
   description={entry.data.ogDescription ?? entry.data.description}
-  canonical={toAbsoluteUrl(entryPath)}
+  canonical={canonical}
   ogTitle={entry.data.ogTitle ?? entry.data.title}
   ogDescription={entry.data.ogDescription ?? entry.data.description}
   ogType="article"
   alternates={alternates}
+  schema={buildArticleSchema({ entry, lang, canonical })}
 >
   <main id="main-content" class="site-shell site-shell-detail">
     <SiteHeader lang={lang} enHref={enHref} koHref={koHref} />

@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import CloudflareAnalytics from "../components/CloudflareAnalytics.astro";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import { SITE_OWNER } from "../data/site";
+import { getSeoLocale, SITE_OG_IMAGE_URL, type JsonLdNode } from "../lib/seo";
 
 interface Alternate {
   hreflang: string;
@@ -17,6 +19,7 @@ interface Props {
   ogDescription?: string;
   ogType?: "website" | "article";
   alternates?: Alternate[];
+  schema?: JsonLdNode[];
 }
 
 const {
@@ -28,9 +31,21 @@ const {
   ogDescription = description,
   ogType = "website",
   alternates = [],
+  schema = [],
 } = Astro.props;
 
-const ogImage = "https://yongjip.github.io/resources/og/portfolio-cover.png";
+const ogImage = SITE_OG_IMAGE_URL;
+const seoLocale = getSeoLocale(lang);
+const canonicalAlternates = alternates.filter((alternate) => alternate.hreflang !== "x-default");
+const xDefaultHref =
+  alternates.find((alternate) => alternate.hreflang === "x-default")?.href ??
+  canonicalAlternates.find((alternate) => alternate.hreflang === "en")?.href;
+const schemaPayload =
+  schema.length === 0
+    ? undefined
+    : schema.length === 1
+      ? { "@context": "https://schema.org", ...schema[0] }
+      : { "@context": "https://schema.org", "@graph": schema };
 ---
 
 <!doctype html>
@@ -40,9 +55,13 @@ const ogImage = "https://yongjip.github.io/resources/og/portfolio-cover.png";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_OWNER[lang]} />
+    <meta property="og:locale" content={seoLocale.ogLocale} />
+    <meta property="og:locale:alternate" content={seoLocale.alternateOgLocale} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
@@ -54,9 +73,11 @@ const ogImage = "https://yongjip.github.io/resources/og/portfolio-cover.png";
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
-    {alternates.map((alternate) => (
+    {canonicalAlternates.map((alternate) => (
       <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
     ))}
+    {xDefaultHref && <link rel="alternate" hreflang="x-default" href={xDefaultHref} />}
+    {schemaPayload && <script type="application/ld+json" set:html={JSON.stringify(schemaPayload)} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     {lang === "ko" ? (
