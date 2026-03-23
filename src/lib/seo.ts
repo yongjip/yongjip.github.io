@@ -38,7 +38,6 @@ function buildPersonNode(lang: Lang): JsonLdNode {
     name: SITE_OWNER[lang],
     url: homeUrl,
     description: HOME_COPY[lang].description,
-    inLanguage: getSeoLocale(lang).schemaLanguage,
     sameAs: [PROFILE_LINKS.linkedin, PROFILE_LINKS.github],
   };
 }
