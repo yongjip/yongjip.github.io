@@ -881,18 +881,22 @@ html[lang="ko"] .article-header h1 {
 }
 
 .detail-section {
-  --detail-section-lane: var(--lane-reading);
   margin-top: 36px;
   padding-top: 0;
 }
 
-.detail-section-wide {
-  --detail-section-lane: var(--lane-wide);
+.detail-section > * {
+  width: min(100%, var(--lane-reading));
+  margin-inline: auto;
 }
 
-.detail-section > * {
-  width: min(100%, var(--detail-section-lane));
-  margin-inline: auto;
+.detail-section-wide > .diagram-frame,
+.detail-section-wide > .metric-grid {
+  width: min(100%, var(--lane-wide));
+}
+
+.detail-section-wide > .diagram-frame + .detail-intro {
+  width: min(100%, var(--lane-wide));
 }
 
 .article-header + .detail-section {

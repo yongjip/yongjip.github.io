@@ -191,7 +191,8 @@ Rules:
   - `<p class="section-label">`
 - Use `<DetailSection label="..." title="...">` as the only source of truth for section labels.
 - `label` must be a double-quoted string literal (no variables or expressions) so `npm run check` can parse it reliably.
-- Use `lane="wide"` on the section when the whole section should be wide (diagrams, metric grids). Do not add `detail-section-wide` manually.
+- Use `lane="wide"` on the section when it contains wide blocks (diagrams, metric grids). Text stays in the reading lane by default; wide blocks expand within the section.
+- Do not add `detail-section-wide` manually.
 - Use the corresponding primitives instead of raw class wrappers:
   - `DetailColumns`, `DetailStack`, `DetailItem`, `DetailCopy`
   - `MetricGrid`, `MetricItem`

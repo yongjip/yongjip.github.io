@@ -183,6 +183,8 @@ Metric cards should read as compact evidence blocks inside the section lane, not
 
 Do not add one-off `max-width` rules for individual sections unless there is a concrete, visual reason that cannot be handled by one of these three layers.
 
+Note: `lane="wide"` is primarily used to allow diagrams and metric grids to expand. Text inside the section should still read like a document and stay aligned to the reading lane by default.
+
 ### Home
 
 - selected work is a small preview, not a full archive
