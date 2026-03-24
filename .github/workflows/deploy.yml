@@ -21,7 +21,7 @@ jobs:
     env:
       PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ vars.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
       PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID }}
-      PUPPETEER_CACHE_DIR: ${{ runner.temp }}/puppeteer
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/.cache/puppeteer
     steps:
       - uses: actions/checkout@v4
 
@@ -36,10 +36,10 @@ jobs:
       - name: Cache Puppeteer browser
         uses: actions/cache@v4
         with:
-          path: ${{ runner.temp }}/puppeteer
-          key: puppeteer-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          path: ${{ github.workspace }}/.cache/puppeteer
+          key: puppeteer-ubuntu-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            puppeteer-${{ runner.os }}-
+            puppeteer-ubuntu-
 
       - name: Install Mermaid browser
         run: npx --yes puppeteer browsers install chrome-headless-shell
