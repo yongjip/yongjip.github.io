@@ -1,14 +1,26 @@
 ---
 const token = import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN;
+const allowedHostnames = ["yongjip.github.io", "www.yongjip.github.io"];
 ---
 
 {
   token ? (
-    <script
-      is:inline
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon={JSON.stringify({ token })}
-    />
+    <script is:inline define:vars={{ token, allowedHostnames }}>
+      (function () {
+        try {
+          const hostname = window.location.hostname;
+          const isAutomation = Boolean(navigator.webdriver);
+          if (!allowedHostnames.includes(hostname) || isAutomation) return;
+
+          const script = document.createElement("script");
+          script.defer = true;
+          script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+          script.dataset.cfBeacon = JSON.stringify({ token: token });
+          document.body.appendChild(script);
+        } catch {
+          // Best-effort analytics: never block rendering.
+        }
+      })();
+    </script>
   ) : null
 }

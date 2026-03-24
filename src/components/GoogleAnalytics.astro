@@ -1,20 +1,33 @@
 ---
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const allowedHostnames = ["yongjip.github.io", "www.yongjip.github.io"];
 ---
 
 {
   measurementId ? (
     <>
-      <script
-        is:inline
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-      />
-      <script is:inline define:vars={{ measurementId }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', measurementId);
+      <script is:inline define:vars={{ measurementId, allowedHostnames }}>
+        (function () {
+          try {
+            const hostname = window.location.hostname;
+            const isAutomation = Boolean(navigator.webdriver);
+            if (!allowedHostnames.includes(hostname) || isAutomation) return;
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+
+            const script = document.createElement("script");
+            script.async = true;
+            script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(measurementId);
+            document.head.appendChild(script);
+
+            gtag("js", new Date());
+            gtag("config", measurementId);
+          } catch {
+            // Best-effort analytics: never block rendering.
+          }
+        })();
       </script>
     </>
   ) : null
