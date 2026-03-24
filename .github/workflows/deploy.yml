@@ -21,6 +21,7 @@ jobs:
     env:
       PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ vars.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
       PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID }}
+      PUPPETEER_CACHE_DIR: ${{ runner.temp }}/puppeteer
     steps:
       - uses: actions/checkout@v4
 
@@ -31,6 +32,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Cache Puppeteer browser
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            puppeteer-${{ runner.os }}-
 
       - name: Install Mermaid browser
         run: npx --yes puppeteer browsers install chrome-headless-shell
@@ -43,6 +52,9 @@ jobs:
 
       - name: Build site
         run: npx astro build
+
+      - name: Check layout alignment
+        run: npm run check:layout
 
       - uses: actions/configure-pages@v5
 
