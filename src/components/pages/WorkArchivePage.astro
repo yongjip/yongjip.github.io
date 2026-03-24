@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../SiteHeader.astro";
+import SiteFooter from "../SiteFooter.astro";
+import WorkCard from "../WorkCard.astro";
+import { SHARED_UI_COPY, SITE_FOOTER } from "../../data/site";
+import { getEntries } from "../../lib/content";
+import { getIndexPath, toAbsoluteUrl } from "../../lib/routes";
+import { buildCollectionPageSchema } from "../../lib/seo";
+
+interface Props {
+  lang: "en" | "ko";
+}
+
+const { lang } = Astro.props;
+const entries = await getEntries("work", lang);
+const title = lang === "ko" ? "Work | 김용집" : "Work | Yongjip Kim";
+const description =
+  lang === "ko"
+    ? "데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다."
+    : "Case studies on data systems, analytics workflows, and operational tooling.";
+const canonical = toAbsoluteUrl(getIndexPath("work", lang));
+const heading = lang === "ko" ? "시스템과 의사결정 지원에 관한 케이스 스터디" : "Case studies on systems and decision support";
+const heroCopy = lang === "ko" ? "데이터 접근성, 창고 모델링, 운영 의사결정 작업을 모아 둔 아카이브입니다." : "Work on data access, warehouse modeling, and operational decisions.";
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogTitle={title}
+  ogDescription={description}
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/work/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/work/") },
+  ]}
+  schema={buildCollectionPageSchema({ lang, title, description, canonical })}
+>
+  <main id="main-content" class="site-shell site-shell-home archive-page archive-page-work">
+    <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
+    <section class="hero hero-home hero-compact">
+      <p class="eyebrow">{SHARED_UI_COPY.archiveEyebrows.work}</p>
+      <h1>{heading}</h1>
+      <p class="hero-copy">{heroCopy}</p>
+    </section>
+
+    <section class="section section-work">
+      <div class="work-list work-list-archive">
+        {entries.map((entry) => <WorkCard entry={entry} mode="archive" />)}
+      </div>
+    </section>
+    <SiteFooter text={SITE_FOOTER[lang]} />
+  </main>
+</BaseLayout>
+

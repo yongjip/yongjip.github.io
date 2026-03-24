@@ -23,124 +23,79 @@ facts:
 resultSummary: "scoring rule에 맞춘 preprocessing과 forecast로 1위"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">개요</p>
-  <h2>중요한 것은 모델보다 대회가 실제로 무엇을 보상하는지 이해하는 일이었습니다.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>상황</h3>
-        <div class="detail-copy">
-        이 대회는 200개 소상공인의 향후 100일 판매를 예측하는 과제였습니다. 문제는
-                대출 시뮬레이션 형태로 설계되어 있었기 때문에, 단순한 forecast error가 아니라
-                과대 예측에 더 큰 패널티가 걸리는 asymmetric scoring rule을 갖고 있었습니다.
-        
-                많은 참가자가 더 복잡한 모델을 사용했지만, 이 scoring setup에서는 복잡성을
-                더하는 것보다 문제 정의와 risk-aware forecasting이 더 중요하다고 봤습니다.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>접근</h3>
-        <div class="detail-copy">
-        ARIMA를 사용했지만, 실제 핵심은 모델 전후의 처리에 있었습니다. cancellation
-                noise를 정리하고, 거래 데이터를 묶어 day-level variance를 줄이고, log
-                transformation을 적용한 뒤, 마지막 forecast 방향까지 scoring rule에 맞게
-                보수적으로 조정했습니다.
-        
-                결과적으로 generic accuracy를 추구하는 방식이 아니라, 평가 규칙에 맞는
-                해석 가능한 workflow를 만들 수 있었습니다.
-      </div>
+<DetailSection
+  label="개요"
+  title="중요한 것은 모델보다 대회가 실제로 무엇을 보상하는지 이해하는 일이었습니다."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="상황">
+      <DetailCopy>
+        <p>이 대회는 200개 소상공인의 향후 100일 판매를 예측하는 과제였습니다. 문제는 대출 시뮬레이션 형태로 설계되어 있었기 때문에, 단순한 forecast error가 아니라 과대 예측에 더 큰 패널티가 걸리는 asymmetric scoring rule을 갖고 있었습니다.</p>
+        <p>많은 참가자가 더 복잡한 모델을 사용했지만, 이 scoring setup에서는 복잡성을 더하는 것보다 문제 정의와 risk-aware forecasting이 더 중요하다고 봤습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="접근">
+      <DetailCopy>
+        <p>ARIMA를 사용했지만, 실제 핵심은 모델 전후의 처리에 있었습니다. cancellation noise를 정리하고, 거래 데이터를 묶어 day-level variance를 줄이고, log transformation을 적용한 뒤, 마지막 forecast 방향까지 scoring rule에 맞게 보수적으로 조정했습니다.</p>
+        <p>결과적으로 generic accuracy를 추구하는 방식이 아니라, 평가 규칙에 맞는 해석 가능한 workflow를 만들 수 있었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection label="방법" title="모델은 단순했지만 forecast logic은 단순하지 않았습니다." class="detail-section-takeaways">
+  <DetailStack>
+    <DetailItem title="취소 거래 정리">
+      <DetailCopy>
+        <p>원본 데이터에는 cancellation을 의미하는 음수 거래가 포함되어 있었습니다. 저는 대응되는 양수 거래와 함께 이를 제거해, 실제 판매보다 분산이 과도하게 커지는 문제를 줄였습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="가변적 집계">
+      <DetailCopy>
+        <p>각 상점의 이력 길이에 맞춰 거래를 28일, 14일, 7일 단위로 집계했습니다. 이렇게 하면 day-of-week noise를 줄이면서도 짧은 시계열을 예측 가능한 형태로 다룰 수 있었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="로그 스케일과 무매출 보정">
+      <DetailCopy>
+        <p>집계된 판매액을 로그 스케일에서 예측해 series를 더 안정화했습니다. 또한 일부 상점에서 무매출 구간이 보이는 경우에는, 그 빈도를 활용해 최종 forecast를 추가로 보정했습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="보수적 forecast 이동">
+      <DetailCopy>
+        <p>이 competition에서는 과대 예측 비용이 훨씬 컸기 때문에, raw point estimate를 그대로 제출하지 않고 모델의 불확실성을 반영해 forecast를 아래 방향으로 이동시켰습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">방법</p>
-  <h2>모델은 단순했지만 forecast logic은 단순하지 않았습니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>취소 거래 정리</h3>
-        <div class="detail-copy">
-        원본 데이터에는 cancellation을 의미하는 음수 거래가 포함되어 있었습니다. 저는
-                대응되는 양수 거래와 함께 이를 제거해, 실제 판매보다 분산이 과도하게 커지는
-                문제를 줄였습니다.
-      </div>
+<DetailSection label="결과" title="단순한 시계열 모델이 우승한 이유는 평가 규칙과 맞아떨어졌기 때문입니다.">
+  <MetricGrid>
+    <MetricItem label="순위" value="1위" description="대회에서 최종 1위를 기록했습니다." />
+    <MetricItem label="참가 규모" value="약 70명" description="행사에 참여한 참가자 수의 대략적 규모입니다." />
+    <MetricItem label="교훈" value="Objective first" description="모델 선택만큼 평가 규칙을 해석하는 일이 중요했습니다." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>가변적 집계</h3>
-        <div class="detail-copy">
-        각 상점의 이력 길이에 맞춰 거래를 28일, 14일, 7일 단위로 집계했습니다.
-                이렇게 하면 day-of-week noise를 줄이면서도 짧은 시계열을 예측 가능한 형태로
-                다룰 수 있었습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>로그 스케일과 무매출 보정</h3>
-        <div class="detail-copy">
-        집계된 판매액을 로그 스케일에서 예측해 series를 더 안정화했습니다. 또한 일부
-                상점에서 무매출 구간이 보이는 경우에는, 그 빈도를 활용해 최종 forecast를
-                추가로 보정했습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>보수적 forecast 이동</h3>
-        <div class="detail-copy">
-        이 competition에서는 과대 예측 비용이 훨씬 컸기 때문에, raw point estimate를
-                그대로 제출하지 않고 모델의 불확실성을 반영해 forecast를 아래 방향으로
-                이동시켰습니다.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">결과</p>
-  <h2>단순한 시계열 모델이 우승한 이유는 평가 규칙과 맞아떨어졌기 때문입니다.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">순위</p>
-      <span class="metric-value">1위</span>
-      <p>대회에서 최종 1위를 기록했습니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">참가 규모</p>
-      <span class="metric-value">약 70명</span>
-      <p>행사에 참여한 참가자 수의 대략적 규모입니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">교훈</p>
-      <span class="metric-value">Objective first</span>
-      <p>모델 선택만큼 평가 규칙을 해석하는 일이 중요했습니다.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">배운 점</p>
-  <h2>예측 품질은 모델이 아니라 의사결정 맥락과의 정합성에서 나옵니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>무엇이 중요했나</h3>
-        <div class="detail-copy">
-        중요한 선택은 더 유행하는 모델을 좇는 것이 아니라, 이 competition이 불확실성
-                아래에서 보수적인 forecast를 보상한다는 사실을 먼저 이해하고 그에 맞춰
-                preprocessing과 prediction logic을 설계하는 것이었습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>왜 효과가 있었나</h3>
-        <div class="detail-copy">
-        절제된 ARIMA workflow가 잘 작동한 이유는 신호를 정리하고 분산을 줄였을 뿐만
-                아니라, 최종 forecast를 generic benchmark가 아닌 실제 scoring objective에
-                맞게 조정했기 때문입니다.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="배운 점" title="예측 품질은 모델이 아니라 의사결정 맥락과의 정합성에서 나옵니다.">
+  <DetailStack>
+    <DetailItem title="무엇이 중요했나">
+      <DetailCopy>
+        <p>중요한 선택은 더 유행하는 모델을 좇는 것이 아니라, 이 competition이 불확실성 아래에서 보수적인 forecast를 보상한다는 사실을 먼저 이해하고 그에 맞춰 preprocessing과 prediction logic을 설계하는 것이었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="왜 효과가 있었나">
+      <DetailCopy>
+        <p>절제된 ARIMA workflow가 잘 작동한 이유는 신호를 정리하고 분산을 줄였을 뿐만 아니라, 최종 forecast를 generic benchmark가 아닌 실제 scoring objective에 맞게 조정했기 때문입니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

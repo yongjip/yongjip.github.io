@@ -23,118 +23,83 @@ facts:
 resultSummary: "Recurring visibility for inventory exceptions and stock risk"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">Overview</p>
-  <h2>The same inventory questions were being answered too many times by hand.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Context</h3>
-        <div class="detail-copy">
-        In an earlier retail operations role, planners and business stakeholders repeatedly
-                needed the same kinds of visibility: inventory with no sellable path, stock risk
-                caused by process gaps, unusual ordering patterns, and category views that were
-                difficult to assemble quickly from raw tables.
-        
-                The problem was not a lack of data. It was that the data was still too expensive
-                to turn into a usable operating view every time the question came up.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>Approach</h3>
-        <div class="detail-copy">
-        I built a set of recurring reporting workflows and self-serve dashboards that
-                turned those repeated questions into scheduled outputs. The goal was to reduce
-                repeated manual follow-up, not to create a large reporting platform.
-        
-                The useful design choice was keeping each output simple: a clear summary for fast
-                scanning and enough detail behind it for follow-up action.
-      </div>
+<DetailSection
+  label="Overview"
+  title="The same inventory questions were being answered too many times by hand."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="Context">
+      <DetailCopy>
+        <p>In an earlier retail operations role, planners and business stakeholders repeatedly needed the same kinds of visibility: inventory with no sellable path, stock risk caused by process gaps, unusual ordering patterns, and category views that were difficult to assemble quickly from raw tables.</p>
+        <p>The problem was not a lack of data. It was that the data was still too expensive to turn into a usable operating view every time the question came up.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <DetailCopy>
+        <p>I built a set of recurring reporting workflows and self-serve dashboards that turned those repeated questions into scheduled outputs. The goal was to reduce repeated manual follow-up, not to create a large reporting platform.</p>
+        <p>The useful design choice was keeping each output simple: a clear summary for fast scanning and enough detail behind it for follow-up action.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection
+  label="Workflow"
+  title="Scheduled accumulation and readable outputs mattered more than report volume."
+  class="detail-section-takeaways"
+>
+  <DetailStack>
+    <DetailItem title="Recurring refresh">
+      <DetailCopy>
+        <p>Data was accumulated on a daily or periodic cadence so reports reflected recent operational state without requiring a fresh analyst pass each time.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Summary first">
+      <DetailCopy>
+        <p>Each output started with a compact summary view so category leads and planners could tell quickly whether attention was needed.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Actionable detail">
+      <DetailCopy>
+        <p>Reports also included the raw or near-raw detail needed for follow-up, so users could move from signal to action without asking for a second analysis.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Self-serve dashboards">
+      <DetailCopy>
+        <p>Where recurring monitoring was more useful than a static report, I built dashboard views so stakeholders could inspect current conditions directly.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">Workflow</p>
-  <h2>Scheduled accumulation and readable outputs mattered more than report volume.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Recurring refresh</h3>
-        <div class="detail-copy">
-        Data was accumulated on a daily or periodic cadence so reports reflected recent
-                operational state without requiring a fresh analyst pass each time.
-      </div>
+<DetailSection label="Results" title="The main result was faster operational visibility.">
+  <MetricGrid>
+    <MetricItem label="Format" value="Recurring" description="Used scheduled reports and dashboards instead of repeated one-off analysis." />
+    <MetricItem label="Audience" value="Cross-functional" description="Supported planners, category stakeholders, and operations reviewers." />
+    <MetricItem label="Value" value="Earlier action" description="Made exceptions visible sooner so follow-up could start earlier." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>Summary first</h3>
-        <div class="detail-copy">
-        Each output started with a compact summary view so category leads and planners
-                could tell quickly whether attention was needed.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Actionable detail</h3>
-        <div class="detail-copy">
-        Reports also included the raw or near-raw detail needed for follow-up, so users
-                could move from signal to action without asking for a second analysis.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Self-serve dashboards</h3>
-        <div class="detail-copy">
-        Where recurring monitoring was more useful than a static report, I built dashboard
-                views so stakeholders could inspect current conditions directly.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Results</p>
-  <h2>The main result was faster operational visibility.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">Format</p>
-      <span class="metric-value">Recurring</span>
-      <p>Used scheduled reports and dashboards instead of repeated one-off analysis.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Audience</p>
-      <span class="metric-value">Cross-functional</span>
-      <p>Supported planners, category stakeholders, and operations reviewers.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Value</p>
-      <span class="metric-value">Earlier action</span>
-      <p>Made exceptions visible sooner so follow-up could start earlier.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Takeaways</p>
-  <h2>Operational reporting is useful when it shortens the path from signal to action.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>What mattered</h3>
-        <div class="detail-copy">
-        The important step was packaging repeated questions into outputs that people would
-                actually open and use in their regular operating rhythm.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Why it worked</h3>
-        <div class="detail-copy">
-        By pairing summary visibility with follow-up detail, the reporting reduced both
-                interpretation time and the need for repeated analyst intervention.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="Takeaways" title="Operational reporting is useful when it shortens the path from signal to action.">
+  <DetailStack>
+    <DetailItem title="What mattered">
+      <DetailCopy>
+        <p>The important step was packaging repeated questions into outputs that people would actually open and use in their regular operating rhythm.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Why it worked">
+      <DetailCopy>
+        <p>By pairing summary visibility with follow-up detail, the reporting reduced both interpretation time and the need for repeated analyst intervention.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

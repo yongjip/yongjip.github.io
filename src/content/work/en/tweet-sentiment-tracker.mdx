@@ -23,108 +23,78 @@ facts:
 resultSummary: "End-to-end text analysis pipeline on public social data"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">Overview</p>
-  <h2>The project focused on building the pipeline, not just the score.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Context</h3>
-        <div class="detail-copy">
-        I wanted to analyze how tone shifted across a large public tweet history. The
-                interesting part was not only the sentiment output, but also the full workflow
-                required to collect, store, and process the text consistently.
-        
-                Public social data tends to look simple from far away, but it becomes a data
-                engineering problem as soon as the collection and storage steps matter.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>Approach</h3>
-        <div class="detail-copy">
-        I collected historical tweets, stored them in PostgreSQL on AWS, and used VADER
-                sentiment scoring through NLTK to build a time-based view of emotional change.
-        
-                The project was useful because it linked text analysis to a concrete storage and
-                retrieval layer instead of treating the scoring step in isolation.
-      </div>
+<DetailSection
+  label="Overview"
+  title="The project focused on building the pipeline, not just the score."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="Context">
+      <DetailCopy>
+        <p>I wanted to analyze how tone shifted across a large public tweet history. The interesting part was not only the sentiment output, but also the full workflow required to collect, store, and process the text consistently.</p>
+        <p>Public social data tends to look simple from far away, but it becomes a data engineering problem as soon as the collection and storage steps matter.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <DetailCopy>
+        <p>I collected historical tweets, stored them in PostgreSQL on AWS, and used VADER sentiment scoring through NLTK to build a time-based view of emotional change.</p>
+        <p>The project was useful because it linked text analysis to a concrete storage and retrieval layer instead of treating the scoring step in isolation.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection label="Workflow" title="Collection, storage, and scoring needed to work as one system." class="detail-section-takeaways">
+  <DetailStack>
+    <DetailItem title="Collection">
+      <DetailCopy>
+        <p>Historical tweets were gathered and normalized so they could be processed in a consistent format.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Storage">
+      <DetailCopy>
+        <p>PostgreSQL on AWS provided a practical way to store and query the tweet history once the dataset moved beyond a simple local experiment.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Sentiment scoring">
+      <DetailCopy>
+        <p>VADER sentiment scoring was applied to create a simple time-based signal of how the tone shifted over the corpus.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">Workflow</p>
-  <h2>Collection, storage, and scoring needed to work as one system.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Collection</h3>
-        <div class="detail-copy">
-        Historical tweets were gathered and normalized so they could be processed in a
-                consistent format.
-      </div>
+<DetailSection label="Results" title="The main output was a usable text-analysis pipeline.">
+  <MetricGrid>
+    <MetricItem label="Data" value="Public tweets" description="Used a large public tweet history as the source dataset." />
+    <MetricItem
+      label="Storage"
+      value="PostgreSQL"
+      description="Stored the history in a database instead of keeping the project notebook-only."
+    />
+    <MetricItem label="Analysis" value="VADER" description="Used a lightweight sentiment approach to create a trackable trend signal." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>Storage</h3>
-        <div class="detail-copy">
-        PostgreSQL on AWS provided a practical way to store and query the tweet history
-                once the dataset moved beyond a simple local experiment.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Sentiment scoring</h3>
-        <div class="detail-copy">
-        VADER sentiment scoring was applied to create a simple time-based signal of how
-                the tone shifted over the corpus.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Results</p>
-  <h2>The main output was a usable text-analysis pipeline.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">Data</p>
-      <span class="metric-value">Public tweets</span>
-      <p>Used a large public tweet history as the source dataset.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Storage</p>
-      <span class="metric-value">PostgreSQL</span>
-      <p>Stored the history in a database instead of keeping the project notebook-only.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Analysis</p>
-      <span class="metric-value">VADER</span>
-      <p>Used a lightweight sentiment approach to create a trackable trend signal.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Takeaways</p>
-  <h2>Text analysis becomes more credible when the data workflow is explicit.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>What mattered</h3>
-        <div class="detail-copy">
-        The durable part of the project was the end-to-end workflow from collection to
-                storage to scoring, not the sentiment number by itself.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Why it was useful</h3>
-        <div class="detail-copy">
-        It made text analysis feel like a repeatable data pipeline rather than a one-off
-                demo on a static file.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="Takeaways" title="Text analysis becomes more credible when the data workflow is explicit.">
+  <DetailStack>
+    <DetailItem title="What mattered">
+      <DetailCopy>
+        <p>The durable part of the project was the end-to-end workflow from collection to storage to scoring, not the sentiment number by itself.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Why it was useful">
+      <DetailCopy>
+        <p>It made text analysis feel like a repeatable data pipeline rather than a one-off demo on a static file.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

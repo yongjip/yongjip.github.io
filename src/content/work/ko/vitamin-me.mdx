@@ -23,107 +23,78 @@ facts:
 resultSummary: "데이터 수집부터 추천 흐름까지 만든 end-to-end 프로토타입"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">개요</p>
-  <h2>출발점은 단순한 질문이었습니다. 추천 로직은 무엇에 기대야 하는가?</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>상황</h3>
-        <div class="detail-copy">
-        이 프로젝트의 목표는 나이, 성별, 라이프스타일, 생활 습관, 목표, 임신 여부 같은
-                프로필 입력에 따라 영양제를 제안하는 웹 애플리케이션을 만드는 것이었습니다.
-        
-                저는 추천 흐름이 추상적인 일반론이 아니라 실제 상품과 리뷰 데이터에 기반하길
-                원했습니다.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>접근</h3>
-        <div class="detail-copy">
-        공개 상품 정보와 리뷰 데이터를 수집한 뒤, 그 데이터를 바탕으로 사용자 프로필
-                입력을 더 구체적인 상품 후보군과 연결하는 추천 프로토타입을 만들었습니다.
-        
-                이 프로젝트는 clinical advice를 제시하기 위한 것이 아니라, usable한 추천
-                흐름을 탐색해 보는 실험적인 작업이었습니다.
-      </div>
+<DetailSection
+  label="개요"
+  title="출발점은 단순한 질문이었습니다. 추천 로직은 무엇에 기대야 하는가?"
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="상황">
+      <DetailCopy>
+        <p>이 프로젝트의 목표는 나이, 성별, 라이프스타일, 생활 습관, 목표, 임신 여부 같은 프로필 입력에 따라 영양제를 제안하는 웹 애플리케이션을 만드는 것이었습니다.</p>
+        <p>저는 추천 흐름이 추상적인 일반론이 아니라 실제 상품과 리뷰 데이터에 기반하길 원했습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="접근">
+      <DetailCopy>
+        <p>공개 상품 정보와 리뷰 데이터를 수집한 뒤, 그 데이터를 바탕으로 사용자 프로필 입력을 더 구체적인 상품 후보군과 연결하는 추천 프로토타입을 만들었습니다.</p>
+        <p>이 프로젝트는 clinical advice를 제시하기 위한 것이 아니라, usable한 추천 흐름을 탐색해 보는 실험적인 작업이었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection
+  label="워크플로우"
+  title="프로토타입은 설문 입력을 검색 가능한 상품 기반과 연결했습니다."
+  class="detail-section-takeaways"
+>
+  <DetailStack>
+    <DetailItem title="프로필 입력">
+      <DetailCopy>
+        <p>인터페이스는 어떤 영양제 카테고리가 관련 있을지 판단하는 데 도움이 되는 사용자 특성과 목표를 입력받았습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="공개 상품 데이터">
+      <DetailCopy>
+        <p>추천 흐름이 추상적인 예시에 머무르지 않도록, 공개 상품 정보와 리뷰 텍스트를 수집해 실제 catalog를 기반으로 삼았습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="추천 로직">
+      <DetailCopy>
+        <p>프로토타입은 프로필 레이어와 catalog 레이어를 연결해, 설문 응답에서 더 좁은 상품 후보군으로 이동할 수 있게 했습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">워크플로우</p>
-  <h2>프로토타입은 설문 입력을 검색 가능한 상품 기반과 연결했습니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>프로필 입력</h3>
-        <div class="detail-copy">
-        인터페이스는 어떤 영양제 카테고리가 관련 있을지 판단하는 데 도움이 되는 사용자
-                특성과 목표를 입력받았습니다.
-      </div>
+<DetailSection label="결과" title="유용한 결과는 end-to-end research prototype을 만든 것이었습니다.">
+  <MetricGrid>
+    <MetricItem label="유형" value="프로토타입" description="완성형 소비자 제품이 아니라 recommendation flow를 실험하는 프로젝트였습니다." />
+    <MetricItem label="입력" value="프로필 + catalog" description="사용자 프로필 필드와 공개 상품 정보를 결합했습니다." />
+    <MetricItem label="스택" value="Python" description="데이터 수집과 프로토타이핑에 Python과 browser automation을 사용했습니다." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>공개 상품 데이터</h3>
-        <div class="detail-copy">
-        추천 흐름이 추상적인 예시에 머무르지 않도록, 공개 상품 정보와 리뷰 텍스트를
-                수집해 실제 catalog를 기반으로 삼았습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>추천 로직</h3>
-        <div class="detail-copy">
-        프로토타입은 프로필 레이어와 catalog 레이어를 연결해, 설문 응답에서 더 좁은
-                상품 후보군으로 이동할 수 있게 했습니다.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">결과</p>
-  <h2>유용한 결과는 end-to-end research prototype을 만든 것이었습니다.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">유형</p>
-      <span class="metric-value">프로토타입</span>
-      <p>완성형 소비자 제품이 아니라 recommendation flow를 실험하는 프로젝트였습니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">입력</p>
-      <span class="metric-value">프로필 + catalog</span>
-      <p>사용자 프로필 필드와 공개 상품 정보를 결합했습니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">스택</p>
-      <span class="metric-value">Python</span>
-      <p>데이터 수집과 프로토타이핑에 Python과 browser automation을 사용했습니다.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">배운 점</p>
-  <h2>추천 프로젝트는 데이터와 사용자 흐름을 함께 설계할 때 더 좋아집니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>무엇이 중요했나</h3>
-        <div class="detail-copy">
-        흥미로운 부분은 복잡한 실제 상품 정보를 단순한 questionnaire-driven interface와
-                연결하는 일이었습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>왜 유용했나</h3>
-        <div class="detail-copy">
-        이 프로젝트는 상품 데이터, 사용자 특성, 추천 로직이 하나의 흐름 안에서 어떻게
-                연결돼야 하는지를 구체적으로 생각하게 해줬습니다.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="배운 점" title="추천 프로젝트는 데이터와 사용자 흐름을 함께 설계할 때 더 좋아집니다.">
+  <DetailStack>
+    <DetailItem title="무엇이 중요했나">
+      <DetailCopy>
+        <p>흥미로운 부분은 복잡한 실제 상품 정보를 단순한 questionnaire-driven interface와 연결하는 일이었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="왜 유용했나">
+      <DetailCopy>
+        <p>이 프로젝트는 상품 데이터, 사용자 특성, 추천 로직이 하나의 흐름 안에서 어떻게 연결돼야 하는지를 구체적으로 생각하게 해줬습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

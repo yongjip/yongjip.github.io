@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  lane?: "reading" | "wide";
+  class?: string;
+  id?: string;
+  intro?: string;
+}
+
+const { label, title, lane = "reading", class: className, id, intro } = Astro.props;
+const classes = [
+  "detail-section",
+  lane === "wide" ? "detail-section-wide" : "",
+  className ?? "",
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<section class={classes} id={id}>
+  <p class="section-label">{label}</p>
+  <h2>{title}</h2>
+  {intro && <p class="detail-intro">{intro}</p>}
+  <slot />
+</section>
+

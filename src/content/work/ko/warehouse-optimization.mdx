@@ -24,51 +24,53 @@ resultSummary: "상태: 방향성 분석에 쓸 수 있는 사용 가능한 1차
 ---
 
 import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">개요</p>
-  <h2>창고 최적화의 출발점은 분석 가능한 그래프를 만드는 일이었습니다.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>출발점</h3>
+<DetailSection
+  label="개요"
+  title="창고 최적화의 출발점은 분석 가능한 그래프를 만드는 일이었습니다."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="출발점">
       <p>좌표를 포함한 보관 노드 정보는 있었지만, 작업자가 실제로 이동할 수 있는 경로를 반영한 실용적인 그래프는 없었습니다. 그래서 레이아웃, 접근성, 재고 배치, 작업자 이동거리를 구조적으로 평가하기가 어려웠습니다.</p>
       <p>즉시 필요한 것은 최적화 자체보다도, 경로 기반 분석을 가능하게 만드는 모델을 먼저 구축하는 일이었습니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>현재 범위</h3>
+    </DetailItem>
+    <DetailItem title="현재 범위">
       <p>이 프로젝트를 완성된 창고 최적화 시스템으로 소개하고 싶지는 않습니다. 현재 시스템은 두 부분으로 구성됩니다. 하나는 창고 그래프를 만드는 도구이고, 다른 하나는 재고 재배치가 작업자 이동거리에 주는 영향을 추정하는 단순화된 시뮬레이션 모델입니다.</p>
       <p>목표는 완벽한 디지털 트윈이 아니라 방향성 있는 의사결정 지원입니다.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">그래프 구성</p>
-  <h2>보관 노드와 이동 경로를 분석 가능한 창고 그래프로 바꾸는 과정</h2>
-  <div class="detail-intro">그래프를 먼저 제대로 만들어야 그 위에서 경로 계산과 시뮬레이션이 의미를 갖게 됩니다.</div>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>노드 그룹화</h3>
+<DetailSection
+  label="그래프 구성"
+  title="보관 노드와 이동 경로를 분석 가능한 창고 그래프로 바꾸는 과정"
+  class="detail-section-takeaways"
+  intro="그래프를 먼저 제대로 만들어야 그 위에서 경로 계산과 시뮬레이션이 의미를 갖게 됩니다."
+>
+  <DetailStack>
+    <DetailItem title="노드 그룹화">
       <p>먼저 보관 노드를 그룹화합니다. 현재는 맨해튼 거리 기반으로 실용적인 그룹을 만들고, 이후 경로 계산을 더 큰 단위에서 다룰 수 있도록 하고 있습니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>접근 지점 설정</h3>
+    </DetailItem>
+    <DetailItem title="접근 지점 설정">
       <p>각 그룹에 하나 이상의 접근 지점을 두어, 작업자가 해당 영역에 어떻게 접근하는지 그래프 상에서 표현할 수 있게 했습니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>이동 경로 연결</h3>
+    </DetailItem>
+    <DetailItem title="이동 경로 연결">
       <p>사용자가 실제 이동 가능한 경로를 그리면, 시스템이 경로와 가까운 접근 지점을 자동으로 연결해 그래프 구조를 생성합니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>그룹화의 의미</h3>
+    </DetailItem>
+    <DetailItem title="그룹화의 의미">
       <p>모든 보관 노드 단위에서 바로 최단경로를 계산하면 비용이 매우 커집니다. 그룹화는 그래프 복잡도를 줄여 이후의 경로 계산과 시뮬레이션을 현실적인 수준으로 만듭니다.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-wide">
-  <p class="section-label">흐름</p>
-  <h2>창고 모델이 만들어지는 과정</h2>
+<DetailSection label="흐름" title="창고 모델이 만들어지는 과정" lane="wide">
   <ResponsiveDiagram
     src="/resources/diagrams/warehouse-ko-desktop.png"
     mobileSrc="/resources/diagrams/warehouse-ko-mobile.png"
@@ -79,61 +81,38 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
     mobileHeight={1070}
     variant="flow"
   />
-  <div class="detail-intro">창고를 사용할 수 있는 이동 모델로 표현한 뒤에야 시뮬레이션과 경로 계산이 의미를 갖게 됩니다.</div>
-</section>
+  <p class="detail-intro">창고를 사용할 수 있는 이동 모델로 표현한 뒤에야 시뮬레이션과 경로 계산이 의미를 갖게 됩니다.</p>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">시뮬레이션</p>
-  <h2>재고 재배치 아이디어를 빠르게 시험하기 위한 단순화된 모델</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>규칙 기반 등급화</h3>
+<DetailSection label="시뮬레이션" title="재고 재배치 아이디어를 빠르게 시험하기 위한 단순화된 모델">
+  <DetailStack>
+    <DetailItem title="규칙 기반 등급화">
       <p>상품과 보관 노드를 완전한 운영 모델 대신 단순화된 규칙 기반 로직으로 등급화했습니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>재배치 실험</h3>
+    </DetailItem>
+    <DetailItem title="재배치 실험">
       <p>그 등급에 따라 재고를 다시 배치하고, 재배치 전후 작업자 이동거리의 추정값을 비교합니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>방향성 중심 결과</h3>
+    </DetailItem>
+    <DetailItem title="방향성 중심 결과">
       <p>이 결과는 정확한 최종 운영 수치를 주장하기 위한 것이 아니라, 더 나은 배치가 이동거리를 얼마나 줄일 수 있는지 설명하기 위한 것입니다.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">결과</p>
-  <h2>숫자는 최종 답이 아니라 방향성 있는 신호로 봐야 합니다.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">추정치</p>
-      <span class="metric-value">약 50%</span>
-      <p>단순화된 시뮬레이션에서 추정된 이동거리 감소 폭.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">해석</p>
-      <span class="metric-value">확정 아님</span>
-      <p>이 수치는 방향성 결과이며 실제 창고 제약을 완전히 반영하지는 않습니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">주요 리스크</p>
-      <span class="metric-value">병목</span>
-      <p>피킹이 특정 로케이션에 몰리면 국소적인 병목이 발생할 수 있습니다.</p>
-    </article>
-  </div>
-</section>
+<DetailSection label="결과" title="숫자는 최종 답이 아니라 방향성 있는 신호로 봐야 합니다.">
+  <MetricGrid>
+    <MetricItem label="추정치" value="약 50%" description="단순화된 시뮬레이션에서 추정된 이동거리 감소 폭." />
+    <MetricItem label="해석" value="확정 아님" description="이 수치는 방향성 결과이며 실제 창고 제약을 완전히 반영하지는 않습니다." />
+    <MetricItem label="주요 리스크" value="병목" description="피킹이 특정 로케이션에 몰리면 국소적인 병목이 발생할 수 있습니다." />
+  </MetricGrid>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">배운 점</p>
-  <h2>중요한 것은 숫자 자체보다 설명 가능한 구조입니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>유의미한 신호</h3>
+<DetailSection label="배운 점" title="중요한 것은 숫자 자체보다 설명 가능한 구조입니다.">
+  <DetailStack>
+    <DetailItem title="유의미한 신호">
       <p>단순화된 시뮬레이션만으로도 재고 배치가 이동거리에 큰 영향을 줄 수 있다는 가능성을 보여줍니다.</p>
-    </article>
-    <article class="detail-item">
-      <h3>중요한 한계</h3>
+    </DetailItem>
+    <DetailItem title="중요한 한계">
       <p>현재 모델은 혼잡이나 실제 작업 제약을 충분히 반영하지 못하므로, 50%라는 수치를 최종 운영 효과로 해석하지는 않습니다.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

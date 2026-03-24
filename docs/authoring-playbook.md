@@ -180,6 +180,103 @@ If text wraps awkwardly, prefer:
 
 before adding a new local width exception.
 
+## 5B. Author Detail Content With Components Only
+
+To keep structure stable across `Work` and `Methods`, detail content entries should be composed from the shared content primitives under `src/components/content/`.
+
+Rules:
+
+- Do not handwrite legacy markup in MDX:
+  - `<section class="detail-section">`
+  - `<p class="section-label">`
+- Use `<DetailSection label="..." title="...">` as the only source of truth for section labels.
+- `label` must be a double-quoted string literal (no variables or expressions) so `npm run check` can parse it reliably.
+- Use `lane="wide"` on the section when the whole section should be wide (diagrams, metric grids). Do not add `detail-section-wide` manually.
+- Use the corresponding primitives instead of raw class wrappers:
+  - `DetailColumns`, `DetailStack`, `DetailItem`, `DetailCopy`
+  - `MetricGrid`, `MetricItem`
+  - `SourceList`, `SourceItem`
+
+Required section labels (enforced by `npm run check`):
+
+- Work EN: `Overview`, `Results`, `Takeaways`
+- Work KO: `개요`, `결과`, `배운 점`
+- Methods EN: `Overview`, `Method`, `Why it matters`, `Source`
+- Methods KO: `개요`, `방법`, `왜 중요한가`, `원문`
+
+The allowed label vocabulary is also enforced by `scripts/check-site-consistency.mjs`. If you need a new label, update the script and docs together.
+
+### Example: Work (EN)
+
+```mdx
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
+
+<DetailSection label="Overview" title="What this work did.">
+  <DetailColumns>
+    <DetailItem title="Context">
+      <p>Short context paragraph.</p>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <p>Short approach paragraph.</p>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
+
+<DetailSection label="Results" title="The measurable change.">
+  <MetricGrid>
+    <MetricItem label="Before" value="4 to 10 hrs" description="Typical turnaround before." />
+    <MetricItem label="After" value="Under 1 hr" description="Turnaround after the workflow." />
+  </MetricGrid>
+</DetailSection>
+
+<DetailSection label="Takeaways" title="The reusable lesson.">
+  <DetailStack>
+    <DetailItem title="What mattered">
+      <p>One clear takeaway.</p>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
+```
+
+### Example: Methods (EN)
+
+```mdx
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import SourceList from "../../../components/content/SourceList.astro";
+import SourceItem from "../../../components/content/SourceItem.astro";
+
+<DetailSection label="Overview" title="What this method is for.">
+  <p>One short framing paragraph.</p>
+</DetailSection>
+
+<DetailSection label="Method" title="Steps or structure.">
+  <DetailStack>
+    <DetailItem title="Step 1">
+      <p>Short explanation.</p>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
+
+<DetailSection label="Why it matters" title="Why this is worth using.">
+  <p>One short reason.</p>
+</DetailSection>
+
+<DetailSection label="Source" title="Origin">
+  <SourceList>
+    <SourceItem>
+      <p>Where the original note came from.</p>
+    </SourceItem>
+  </SourceList>
+</DetailSection>
+```
+
 ## 6. Diagram Rule: Mermaid As Source, PNG In Production
 
 This repo uses Mermaid as the editable source format for diagrams, but not as the production rendering path.

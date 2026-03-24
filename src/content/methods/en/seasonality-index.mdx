@@ -22,65 +22,60 @@ facts:
     value: Feeds SKU-level signals back into a simpler category-level inventory model.
 ---
 
-<section class="detail-section">
-  <p class="section-label">Overview</p>
-  <h2>Inventory planning improves when seasonality is measured below the category level.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Problem</h3>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import SourceItem from "../../../components/content/SourceItem.astro";
+import SourceList from "../../../components/content/SourceList.astro";
+
+<DetailSection label="Overview" title="Inventory planning improves when seasonality is measured below the category level.">
+  <DetailColumns>
+    <DetailItem title="Problem">
       <p>In inventory planning, it is tempting to assign one seasonal pattern to an entire category. In practice, that can be too coarse. Products in the same category may follow different demand curves across the year.</p>
       <p>That creates a planning problem: category-level seasonality is simple, but product-level behavior is often what actually drives inventory risk.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Approach</h3>
+    </DetailItem>
+    <DetailItem title="Approach">
       <p>The method starts by calculating a seasonality index at the SKU level rather than relying only on category averages. Products can then be grouped into seasonal buckets based on similar patterns.</p>
       <p>The point is not to create the most complex model. It is to keep the planning logic simple while making the seasonal signal more realistic.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Method</p>
-  <h2>A structured way to turn noisy product behavior into usable planning signals.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Product-level SI</h3>
+<DetailSection label="Method" title="A structured way to turn noisy product behavior into usable planning signals.">
+  <DetailStack>
+    <DetailItem title="Product-level SI">
       <p>Estimate seasonality at the product level first so each SKU can reflect its own demand pattern across time.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Season buckets</h3>
+    </DetailItem>
+    <DetailItem title="Season buckets">
       <p>Group products into a smaller set of seasonal buckets so the result stays usable for business planning instead of becoming too fragmented.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Planning linkage</h3>
+    </DetailItem>
+    <DetailItem title="Planning linkage">
       <p>Map those patterns back into category-level planning logic so teams can use a cleaner operational framework without ignoring product differences.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Why it matters</p>
-  <h2>Simple planning improves when the seasonal structure is better.</h2>
-  <div class="detail-intro">This method is useful when you want a planning model that remains explainable but still captures real variation inside a category. It is a practical middle ground between one-size-fits-all averages and overly complex forecasting systems.</div>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Operational use</h3>
+<DetailSection
+  label="Why it matters"
+  title="Simple planning improves when the seasonal structure is better."
+  intro="This method is useful when you want a planning model that remains explainable but still captures real variation inside a category. It is a practical middle ground between one-size-fits-all averages and overly complex forecasting systems."
+>
+  <DetailStack>
+    <DetailItem title="Operational use">
       <p>Teams can keep a clean planning framework without pretending that every product in a category behaves the same way.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Broader pattern</h3>
+    </DetailItem>
+    <DetailItem title="Broader pattern">
       <p>I treat this as an example of a broader pattern in operations work: build a model that is simple enough to use, but structured enough to support better decisions.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Source</p>
-  <h2>Original note</h2>
-  <div class="source-list">
-    <article class="source-item">
+<DetailSection label="Source" title="Original note">
+  <SourceList>
+    <SourceItem>
       <p>This page is a cleaned-up portfolio version of an earlier note.</p>
       <a class="text-link" href="https://github.com/yongjip/gitbook/blob/master/seasonality-index.md">View original markdown</a>
-    </article>
-  </div>
-</section>
+    </SourceItem>
+  </SourceList>
+</DetailSection>

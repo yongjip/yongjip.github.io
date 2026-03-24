@@ -236,29 +236,47 @@ Korean:
 - `원문`
 - `관련 작업`
 
-The exact wording may vary slightly when needed, but pages should stay close to this shared set.
+Pages should stay close to this shared set and only use labels from the allowed vocabulary enforced by `npm run check` (`scripts/check-site-consistency.mjs`). If a new label is needed, add it deliberately to the allow-list rather than inventing one-off wording.
 
 ## Components
 
 The current site is built around a small set of reusable Astro components and a shared global stylesheet in [`src/styles/global.css`](./src/styles/global.css).
 
-Core structural components:
+Core page-shell components:
 
-- `site-header`
-- `top-nav`
-- `lang-switch`
-- `hero-home`
-- `article-header`
-- `article-summary`
-- `article-facts`
-- `work-grid`
-- `brief-list`
-- `method-list`
-- `detail-section`
-- `detail-columns`
-- `detail-stack`
-- `metric-grid`
-- `site-footer`
+- `SiteHeader`
+- `SiteFooter`
+- `WorkCard`
+- `MethodList`
+- `BriefList`
+- `ResponsiveDiagram`
+
+### Content Primitives (MDX)
+
+All `Work` and `Methods` detail content should be composed from the shared primitives under `src/components/content/`.
+
+Primitives:
+
+- `DetailSection` (required)
+- `DetailColumns`
+- `DetailStack`
+- `DetailItem`
+- `DetailCopy`
+- `MetricGrid`
+- `MetricItem`
+- `SourceList`
+- `SourceItem`
+
+These components intentionally render the stable class-based structure (`detail-section`, `metric-grid`, etc.) so styling stays centralized in `global.css` while the authoring model stays consistent.
+
+Forbidden patterns in MDX:
+
+- Do not handwrite `<section class="detail-section ...">`.
+- Do not handwrite `<p class="section-label">...</p>`.
+- Do not add `detail-section-wide` manually. Use `lane="wide"` on `DetailSection`.
+- Do not generate labels dynamically. `label` must be a double-quoted string literal.
+
+Section labels are enforced by `scripts/check-site-consistency.mjs` via `npm run check`.
 
 New pages should reuse these patterns before introducing new ones.
 

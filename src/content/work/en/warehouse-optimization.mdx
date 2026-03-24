@@ -24,51 +24,53 @@ resultSummary: "Status: usable first system for directional analysis"
 ---
 
 import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">Overview</p>
-  <h2>Warehouse optimization started with building a graph the team could actually analyze.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Starting point</h3>
+<DetailSection
+  label="Overview"
+  title="Warehouse optimization started with building a graph the team could actually analyze."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="Starting point">
       <p>We had storage node information such as coordinates, but no practical graph that represented how workers could actually move through the warehouse. That made it difficult to reason about layout, access, inventory placement, or picker travel distance in a structured way.</p>
       <p>The immediate problem was not optimization yet. It was building the path-aware model needed before any meaningful simulation or routing analysis could happen.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Current scope</h3>
+    </DetailItem>
+    <DetailItem title="Current scope">
       <p>I am not presenting this as a finished warehouse optimization engine. The current system has two parts: a tool for constructing the warehouse graph, and a simplified simulation model for estimating how inventory reallocation changes picker travel distance.</p>
       <p>The goal is directional decision support, not a perfect digital twin.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">Graph construction</p>
-  <h2>Turn storage nodes and walkable paths into an analyzable warehouse graph.</h2>
-  <div class="detail-intro">The graph comes first. Once movement is represented cleanly, routing and simulation become possible on top of it.</div>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Node grouping</h3>
+<DetailSection
+  label="Graph construction"
+  title="Turn storage nodes and walkable paths into an analyzable warehouse graph."
+  class="detail-section-takeaways"
+  intro="The graph comes first. Once movement is represented cleanly, routing and simulation become possible on top of it."
+>
+  <DetailStack>
+    <DetailItem title="Node grouping">
       <p>Storage nodes are grouped first. The current approach uses Manhattan distance to form practical groups before routing is computed at a larger scale.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Access points</h3>
+    </DetailItem>
+    <DetailItem title="Access points">
       <p>Each group is assigned one or more access points so the graph can represent how workers enter and interact with that part of the warehouse.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Path-based connections</h3>
+    </DetailItem>
+    <DetailItem title="Path-based connections">
       <p>Users draw walkable paths, and the tool automatically connects nearby access points to those paths to generate a usable graph structure.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Why grouping matters</h3>
+    </DetailItem>
+    <DetailItem title="Why grouping matters">
       <p>Running shortest-path calculations directly across every storage node would be expensive. Grouping reduces graph complexity so later routing and simulation work remains tractable.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-wide">
-  <p class="section-label">Flow</p>
-  <h2>How the warehouse model is constructed</h2>
+<DetailSection label="Flow" title="How the warehouse model is constructed" lane="wide">
   <ResponsiveDiagram
     src="/resources/diagrams/warehouse-en-desktop.png"
     mobileSrc="/resources/diagrams/warehouse-en-mobile.png"
@@ -79,61 +81,46 @@ import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
     mobileHeight={1070}
     variant="flow"
   />
-  <div class="detail-intro">Simulation and routing only become useful after the warehouse can be represented as a usable movement model.</div>
-</section>
+  <p class="detail-intro">Simulation and routing only become useful after the warehouse can be represented as a usable movement model.</p>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Simulation</p>
-  <h2>A simplified model for testing inventory reallocation ideas.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Rule-based ranking</h3>
+<DetailSection label="Simulation" title="A simplified model for testing inventory reallocation ideas.">
+  <DetailStack>
+    <DetailItem title="Rule-based ranking">
       <p>Products and storage nodes are ranked using a simplified grading logic instead of a full operational model.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Reallocation test</h3>
+    </DetailItem>
+    <DetailItem title="Reallocation test">
       <p>Inventory is reassigned according to those grades, and the model compares estimated picker travel distance before and after reallocation.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Directional output</h3>
+    </DetailItem>
+    <DetailItem title="Directional output">
       <p>The result is meant to explain whether better placement should materially reduce movement, not to claim an exact final operating result.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Results</p>
-  <h2>The number is useful as a signal, not as a final claim.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">Estimated</p>
-      <span class="metric-value">~50%</span>
-      <p>Travel distance reduction in the simplified simulation.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Interpretation</p>
-      <span class="metric-value">Not final</span>
-      <p>The result is directional and does not fully reflect real warehouse constraints.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Key risk</p>
-      <span class="metric-value">Bottlenecks</span>
-      <p>Local congestion may appear if picking activity concentrates around specific locations.</p>
-    </article>
-  </div>
-</section>
+<DetailSection label="Results" title="The number is useful as a signal, not as a final claim.">
+  <MetricGrid>
+    <MetricItem label="Estimated" value="~50%" description="Travel distance reduction in the simplified simulation." />
+    <MetricItem
+      label="Interpretation"
+      value="Not final"
+      description="The result is directional and does not fully reflect real warehouse constraints."
+    />
+    <MetricItem
+      label="Key risk"
+      value="Bottlenecks"
+      description="Local congestion may appear if picking activity concentrates around specific locations."
+    />
+  </MetricGrid>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Takeaways</p>
-  <h2>The important output is structured explanation, not just a number.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Signal</h3>
+<DetailSection label="Takeaways" title="The important output is structured explanation, not just a number.">
+  <DetailStack>
+    <DetailItem title="Signal">
       <p>Even a simplified model can show that inventory placement changes may have a meaningful effect on travel distance.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Limit</h3>
+    </DetailItem>
+    <DetailItem title="Limit">
       <p>The current simulation does not fully model congestion or operational constraints, so the 50 percent figure should not be treated as a final operating result.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

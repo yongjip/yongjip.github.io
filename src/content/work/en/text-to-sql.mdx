@@ -24,116 +24,82 @@ resultSummary: "Outcome: 4-10 hours to under 1 hour"
 ---
 
 import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">Overview</p>
-  <h2>Text-to-SQL only became useful after the data model was made explicit.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Context</h3>
-        <div class="detail-copy">
-        Ad-hoc analytics requests were consuming too much analyst time. In practice, the
-                slow part was not SQL syntax. It was finding the right tables, understanding what
-                columns meant, mapping business logic correctly, and figuring out join patterns
-                that could actually be trusted.
-        
-                That made even routine questions expensive. Complex requests often took 4 to 10
-                hours, which limited how many requests the team could realistically support each
-                month.
-      </div>
+<DetailSection
+  label="Overview"
+  title="Text-to-SQL only became useful after the data model was made explicit."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="Context">
+      <DetailCopy>
+        <p>Ad-hoc analytics requests were consuming too much analyst time. In practice, the slow part was not SQL syntax. It was finding the right tables, understanding what columns meant, mapping business logic correctly, and figuring out join patterns that could actually be trusted.</p>
+        <p>That made even routine questions expensive. Complex requests often took 4 to 10 hours, which limited how many requests the team could realistically support each month.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <DetailCopy>
+        <p>I built a structured metadata layer in YAML that captured how analysts actually reason about the data model: table definitions, column semantics, keys, partitioning, join patterns, and business terminology.</p>
+        <p>The workflow then used AI coding agents to generate SQL, execute it in Athena, and validate results before anything was handed back. The leverage came from structuring context well enough that the system could reuse it repeatedly.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>Approach</h3>
-        <div class="detail-copy">
-        I built a structured metadata layer in YAML that captured how analysts actually
-                reason about the data model: table definitions, column semantics, keys,
-                partitioning, join patterns, and business terminology.
-        
-                The workflow then used AI coding agents to generate SQL, execute it in Athena,
-                and validate results before anything was handed back. The leverage came from
-                structuring context well enough that the system could reuse it repeatedly.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">Workflow</p>
-  <h2>A practical validation loop around AI-generated SQL</h2>
-  <div class="detail-intro">
-    The workflow narrowed context first, then generated, executed, and checked SQL before
-    any result was handed back to a human.
-  </div>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Scoped context</h3>
+<DetailSection
+  label="Workflow"
+  title="A practical validation loop around AI-generated SQL"
+  class="detail-section-takeaways"
+  intro="The workflow narrowed context first, then generated, executed, and checked SQL before any result was handed back to a human."
+>
+  <DetailStack>
+    <DetailItem title="Scoped context">
       <p>Tables were grouped by domain and narrowed through index files so the agent only saw the relevant slice of metadata.</p>
-    </article>
-    <article class="detail-item">
-      <h3>SQL generation</h3>
+    </DetailItem>
+    <DetailItem title="SQL generation">
       <p>AI coding agents used the structured metadata to generate and revise SQL based on the actual business question.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Execution and QA</h3>
+    </DetailItem>
+    <DetailItem title="Execution and QA">
       <p>The workflow ran queries in Athena, checked execution success, and validated results before handing anything back to a human.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Reusable knowledge</h3>
+    </DetailItem>
+    <DetailItem title="Reusable knowledge">
       <p>The resulting structure could be updated and reused so later requests started from a better base instead of from scratch.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">System flow</p>
-  <h2>From question to validated answer</h2>
+<DetailSection label="System flow" title="From question to validated answer">
   <ResponsiveDiagram
     src="/resources/diagrams/text-to-sql-en.png"
     alt="Flow diagram from user question to validated answer through domain selection, structured knowledge, AI-generated SQL, Athena execution, result validation, and knowledge updates."
     width={2174}
     height={2824}
   />
-  <div class="detail-intro">
-    The system did not stop at generation. It executed, checked, and iterated until the
-    result was reliable enough for review.
-  </div>
-</section>
+  <p class="detail-intro">The system did not stop at generation. It executed, checked, and iterated until the result was reliable enough for review.</p>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Results</p>
-  <h2>Structured context changed both speed and capacity.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">Before</p>
-      <span class="metric-value">4 to 10 hrs</span>
-      <p>Typical ad-hoc turnaround before the system.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">After</p>
-      <span class="metric-value">Under 1 hr</span>
-      <p>Turnaround after structured context and validation loops.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Capacity</p>
-      <span class="metric-value">20 to 50+</span>
-      <p>Approximate monthly ad-hoc capacity after the workflow improved.</p>
-    </article>
-  </div>
-</section>
+<DetailSection label="Results" title="Structured context changed both speed and capacity.">
+  <MetricGrid>
+    <MetricItem label="Before" value="4 to 10 hrs" description="Typical ad-hoc turnaround before the system." />
+    <MetricItem label="After" value="Under 1 hr" description="Turnaround after structured context and validation loops." />
+    <MetricItem label="Capacity" value="20 to 50+" description="Approximate monthly ad-hoc capacity after the workflow improved." />
+  </MetricGrid>
+</DetailSection>
 
-<section class="detail-section">
-  <p class="section-label">Takeaways</p>
-  <h2>The real system was the knowledge architecture.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>What mattered</h3>
+<DetailSection label="Takeaways" title="The real system was the knowledge architecture.">
+  <DetailStack>
+    <DetailItem title="What mattered">
       <p>The core problem was not generating SQL text. It was capturing how analysts interpret the data model and business logic in a form AI could actually reuse.</p>
-    </article>
-    <article class="detail-item">
-      <h3>Why it worked</h3>
+    </DetailItem>
+    <DetailItem title="Why it worked">
       <p>By structuring table semantics, joins, and business terms well enough, the workflow reduced repeated research work instead of only accelerating typing.</p>
-    </article>
-  </div>
-</section>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

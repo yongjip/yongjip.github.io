@@ -23,108 +23,70 @@ facts:
 resultSummary: "공개 소셜 데이터를 다루는 end-to-end 텍스트 분석 파이프라인"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">개요</p>
-  <h2>이 프로젝트의 핵심은 점수보다 파이프라인을 만드는 일이었습니다.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>상황</h3>
-        <div class="detail-copy">
-        저는 대규모 공개 트윗 이력에서 tone이 시간에 따라 어떻게 달라지는지 보고
-                싶었습니다. 흥미로운 부분은 감성 점수 자체만이 아니라, 그 텍스트를 꾸준히 수집하고
-                저장하고 처리하는 전체 흐름을 만드는 일이었습니다.
-        
-                공개 소셜 데이터는 멀리서 보면 단순해 보이지만, 수집과 저장을 진지하게 다루기
-                시작하면 바로 data engineering 문제가 됩니다.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>접근</h3>
-        <div class="detail-copy">
-        과거 트윗을 수집해 AWS 위 PostgreSQL에 저장하고, NLTK의 VADER sentiment
-                scoring을 적용해 감정 변화의 시간축 뷰를 만들었습니다.
-        
-                이 프로젝트가 유용했던 이유는 scoring step만 따로 떼지 않고, 텍스트 분석을
-                실제 저장·조회 레이어와 연결했기 때문입니다.
-      </div>
+<DetailSection label="개요" title="이 프로젝트의 핵심은 점수보다 파이프라인을 만드는 일이었습니다." class="detail-section-results">
+  <DetailColumns>
+    <DetailItem title="상황">
+      <DetailCopy>
+        <p>저는 대규모 공개 트윗 이력에서 tone이 시간에 따라 어떻게 달라지는지 보고 싶었습니다. 흥미로운 부분은 감성 점수 자체만이 아니라, 그 텍스트를 꾸준히 수집하고 저장하고 처리하는 전체 흐름을 만드는 일이었습니다.</p>
+        <p>공개 소셜 데이터는 멀리서 보면 단순해 보이지만, 수집과 저장을 진지하게 다루기 시작하면 바로 data engineering 문제가 됩니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="접근">
+      <DetailCopy>
+        <p>과거 트윗을 수집해 AWS 위 PostgreSQL에 저장하고, NLTK의 VADER sentiment scoring을 적용해 감정 변화의 시간축 뷰를 만들었습니다.</p>
+        <p>이 프로젝트가 유용했던 이유는 scoring step만 따로 떼지 않고, 텍스트 분석을 실제 저장·조회 레이어와 연결했기 때문입니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection label="워크플로우" title="수집, 저장, 점수화가 하나의 시스템처럼 동작해야 했습니다." class="detail-section-takeaways">
+  <DetailStack>
+    <DetailItem title="수집">
+      <DetailCopy>
+        <p>과거 트윗을 모으고 정규화해, 이후 처리 단계에서 일관된 형식으로 다룰 수 있게 했습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="저장">
+      <DetailCopy>
+        <p>데이터가 단순한 로컬 실험 수준을 넘어가면서, AWS 위 PostgreSQL은 트윗 이력을 저장하고 조회하는 실용적인 기반이 됐습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="감성 점수화">
+      <DetailCopy>
+        <p>VADER sentiment scoring을 적용해, 전체 corpus에서 tone이 어떻게 움직였는지 보여 주는 간단한 시간축 신호를 만들었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">워크플로우</p>
-  <h2>수집, 저장, 점수화가 하나의 시스템처럼 동작해야 했습니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>수집</h3>
-        <div class="detail-copy">
-        과거 트윗을 모으고 정규화해, 이후 처리 단계에서 일관된 형식으로 다룰 수 있게
-                했습니다.
-      </div>
+<DetailSection label="결과" title="주요 산출물은 usable한 텍스트 분석 파이프라인이었습니다.">
+  <MetricGrid>
+    <MetricItem label="데이터" value="공개 트윗" description="대규모 공개 트윗 이력을 source dataset으로 사용했습니다." />
+    <MetricItem label="저장" value="PostgreSQL" description="프로젝트를 notebook-only 실험에 머무르지 않게 했습니다." />
+    <MetricItem label="분석" value="VADER" description="가벼운 sentiment 접근으로 추적 가능한 trend signal을 만들었습니다." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>저장</h3>
-        <div class="detail-copy">
-        데이터가 단순한 로컬 실험 수준을 넘어가면서, AWS 위 PostgreSQL은 트윗 이력을
-                저장하고 조회하는 실용적인 기반이 됐습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>감성 점수화</h3>
-        <div class="detail-copy">
-        VADER sentiment scoring을 적용해, 전체 corpus에서 tone이 어떻게 움직였는지
-                보여 주는 간단한 시간축 신호를 만들었습니다.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">결과</p>
-  <h2>주요 산출물은 usable한 텍스트 분석 파이프라인이었습니다.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">데이터</p>
-      <span class="metric-value">공개 트윗</span>
-      <p>대규모 공개 트윗 이력을 source dataset으로 사용했습니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">저장</p>
-      <span class="metric-value">PostgreSQL</span>
-      <p>프로젝트를 notebook-only 실험에 머무르지 않게 했습니다.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">분석</p>
-      <span class="metric-value">VADER</span>
-      <p>가벼운 sentiment 접근으로 추적 가능한 trend signal을 만들었습니다.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">배운 점</p>
-  <h2>텍스트 분석은 데이터 흐름이 명확할 때 더 신뢰할 수 있습니다.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>무엇이 중요했나</h3>
-        <div class="detail-copy">
-        오래 남는 부분은 감성 점수 숫자 자체보다, 수집부터 저장, 점수화까지 이어지는
-                end-to-end workflow였습니다.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>왜 유용했나</h3>
-        <div class="detail-copy">
-        이 프로젝트는 텍스트 분석을 정적인 파일 위 데모가 아니라, 반복 가능한 데이터
-                파이프라인처럼 보이게 만들었습니다.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="배운 점" title="텍스트 분석은 데이터 흐름이 명확할 때 더 신뢰할 수 있습니다.">
+  <DetailStack>
+    <DetailItem title="무엇이 중요했나">
+      <DetailCopy>
+        <p>오래 남는 부분은 감성 점수 숫자 자체보다, 수집부터 저장, 점수화까지 이어지는 end-to-end workflow였습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="왜 유용했나">
+      <DetailCopy>
+        <p>이 프로젝트는 텍스트 분석을 정적인 파일 위 데모가 아니라, 반복 가능한 데이터 파이프라인처럼 보이게 만들었습니다.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

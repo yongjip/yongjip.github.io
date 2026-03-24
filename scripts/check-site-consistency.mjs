@@ -81,7 +81,18 @@ function getId(filePath) {
 }
 
 function getSectionLabels(source) {
-  return Array.from(source.matchAll(/<p class="section-label">([^<]+)<\/p>/g), (match) => match[1].trim());
+  const legacyLabels = Array.from(source.matchAll(/<p class="section-label">([^<]+)<\/p>/g), (match) => match[1].trim());
+  const detailSections = Array.from(source.matchAll(/<DetailSection\b[^>]*>/g));
+  const labels = Array.from(
+    source.matchAll(/<DetailSection\b[^>]*\blabel\s*=\s*"([^"]+)"[^>]*>/g),
+    (match) => match[1].trim(),
+  );
+
+  return {
+    legacyLabels,
+    detailSectionCount: detailSections.length,
+    labels,
+  };
 }
 
 async function validateCollection(kind) {
@@ -113,11 +124,25 @@ async function validateCollection(kind) {
 
     for (const filePath of files) {
       const source = await readFile(filePath, "utf8");
-      const labels = getSectionLabels(source);
+      const { legacyLabels, detailSectionCount, labels } = getSectionLabels(source);
 
-      if (labels.length === 0) {
-        issues.push(`[${kind}] No section labels found in ${path.relative(rootDir, filePath)}.`);
+      if (legacyLabels.length > 0) {
+        issues.push(
+          `[${kind}] Legacy section label markup found in ${path.relative(rootDir, filePath)}. Use <DetailSection label="..."> instead.`,
+        );
+      }
+
+      if (detailSectionCount === 0) {
+        issues.push(
+          `[${kind}] No <DetailSection> found in ${path.relative(rootDir, filePath)}. Direct HTML sections are not allowed; compose content with <DetailSection label="..." title="...">.`,
+        );
         continue;
+      }
+
+      if (labels.length !== detailSectionCount) {
+        issues.push(
+          `[${kind}] Every <DetailSection> must include a double-quoted string literal label in ${path.relative(rootDir, filePath)}.`,
+        );
       }
 
       for (const requiredLabel of requiredLabels) {

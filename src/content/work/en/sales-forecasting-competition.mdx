@@ -23,126 +23,79 @@ facts:
 resultSummary: "First place by matching preprocessing and forecasts to the scoring rule"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">Overview</p>
-  <h2>The important step was understanding what the competition actually rewarded.</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Context</h3>
-        <div class="detail-copy">
-        The competition asked participants to forecast 100 days of future sales for 200
-                small businesses. It was framed as a lending problem, so the score was not based
-                on plain forecast error alone. Over-forecasting was penalized much more heavily
-                than under-forecasting.
-        
-                Many participants used more complex modeling approaches, but the scoring setup made
-                problem framing and risk-aware forecasting more important than adding complexity
-                for its own sake.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>Approach</h3>
-        <div class="detail-copy">
-        I used ARIMA, but the real work happened before and after the model step. I
-                cleaned cancellation noise, aggregated transactions to reduce day-level variance,
-                applied log transformation, and then adjusted the forecast direction to fit the
-                competition's asymmetric objective.
-        
-                The result was a conservative, interpretable workflow that fit the evaluation rule
-                instead of optimizing a generic notion of accuracy.
-      </div>
+<DetailSection
+  label="Overview"
+  title="The important step was understanding what the competition actually rewarded."
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="Context">
+      <DetailCopy>
+        <p>The competition asked participants to forecast 100 days of future sales for 200 small businesses. It was framed as a lending problem, so the score was not based on plain forecast error alone. Over-forecasting was penalized much more heavily than under-forecasting.</p>
+        <p>Many participants used more complex modeling approaches, but the scoring setup made problem framing and risk-aware forecasting more important than adding complexity for its own sake.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <DetailCopy>
+        <p>I used ARIMA, but the real work happened before and after the model step. I cleaned cancellation noise, aggregated transactions to reduce day-level variance, applied log transformation, and then adjusted the forecast direction to fit the competition's asymmetric objective.</p>
+        <p>The result was a conservative, interpretable workflow that fit the evaluation rule instead of optimizing a generic notion of accuracy.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection label="Method" title="The model was simple, but the forecast logic was not naive." class="detail-section-takeaways">
+  <DetailStack>
+    <DetailItem title="Cancellation cleanup">
+      <DetailCopy>
+        <p>The raw data included negative transactions that represented cancellations. I removed those together with their corresponding positive transactions so the series would reflect actual realized sales rather than inflated variance.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Adaptive aggregation">
+      <DetailCopy>
+        <p>Each store's transaction history was aggregated into 28-day, 14-day, or 7-day buckets depending on how much history was available. That reduced day-of-week noise while preserving enough structure to forecast short series.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Log scale and zero-sales adjustment">
+      <DetailCopy>
+        <p>Forecasting on the log scale made the aggregated series more stable. When a store showed zero-sales periods, I adjusted the final forecast using the observed probability of no sales rather than ignoring that pattern.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Conservative forecast shift">
+      <DetailCopy>
+        <p>Because over-forecasting was much more expensive under the competition rule, I shifted forecasts downward using the model's estimated uncertainty instead of submitting the raw point estimate.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">Method</p>
-  <h2>The model was simple, but the forecast logic was not naive.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Cancellation cleanup</h3>
-        <div class="detail-copy">
-        The raw data included negative transactions that represented cancellations. I
-                removed those together with their corresponding positive transactions so the series
-                would reflect actual realized sales rather than inflated variance.
-      </div>
+<DetailSection label="Results" title="A simple time-series model won because it matched the evaluation rule.">
+  <MetricGrid>
+    <MetricItem label="Ranking" value="1st" description="Finished first in the competition." />
+    <MetricItem label="Field" value="~70" description="Approximate number of participants in the event." />
+    <MetricItem label="Lesson" value="Objective first" description="The scoring rule mattered as much as the model choice." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>Adaptive aggregation</h3>
-        <div class="detail-copy">
-        Each store's transaction history was aggregated into 28-day, 14-day, or 7-day
-                buckets depending on how much history was available. That reduced day-of-week noise
-                while preserving enough structure to forecast short series.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Log scale and zero-sales adjustment</h3>
-        <div class="detail-copy">
-        Forecasting on the log scale made the aggregated series more stable. When a store
-                showed zero-sales periods, I adjusted the final forecast using the observed
-                probability of no sales rather than ignoring that pattern.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Conservative forecast shift</h3>
-        <div class="detail-copy">
-        Because over-forecasting was much more expensive under the competition rule, I
-                shifted forecasts downward using the model's estimated uncertainty instead of
-                submitting the raw point estimate.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Results</p>
-  <h2>A simple time-series model won because it matched the evaluation rule.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">Ranking</p>
-      <span class="metric-value">1st</span>
-      <p>Finished first in the competition.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Field</p>
-      <span class="metric-value">~70</span>
-      <p>Approximate number of participants in the event.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Lesson</p>
-      <span class="metric-value">Objective first</span>
-      <p>The scoring rule mattered as much as the model choice.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Takeaways</p>
-  <h2>Forecasting quality depends on matching the model to the decision context.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>What mattered</h3>
-        <div class="detail-copy">
-        The important choice was not chasing a more fashionable model. It was recognizing
-                that the competition rewarded cautious forecasts under uncertainty, then shaping
-                the preprocessing and prediction logic around that fact.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Why it worked</h3>
-        <div class="detail-copy">
-        A restrained ARIMA workflow performed well because the signal was cleaned, the
-                variance was reduced, and the final forecast was adjusted to fit the real scoring
-                objective instead of a generic benchmark.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="Takeaways" title="Forecasting quality depends on matching the model to the decision context.">
+  <DetailStack>
+    <DetailItem title="What mattered">
+      <DetailCopy>
+        <p>The important choice was not chasing a more fashionable model. It was recognizing that the competition rewarded cautious forecasts under uncertainty, then shaping the preprocessing and prediction logic around that fact.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Why it worked">
+      <DetailCopy>
+        <p>A restrained ARIMA workflow performed well because the signal was cleaned, the variance was reduced, and the final forecast was adjusted to fit the real scoring objective instead of a generic benchmark.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

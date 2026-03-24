@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../SiteHeader.astro";
+import SiteFooter from "../SiteFooter.astro";
+import MethodList from "../MethodList.astro";
+import { SHARED_UI_COPY, SITE_FOOTER } from "../../data/site";
+import { getEntries } from "../../lib/content";
+import { getIndexPath, toAbsoluteUrl } from "../../lib/routes";
+import { buildCollectionPageSchema } from "../../lib/seo";
+
+interface Props {
+  lang: "en" | "ko";
+}
+
+const { lang } = Astro.props;
+const entries = await getEntries("methods", lang);
+const title = lang === "ko" ? "Methods | 김용집" : "Methods | Yongjip Kim";
+const description =
+  lang === "ko" ? "실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다." : "Short notes on planning models and practical methods used in analytics and operations work.";
+const canonical = toAbsoluteUrl(getIndexPath("method", lang));
+const heading = lang === "ko" ? "계획 로직과 운영 방법을 정리한 짧은 노트" : "Short notes on planning logic and operational methods";
+const heroCopy = lang === "ko" ? "케이스 스터디를 보완하는 방법을 모아 둔 조용한 아카이브입니다." : "Methods that support the case studies without trying to replace them.";
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogTitle={title}
+  ogDescription={description}
+  alternates={[
+    { hreflang: "en", href: toAbsoluteUrl("/methods/") },
+    { hreflang: "ko", href: toAbsoluteUrl("/ko/methods/") },
+  ]}
+  schema={buildCollectionPageSchema({ lang, title, description, canonical })}
+>
+  <main id="main-content" class="site-shell site-shell-home archive-page archive-page-methods">
+    <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
+    <section class="hero hero-home hero-compact">
+      <p class="eyebrow">{SHARED_UI_COPY.archiveEyebrows.methods}</p>
+      <h1>{heading}</h1>
+      <p class="hero-copy">{heroCopy}</p>
+    </section>
+
+    <section class="section section-list section-methods">
+      <MethodList entries={entries} />
+    </section>
+    <SiteFooter text={SITE_FOOTER[lang]} />
+  </main>
+</BaseLayout>
+

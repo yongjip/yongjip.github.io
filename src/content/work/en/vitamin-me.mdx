@@ -23,109 +23,74 @@ facts:
 resultSummary: "End-to-end prototype from data collection to recommendation flow"
 ---
 
-<section class="detail-section detail-section-results">
-  <p class="section-label">Overview</p>
-  <h2>The project started from a simple question: how should recommendation logic stay grounded?</h2>
-  <div class="detail-columns">
-    <article class="detail-item">
-      <h3>Context</h3>
-        <div class="detail-copy">
-        The idea was to build a web application that suggested dietary supplements based
-                on profile inputs such as age, gender, lifestyle, habits, goals, and pregnancy
-                status.
-        
-                I wanted the recommendation flow to be informed by actual product and review data
-                rather than by a fixed list of generic suggestions.
-      </div>
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailCopy from "../../../components/content/DetailCopy.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
 
-    </article>
-    <article class="detail-item">
-      <h3>Approach</h3>
-        <div class="detail-copy">
-        I collected public product information and review data, then used that material to
-                shape a recommendation prototype that could connect user profile inputs to a more
-                concrete product set.
-        
-                The project was exploratory rather than clinical. The point was to build a usable
-                recommendation flow, not to present medical advice.
-      </div>
+<DetailSection
+  label="Overview"
+  title="The project started from a simple question: how should recommendation logic stay grounded?"
+  class="detail-section-results"
+>
+  <DetailColumns>
+    <DetailItem title="Context">
+      <DetailCopy>
+        <p>The idea was to build a web application that suggested dietary supplements based on profile inputs such as age, gender, lifestyle, habits, goals, and pregnancy status.</p>
+        <p>I wanted the recommendation flow to be informed by actual product and review data rather than by a fixed list of generic suggestions.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <DetailCopy>
+        <p>I collected public product information and review data, then used that material to shape a recommendation prototype that could connect user profile inputs to a more concrete product set.</p>
+        <p>The project was exploratory rather than clinical. The point was to build a usable recommendation flow, not to present medical advice.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
 
-    </article>
-  </div>
-</section>
+<DetailSection label="Workflow" title="The prototype linked questionnaire inputs to a searchable product base." class="detail-section-takeaways">
+  <DetailStack>
+    <DetailItem title="Profile inputs">
+      <DetailCopy>
+        <p>The interface captured user traits and goals that could influence which supplement categories looked relevant.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Public product data">
+      <DetailCopy>
+        <p>Public product information and review text were collected so the recommendation flow could be tied to a real catalog instead of abstract examples.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Recommendation logic">
+      <DetailCopy>
+        <p>The prototype connected the profile and catalog layers so the user could move from questionnaire answers to a narrower set of options.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
 
-<section class="detail-section detail-section-takeaways">
-  <p class="section-label">Workflow</p>
-  <h2>The prototype linked questionnaire inputs to a searchable product base.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>Profile inputs</h3>
-        <div class="detail-copy">
-        The interface captured user traits and goals that could influence which supplement
-                categories looked relevant.
-      </div>
+<DetailSection label="Results" title="The useful outcome was an end-to-end research prototype.">
+  <MetricGrid>
+    <MetricItem label="Type" value="Prototype" description="Explored a recommendation flow rather than a finished consumer product." />
+    <MetricItem label="Inputs" value="Profile + catalog" description="Combined user profile fields with public product information." />
+    <MetricItem label="Stack" value="Python" description="Used Python and browser automation for data collection and prototyping." />
+  </MetricGrid>
+</DetailSection>
 
-    </article>
-    <article class="detail-item">
-      <h3>Public product data</h3>
-        <div class="detail-copy">
-        Public product information and review text were collected so the recommendation
-                flow could be tied to a real catalog instead of abstract examples.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Recommendation logic</h3>
-        <div class="detail-copy">
-        The prototype connected the profile and catalog layers so the user could move from
-                questionnaire answers to a narrower set of options.
-      </div>
-
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Results</p>
-  <h2>The useful outcome was an end-to-end research prototype.</h2>
-  <div class="metric-grid">
-    <article class="metric-item">
-      <p class="metric-label">Type</p>
-      <span class="metric-value">Prototype</span>
-      <p>Explored a recommendation flow rather than a finished consumer product.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Inputs</p>
-      <span class="metric-value">Profile + catalog</span>
-      <p>Combined user profile fields with public product information.</p>
-    </article>
-    <article class="metric-item">
-      <p class="metric-label">Stack</p>
-      <span class="metric-value">Python</span>
-      <p>Used Python and browser automation for data collection and prototyping.</p>
-    </article>
-  </div>
-</section>
-
-<section class="detail-section">
-  <p class="section-label">Takeaways</p>
-  <h2>Recommendation projects improve once the data and the user flow are designed together.</h2>
-  <div class="detail-stack">
-    <article class="detail-item">
-      <h3>What mattered</h3>
-        <div class="detail-copy">
-        The interesting part was linking messy real-world catalog information to a simple
-                questionnaire-driven interface.
-      </div>
-
-    </article>
-    <article class="detail-item">
-      <h3>Why it was useful</h3>
-        <div class="detail-copy">
-        The project provided a concrete way to think about how product data, user traits,
-                and recommendation logic should connect in one flow.
-      </div>
-
-    </article>
-  </div>
-</section>
+<DetailSection label="Takeaways" title="Recommendation projects improve once the data and the user flow are designed together.">
+  <DetailStack>
+    <DetailItem title="What mattered">
+      <DetailCopy>
+        <p>The interesting part was linking messy real-world catalog information to a simple questionnaire-driven interface.</p>
+      </DetailCopy>
+    </DetailItem>
+    <DetailItem title="Why it was useful">
+      <DetailCopy>
+        <p>The project provided a concrete way to think about how product data, user traits, and recommendation logic should connect in one flow.</p>
+      </DetailCopy>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>

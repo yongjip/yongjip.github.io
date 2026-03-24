@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const classes = ["source-item", className ?? ""].filter(Boolean).join(" ");
+---
+
+<article class={classes}>
+  <slot />
+</article>
+
