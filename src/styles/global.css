@@ -965,6 +965,7 @@ html[lang="ko"] .detail-section h2 {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  justify-content: center;
   gap: 14px;
   margin-top: 16px;
 }
