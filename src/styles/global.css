@@ -181,7 +181,7 @@ ol {
 
 .home-front-page,
 .archive-page {
-  --page-content-lane: 100%;
+  --page-content-lane: var(--lane-reading);
 }
 
 .lane-reading {
@@ -361,6 +361,7 @@ ol {
 
 .hero-home {
   max-width: var(--page-content-lane, var(--lane-reading));
+  margin-inline: auto;
   padding-top: 12px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--line-strong);
@@ -605,6 +606,7 @@ html[lang="ko"] .article-header h1 {
 
 .section-heading {
   max-width: var(--page-content-lane, var(--lane-reading));
+  margin-inline: auto;
   margin-bottom: 14px;
 }
 
@@ -614,6 +616,7 @@ html[lang="ko"] .article-header h1 {
 
 .section-group {
   max-width: var(--page-content-lane, var(--lane-reading));
+  margin-inline: auto;
   padding: 16px 18px;
   border: 1px solid var(--line-soft);
   border-radius: 12px;
@@ -697,6 +700,7 @@ html[lang="ko"] .article-header h1 {
 
 .work-list {
   max-width: var(--page-content-lane, var(--lane-reading));
+  margin-inline: auto;
   display: grid;
   gap: 0;
 }
@@ -1006,6 +1010,7 @@ html[lang="ko"] .detail-section h2 {
 
 .method-list {
   max-width: var(--page-content-lane, var(--lane-reading));
+  margin-inline: auto;
   margin-top: 12px;
   display: grid;
   gap: 0;
