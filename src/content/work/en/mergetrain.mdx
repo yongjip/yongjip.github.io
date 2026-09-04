@@ -1,0 +1,87 @@
+---
+id: mergetrain
+lang: en
+title: "Building mergetrain: A Local Integration Queue for Parallel Coding Agents"
+shortTitle: "mergetrain: Local Integration for Coding Agents"
+description: Built an open-source local queue that orders committed agent branches, tests their combined result, and keeps the final Git push behind an explicit approval boundary.
+summary: mergetrain turns parallel coding-agent branches into one ordered, tested, approval-gated integration workflow that runs on the developer's machine.
+kind: work
+featured: true
+order: 3
+related:
+  - text-to-sql
+  - warehouse-optimization
+ogTitle: "Building mergetrain: A Local Integration Queue for Parallel Coding Agents"
+ogDescription: A case study on designing a local-first queue for exact-commit handoff, combined validation, approval-gated atomic pushes, and interrupted-push recovery.
+status: "Public open-source project, v3.0.4"
+scope: Local integration for Claude Code, Codex, and other coding-agent worktrees.
+publishedAt: "2026-06-28"
+updatedAt: "2026-09-05"
+facts:
+  - label: Product
+    value: Six stable CLI verbs with local queue state and no hosted control plane.
+  - label: Evidence
+    value: Owner-run discovery, safe-handoff, and interrupted-push recovery evaluations.
+resultSummary: "Evidence: 20/20 discovery, 19/20 safe handoff, 20 landed soak trains"
+---
+
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
+
+<DetailSection label="Overview" title="Parallel coding still needed one owner for integration.">
+  <DetailColumns>
+    <DetailItem title="Problem">
+      <p>Git worktrees let several coding agents edit independently, but they do not decide landing order, test the combined result, prevent competing pushes, or explain what happened when a local runner stops during deployment.</p>
+      <p>Without a shared boundary, the developer becomes the queue: rebasing finished branches, repeating test runs, and deciding which agent may update the integration branch.</p>
+    </DetailItem>
+    <DetailItem title="Approach">
+      <p>I built mergetrain as a local-first integration runtime. Agents commit and enqueue exact revisions, while one runner assembles them in order, validates the combined tree, and performs one explicitly approved atomic Git push.</p>
+      <p>The product deliberately avoids accounts and a hosted control plane. Queue state, locks, and recovery evidence stay close to the repository and remain readable by both people and coding agents.</p>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
+
+<DetailSection label="Workflow" title="Authority boundaries became runtime invariants.">
+  <DetailStack>
+    <DetailItem title="Exact handoff">
+      <p>An agent hands off the exact base and task commits it finished. Later branch movement cannot silently change the work that enters the train.</p>
+    </DetailItem>
+    <DetailItem title="Combined validation">
+      <p>One fenced runner merges queued jobs in order and runs configured gates against the combined tree, including isolation of failures that only appear when branches are assembled together.</p>
+    </DetailItem>
+    <DetailItem title="Bounded deployment">
+      <p>Manual and unattended paths bind approval to the destination, execution policy, and exact deployment plan. A changed plan blocks instead of being inferred as equivalent.</p>
+    </DetailItem>
+    <DetailItem title="Recovery from remote truth">
+      <p>Durable markers and audit refs let recovery compare local state with the actual remote outcome after an interrupted atomic push.</p>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
+
+<DetailSection label="Results" title="The safety model was tested as behavior, not only as code coverage.">
+  <MetricGrid>
+    <MetricItem label="Discovery" value="20/20" description="Appropriate discovery in a fixed, product-name-free Codex evaluation." />
+    <MetricItem label="Safe handoff" value="19/20" description="Exact-commit enqueue and stop behavior with no direct pushes." />
+    <MetricItem label="Soak" value="20 trains" description="Landed trains including semantic conflict and interrupted-push recovery cases." />
+  </MetricGrid>
+  <p class="detail-intro">These are transparent owner-operated evaluations, not evidence of broad external adoption. One separate pilot used an author-external PyPA sample repository; independent user evidence is still limited.</p>
+</DetailSection>
+
+<DetailSection label="Takeaways" title="The useful product was a small, explicit grammar.">
+  <DetailStack>
+    <DetailItem title="Reduce choices on the normal path">
+      <p>Earlier versions exposed too much internal machinery. Version 3 reduced the normal CLI to six verbs—init, status, enqueue, validate, deploy, and inspect—while keeping recovery mechanics behind structured next actions.</p>
+    </DetailItem>
+    <DetailItem title="Turn agent instructions into enforcement">
+      <p>Prompts explain the workflow, but exact revision checks, fenced ownership, approval hashes, and remote evidence enforce it when an agent or process behaves unexpectedly.</p>
+    </DetailItem>
+    <DetailItem title="Separate engineering proof from adoption">
+      <p>Correctness benchmarks can show that the boundary behaves as designed. They cannot prove that other developers need or enjoy the product, so external pilots remain the next validation step.</p>
+    </DetailItem>
+  </DetailStack>
+  <p class="detail-intro"><a href="https://yongjip.github.io/mergetrain/">View the project overview</a> or <a href="https://github.com/yongjip/mergetrain">inspect the source and evaluation evidence on GitHub</a>.</p>
+</DetailSection>
