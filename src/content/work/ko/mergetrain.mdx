@@ -1,0 +1,87 @@
+---
+id: mergetrain
+lang: ko
+title: 병렬 코딩 에이전트를 위한 로컬 통합 큐 mergetrain
+shortTitle: "mergetrain: 코딩 에이전트 로컬 통합 큐"
+description: 완료된 에이전트 브랜치를 순서대로 조립하고 결합 상태를 테스트한 뒤, 명시적으로 승인된 Git push만 실행하는 오픈소스 로컬 큐를 만들었습니다.
+summary: mergetrain은 병렬 코딩 에이전트의 브랜치를 하나의 순서 있는 검증·승인·통합 워크플로우로 바꾸며 개발자 컴퓨터에서 동작합니다.
+kind: work
+featured: true
+order: 3
+related:
+  - text-to-sql
+  - warehouse-optimization
+ogTitle: 병렬 코딩 에이전트를 위한 로컬 통합 큐 mergetrain
+ogDescription: exact commit handoff, 결합 검증, 승인 기반 atomic push, 중단된 push 복구를 로컬에서 처리하도록 설계한 mergetrain 사례입니다.
+status: "공개 오픈소스 프로젝트, v3.0.4"
+scope: Claude Code, Codex 등 코딩 에이전트 worktree의 로컬 통합.
+publishedAt: "2026-06-28"
+updatedAt: "2026-09-05"
+facts:
+  - label: 제품
+    value: 호스팅 control plane 없이 로컬 상태와 6개의 안정된 CLI 명령으로 운영합니다.
+  - label: 검증
+    value: discovery, safe handoff, 중단된 push 복구를 owner-run 평가로 확인했습니다.
+resultSummary: "검증: discovery 20/20, safe handoff 19/20, soak train 20건"
+---
+
+import DetailColumns from "../../../components/content/DetailColumns.astro";
+import DetailItem from "../../../components/content/DetailItem.astro";
+import DetailSection from "../../../components/content/DetailSection.astro";
+import DetailStack from "../../../components/content/DetailStack.astro";
+import MetricGrid from "../../../components/content/MetricGrid.astro";
+import MetricItem from "../../../components/content/MetricItem.astro";
+
+<DetailSection label="개요" title="병렬 코딩 이후의 통합은 여전히 한 명의 조정자를 필요로 했습니다.">
+  <DetailColumns>
+    <DetailItem title="문제">
+      <p>Git worktree는 여러 코딩 에이전트가 서로 다른 checkout에서 작업하도록 해주지만, 완료된 브랜치의 배포 순서를 정하거나 결합 결과를 테스트하지는 않습니다. 동시에 push하는 문제와 로컬 runner가 배포 중 중단됐을 때의 판단도 남습니다.</p>
+      <p>공통 경계가 없으면 개발자가 직접 queue가 되어 브랜치를 rebase하고, 테스트를 반복하고, 어떤 에이전트가 integration branch를 갱신할지 정해야 합니다.</p>
+    </DetailItem>
+    <DetailItem title="접근">
+      <p>mergetrain을 local-first integration runtime으로 만들었습니다. 에이전트는 완료한 exact revision을 commit하고 enqueue하며, 하나의 runner가 순서대로 조립하고 결합 상태를 검증한 뒤 명시적으로 승인된 atomic Git push를 한 번 수행합니다.</p>
+      <p>계정이나 hosted control plane은 두지 않았습니다. queue 상태, lock, recovery evidence가 repository 가까이에 남고 사람과 코딩 에이전트가 같은 상태를 읽도록 설계했습니다.</p>
+    </DetailItem>
+  </DetailColumns>
+</DetailSection>
+
+<DetailSection label="워크플로우" title="에이전트의 권한 경계를 runtime invariant로 바꿨습니다.">
+  <DetailStack>
+    <DetailItem title="정확한 handoff">
+      <p>에이전트가 완료한 base와 task commit을 정확히 넘깁니다. 이후 branch가 움직여도 train에 들어가는 작업이 조용히 바뀌지 않습니다.</p>
+    </DetailItem>
+    <DetailItem title="결합 검증">
+      <p>하나의 fenced runner가 job을 순서대로 merge하고 결합 tree에서 gate를 실행합니다. 개별 branch에서는 보이지 않고 함께 조립했을 때만 나타나는 실패도 분리합니다.</p>
+    </DetailItem>
+    <DetailItem title="범위가 정해진 deploy">
+      <p>수동·자동 경로 모두 승인을 destination, execution policy, 정확한 deploy plan에 묶습니다. plan이 달라지면 같은 작업이라고 추측하지 않고 중단합니다.</p>
+    </DetailItem>
+    <DetailItem title="remote truth 기반 복구">
+      <p>durable marker와 audit ref를 남겨 atomic push가 중단된 뒤에도 로컬 추측이 아니라 실제 remote 결과와 비교해 복구합니다.</p>
+    </DetailItem>
+  </DetailStack>
+</DetailSection>
+
+<DetailSection label="결과" title="코드 커버리지뿐 아니라 실제 행동으로 safety model을 확인했습니다.">
+  <MetricGrid>
+    <MetricItem label="Discovery" value="20/20" description="제품명을 주지 않은 고정 Codex 평가에서 적절한 상황을 발견했습니다." />
+    <MetricItem label="Safe handoff" value="19/20" description="direct push 없이 exact commit을 enqueue하고 중단했습니다." />
+    <MetricItem label="Soak" value="20 trains" description="semantic conflict와 중단된 push 복구를 포함해 실제 train을 완료했습니다." />
+  </MetricGrid>
+  <p class="detail-intro">이 수치는 공개된 owner-run 평가이며 폭넓은 외부 채택의 증거는 아닙니다. 별도의 pilot 한 건은 작성자 외 PyPA sample repository에서 진행했지만, 독립 사용자의 검증은 아직 제한적입니다.</p>
+</DetailSection>
+
+<DetailSection label="배운 점" title="가장 유용한 제품은 작고 명확한 문법이었습니다.">
+  <DetailStack>
+    <DetailItem title="정상 경로의 선택을 줄이기">
+      <p>초기 버전은 내부 동작을 너무 많이 노출했습니다. v3에서는 정상 CLI를 init, status, enqueue, validate, deploy, inspect의 6개 명령으로 줄이고 recovery 동작은 구조화된 next action 뒤에 두었습니다.</p>
+    </DetailItem>
+    <DetailItem title="에이전트 지침을 강제 조건으로 바꾸기">
+      <p>prompt는 워크플로우를 설명하지만, exact revision 검사, fenced ownership, approval hash, remote evidence가 예상 밖의 에이전트·프로세스 행동에서도 경계를 지킵니다.</p>
+    </DetailItem>
+    <DetailItem title="기술 검증과 채택을 구분하기">
+      <p>correctness benchmark는 설계한 경계가 동작한다는 것을 보여줄 수 있습니다. 다른 개발자가 실제로 필요로 하고 편하게 쓰는지는 증명하지 못하므로 다음 단계는 외부 pilot입니다.</p>
+    </DetailItem>
+  </DetailStack>
+  <p class="detail-intro"><a href="https://yongjip.github.io/mergetrain/">프로젝트 소개 보기</a> · <a href="https://github.com/yongjip/mergetrain">GitHub에서 소스와 평가 근거 보기</a></p>
+</DetailSection>

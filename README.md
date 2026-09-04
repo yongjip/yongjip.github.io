@@ -24,6 +24,8 @@ Canonical routes:
 - `/ko/work/text-to-sql/`
 - `/work/warehouse-optimization/`
 - `/ko/work/warehouse-optimization/`
+- `/work/mergetrain/`
+- `/ko/work/mergetrain/`
 - `/methods/seasonality-index/`
 - `/ko/methods/seasonality-index/`
 
