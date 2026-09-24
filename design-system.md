@@ -332,7 +332,7 @@ The type system is simple:
 - IBM Plex Sans / IBM Plex Sans KR for body text
 - IBM Plex Sans KR for Korean headings
 
-The color system is defined in CSS custom properties and is meant to stay stable across pages.
+The color system is defined in CSS custom properties and is meant to stay stable across pages. The default theme is light regardless of the visitor's operating system setting.
 
 The palette is built around:
 
