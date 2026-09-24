@@ -8,9 +8,10 @@ interface Props {
 }
 
 const { enHref, koHref, lang } = Astro.props;
+const uiCopy = SHARED_UI_COPY[lang];
 ---
 
-<nav class="lang-switch" aria-label={SHARED_UI_COPY.language.label}>
-  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en" aria-current={lang === "en" ? "page" : undefined}>{SHARED_UI_COPY.language.en}</a>
-  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko" aria-current={lang === "ko" ? "page" : undefined}>{SHARED_UI_COPY.language.ko}</a>
+<nav class="lang-switch" aria-label={uiCopy.language.label}>
+  <a class={lang === "en" ? "is-active" : undefined} href={enHref} lang="en" aria-current={lang === "en" ? "page" : undefined}>{uiCopy.language.en}</a>
+  <a class={lang === "ko" ? "is-active" : undefined} href={koHref} lang="ko" aria-current={lang === "ko" ? "page" : undefined}>{uiCopy.language.ko}</a>
 </nav>

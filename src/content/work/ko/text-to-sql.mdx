@@ -12,15 +12,15 @@ related:
   - warehouse-optimization
   - seasonality-index
 ogTitle: AI 기반 Text-to-SQL 시스템으로 데이터 접근성을 확장한 방법
-ogDescription: 구조화된 메타데이터, Athena 실행, 검증 루프로 애드혹 분석 시간을 4~10시간에서 1시간 미만으로 줄인 AI 기반 Text-to-SQL 사례입니다.
+ogDescription: 구조화된 메타데이터와 Athena 검증을 활용한 Text-to-SQL 사례입니다. 소요 시간 개선 수치는 당시 운영 경험에 따른 추정치입니다.
 status: 내부 분석 워크플로우로 운영
 scope: 구조화된 메타데이터, 실행, 검증을 포함한 애드혹 분석 지원 시스템.
 publishedAt: "2026-03-23"
-updatedAt: "2026-03-24"
+updatedAt: "2026-09-25"
 facts:
   - label: 결과
-    value: 일반적인 애드혹 분석 시간을 4~10시간에서 1시간 미만으로 줄였습니다.
-resultSummary: "결과: 4~10시간에서 1시간 미만"
+    value: 추정 소요 시간이 약 4~10시간에서 1시간 미만으로 개선됐습니다.
+resultSummary: "추정 결과: 약 4~10시간에서 1시간 미만"
 ---
 
 import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
@@ -39,7 +39,7 @@ import MetricItem from "../../../components/content/MetricItem.astro";
   <DetailColumns>
     <DetailItem title="상황">
       <p>애드혹 분석 요청은 분석가의 시간을 많이 소모하고 있었습니다. 실제 병목은 SQL 문법이 아니라, 어떤 테이블을 봐야 하는지, 컬럼이 무엇을 의미하는지, 비즈니스 로직을 어떻게 연결해야 하는지, 어떤 조인 패턴이 신뢰 가능한지를 매번 다시 해석하는 일이었습니다.</p>
-      <p>그래서 비교적 익숙한 질문도 비싸졌습니다. 복잡한 요청은 4~10시간이 걸리기도 했고, 팀이 한 달에 처리할 수 있는 요청 수 자체를 제한했습니다.</p>
+      <p>그래서 비교적 익숙한 질문도 비싸졌습니다. 당시 운영 경험상 복잡한 요청은 약 4~10시간이 걸리기도 했고, 팀이 한 달에 처리할 수 있는 요청 수 자체를 제한했습니다.</p>
     </DetailItem>
     <DetailItem title="접근">
       <p>분석가가 실제로 데이터 모델을 이해하는 방식을 YAML 기반 구조화 메타데이터 레이어로 정리했습니다. 테이블 정의, 컬럼 의미, 키, 파티셔닝, 조인 패턴, 비즈니스 용어를 모두 AI가 재사용할 수 있는 형태로 만들었습니다.</p>
@@ -73,19 +73,23 @@ import MetricItem from "../../../components/content/MetricItem.astro";
 <DetailSection label="시스템 흐름" title="질문에서 검증된 결과까지">
   <ResponsiveDiagram
     src="/resources/diagrams/text-to-sql-ko.png"
-    alt="사용자 질문에서 도메인과 테이블 선택, 지식 레이어, AI 에이전트, Athena 실행, 결과 검증, 지식 업데이트로 이어지는 시스템 흐름도."
+    mobileSrc="/resources/diagrams/text-to-sql-ko-mobile.png"
+    mobileWidth={450}
+    mobileHeight={912}
+    alt="질문에 맞는 도메인과 메타데이터를 선택하고 SQL을 생성해 Athena에서 실행한 뒤, 결과를 검증·수정하여 전달하고 지식을 업데이트하는 흐름도."
     width={1980}
     height={2760}
   />
   <p class="detail-intro">이 시스템은 SQL 생성에서 끝나지 않았습니다. 실행, 검증, 반복 수정을 거쳐 신뢰 가능한 결과만 전달했습니다.</p>
 </DetailSection>
 
-<DetailSection label="결과" title="구조화된 맥락이 속도와 처리량을 함께 바꿨습니다.">
+<DetailSection label="결과" title="구조화된 맥락이 속도와 처리량을 개선했습니다.">
   <MetricGrid>
-    <MetricItem label="도입 전" value="4~10시간" description="일반적인 애드혹 분석 소요 시간." />
-    <MetricItem label="도입 후" value="1시간 미만" description="구조화된 맥락과 검증 루프 도입 후 소요 시간." />
-    <MetricItem label="처리량" value="20건에서 50건+" description="월간 애드혹 분석 처리 역량의 대략적 변화." />
+    <MetricItem label="도입 전" value="약 4~10시간" description="도입 전 애드혹 분석 소요 시간 추정치." />
+    <MetricItem label="도입 후" value="1시간 미만" description="워크플로우 변경 후 소요 시간 추정치." />
+    <MetricItem label="처리량" value="약 20→50건+" description="월간 애드혹 분석 처리 역량 추정치." />
   </MetricGrid>
+  <p class="detail-intro">위 수치는 당시 운영 경험에 따른 사후 추정치이며, 측정 기간·표본·요청별 기록이 없어 실측 벤치마크로 볼 수 없습니다.</p>
 </DetailSection>
 
 <DetailSection label="배운 점" title="실제 시스템의 핵심은 지식 아키텍처였습니다.">

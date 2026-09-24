@@ -16,7 +16,7 @@ ogDescription: 정제된 과거 수요, 짧은 기간 평균, 요일별 지수�
 format: 정제된 과거 수요, 7일·28일 평균, 요일별 지수를 바탕으로 한 방법론 노트.
 planningUse: forecast, 재고일수, 리드타임을 연결해 발주 시점을 판단합니다.
 publishedAt: "2026-03-23"
-updatedAt: "2026-03-24"
+updatedAt: "2026-09-25"
 facts:
   - label: 활용
     value: forecast, 재고일수, 리드타임을 연결해 발주 시점을 판단합니다.
@@ -27,8 +27,6 @@ import DetailCopy from "../../../components/content/DetailCopy.astro";
 import DetailItem from "../../../components/content/DetailItem.astro";
 import DetailSection from "../../../components/content/DetailSection.astro";
 import DetailStack from "../../../components/content/DetailStack.astro";
-import SourceItem from "../../../components/content/SourceItem.astro";
-import SourceList from "../../../components/content/SourceList.astro";
 
 <DetailSection label="개요" title="소규모 셀러의 Demand Forecasting은 먼저 쓸 수 있는 수요 신호를 만드는 일에서 시작합니다.">
   <DetailColumns>
@@ -96,10 +94,6 @@ import SourceList from "../../../components/content/SourceList.astro";
   </DetailStack>
 </DetailSection>
 
-<DetailSection label="원문" title="출처">
-  <SourceList>
-    <SourceItem>
-      <p>이 페이지는 셀러 측 forecasting과 replenishment에 대한 실무 메모를 포트폴리오용으로 다듬은 버전입니다.</p>
-    </SourceItem>
-  </SourceList>
+<DetailSection label="작성 배경" title="실무 메모를 바탕으로 정리했습니다">
+  <p>이 페이지는 셀러 측 forecasting과 replenishment에 대한 제 실무 메모를 포트폴리오용으로 다듬은 버전입니다. 해당 메모는 별도 공개되지 않았습니다.</p>
 </DetailSection>

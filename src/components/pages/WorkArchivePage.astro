@@ -14,7 +14,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const entries = await getEntries("work", lang);
-const title = lang === "ko" ? "Work | 김용집" : "Work | Yongjip Kim";
+const title = lang === "ko" ? "작업 | 김용집" : "Work | Yongjip Kim";
 const description =
   lang === "ko"
     ? "데이터 시스템, 분석 워크플로우, 운영 도구에 대한 케이스 스터디입니다."
@@ -40,7 +40,7 @@ const heroCopy = lang === "ko" ? "데이터 접근성, 창고 모델링, 운영 
   <main id="main-content" class="site-shell site-shell-home archive-page archive-page-work">
     <SiteHeader lang={lang} enHref="/work/" koHref="/ko/work/" />
     <section class="hero hero-home hero-compact">
-      <p class="eyebrow">{SHARED_UI_COPY.archiveEyebrows.work}</p>
+      <p class="eyebrow">{SHARED_UI_COPY[lang].archiveEyebrows.work}</p>
       <h1>{heading}</h1>
       <p class="hero-copy">{heroCopy}</p>
     </section>
@@ -53,4 +53,3 @@ const heroCopy = lang === "ko" ? "데이터 접근성, 창고 모델링, 운영 
     <SiteFooter text={SITE_FOOTER[lang]} />
   </main>
 </BaseLayout>
-

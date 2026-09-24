@@ -17,35 +17,36 @@ const methodsHref = getIndexPath("method", lang);
 const isHome = pathname === homeHref;
 const isWork = pathname === workHref || pathname.startsWith(workHref);
 const isMethods = pathname === methodsHref || pathname.startsWith(methodsHref);
+const uiCopy = SHARED_UI_COPY[lang];
 ---
 
 <header class={`site-header ${isHome ? "site-header-home" : "site-header-detail"}`}>
   <span class="brand">Yongjip Kim</span>
   <div class="header-actions">
-    <nav class="top-nav" aria-label="Primary">
+    <nav class="top-nav" aria-label={uiCopy.nav.label}>
       <a
         class={`nav-link ${isHome ? "is-active" : ""}`.trim()}
         href={homeHref}
         aria-current={isHome ? "page" : undefined}
       >
-        {SHARED_UI_COPY.nav.home}
+        {uiCopy.nav.home}
       </a>
       <a
         class={`nav-link ${isWork ? "is-active" : ""}`.trim()}
         href={workHref}
         aria-current={isWork ? "page" : undefined}
       >
-        {SHARED_UI_COPY.nav.work}
+        {uiCopy.nav.work}
       </a>
       <a
         class={`nav-link ${isMethods ? "is-active" : ""}`.trim()}
         href={methodsHref}
         aria-current={isMethods ? "page" : undefined}
       >
-        {SHARED_UI_COPY.nav.methods}
+        {uiCopy.nav.methods}
       </a>
     </nav>
-    <div class="profile-links" aria-label="Profiles">
+    <div class="profile-links" aria-label={uiCopy.profilesLabel}>
       <a
         class="icon-link"
         href={PROFILE_LINKS.linkedin}

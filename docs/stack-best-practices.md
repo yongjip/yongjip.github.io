@@ -1,10 +1,10 @@
 # Stack Best Practices
 
-This document captures the current best-practice baseline for the stacks used in this repo, based on the codebase and official docs reviewed on 2026-03-24.
+This document captures the current best-practice baseline for the stacks used in this repo, based on the codebase and official docs reviewed on 2026-09-25.
 
 Current stack:
 
-- Astro 6 with `output: "static"`
+- Astro 7 with `output: "static"`
 - MDX content collections
 - React 19 for optional interactive islands
 - TypeScript in strict mode via `astro/tsconfigs/strict`

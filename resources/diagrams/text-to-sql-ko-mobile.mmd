@@ -1,0 +1,16 @@
+%%{init: {
+  "themeVariables": {
+    "fontSize": "14px"
+  },
+  "flowchart": {
+    "nodeSpacing": 28,
+    "rankSpacing": 34,
+    "padding": 12
+  }
+}}%%
+flowchart TD
+    A["질문"] --> B["도메인과 메타데이터 선택"]
+    B --> C["SQL 생성"]
+    C --> D["Athena 실행"]
+    D --> E["결과 검증·수정"]
+    E --> F["결과 전달·지식 업데이트"]

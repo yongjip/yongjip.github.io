@@ -46,12 +46,16 @@ const collections = {
   },
   methods: {
     requiredLabels: {
-      en: ["Overview", "Method", "Why it matters", "Source"],
-      ko: ["개요", "방법", "왜 중요한가", "원문"],
+      en: ["Overview", "Method", "Why it matters"],
+      ko: ["개요", "방법", "왜 중요한가"],
+    },
+    requiredOneOf: {
+      en: [["Source", "Background"]],
+      ko: [["원문", "작성 배경"]],
     },
     allowedLabels: {
-      en: ["Overview", "Method", "Why it matters", "Source", "Related work"],
-      ko: ["개요", "방법", "왜 중요한가", "원문", "관련 작업"],
+      en: ["Overview", "Method", "Why it matters", "Source", "Background", "Related work"],
+      ko: ["개요", "방법", "왜 중요한가", "원문", "작성 배경", "관련 작업"],
     },
   },
 };
@@ -149,6 +153,14 @@ async function validateCollection(kind) {
         if (!labels.includes(requiredLabel)) {
           issues.push(
             `[${kind}] Missing required section label "${requiredLabel}" in ${path.relative(rootDir, filePath)}.`,
+          );
+        }
+      }
+
+      for (const alternatives of config.requiredOneOf?.[lang] ?? []) {
+        if (!alternatives.some((label) => labels.includes(label))) {
+          issues.push(
+            `[${kind}] Missing one of ${alternatives.map((label) => `"${label}"`).join(" or ")} in ${path.relative(rootDir, filePath)}.`,
           );
         }
       }

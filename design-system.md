@@ -2,7 +2,7 @@
 
 This site is designed as a small, bilingual portfolio for Yongjip Kim.
 
-It is intentionally simple. The goal is not to behave like a product site or a startup landing page. It is meant to read more like a clear professional brief: a short introduction, selected work, a concise experience summary, and a few supporting methods.
+It is intentionally simple. The goal is not to behave like a product site or a startup landing page. It is meant to read more like a clear professional brief: a short introduction, selected work, a brief independent-business note, a concise experience summary, and a few supporting methods.
 
 ## Design Direction
 
@@ -32,9 +32,10 @@ Current structure:
 1. header
 2. hero
 3. selected work
-4. experience
-5. methods
-6. footer
+4. independent work
+5. experience
+6. methods
+7. footer
 
 Its job is to establish identity, credibility, and direction into the real archives.
 
@@ -188,6 +189,7 @@ Note: `lane="wide"` is primarily used to allow diagrams and metric grids to expa
 ### Home
 
 - selected work is a small preview, not a full archive
+- independent work briefly explains Oddfini and links to its current product catalog
 - experience should remain a compact credibility list
 - methods should remain a quiet preview with minimal weight
 
@@ -377,8 +379,7 @@ Profile links open in a new tab.
 
 The home footer should stay minimal.
 
-It should work as a quiet closing note rather than a second navigation bar. For that reason,
-the home page should not repeat LinkedIn and GitHub profile links that already appear in the header.
+It should work as a quiet closing note rather than a second navigation bar. One text link for contacting Yongjip via LinkedIn is useful alongside the profile icons in the header; do not add a second profile menu.
 
 Detail-page footers may still include utility links such as:
 
@@ -439,7 +440,7 @@ This site should feel like:
 
 - a clear professional brief
 - selected work with supporting methods
-- a data and systems portfolio
+- data and systems work alongside independent games and software
 
 It should not feel like:
 

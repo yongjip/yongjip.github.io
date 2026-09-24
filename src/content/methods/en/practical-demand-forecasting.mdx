@@ -16,7 +16,7 @@ ogDescription: "Method note: a practical demand forecasting workflow for small s
 format: Method note built around cleaned demand history, 7-day and 28-day averages, and day-of-week adjustments.
 planningUse: Supports replenishment timing by connecting forecast, inventory days, and lead time.
 publishedAt: "2026-03-23"
-updatedAt: "2026-03-24"
+updatedAt: "2026-09-25"
 facts:
   - label: Planning use
     value: Supports replenishment timing by connecting forecast, inventory days, and lead time.
@@ -27,8 +27,6 @@ import DetailCopy from "../../../components/content/DetailCopy.astro";
 import DetailItem from "../../../components/content/DetailItem.astro";
 import DetailSection from "../../../components/content/DetailSection.astro";
 import DetailStack from "../../../components/content/DetailStack.astro";
-import SourceItem from "../../../components/content/SourceItem.astro";
-import SourceList from "../../../components/content/SourceList.astro";
 
 <DetailSection label="Overview" title="Demand forecasting for small sellers starts with a usable demand signal.">
   <DetailColumns>
@@ -96,10 +94,6 @@ import SourceList from "../../../components/content/SourceList.astro";
   </DetailStack>
 </DetailSection>
 
-<DetailSection label="Source" title="Origin">
-  <SourceList>
-    <SourceItem>
-      <p>This page is a cleaned-up portfolio version of a practical note on seller-side forecasting and replenishment.</p>
-    </SourceItem>
-  </SourceList>
+<DetailSection label="Background" title="From a practical working note">
+  <p>This page is a portfolio adaptation of my working note on seller-side forecasting and replenishment. The note is not separately published.</p>
 </DetailSection>

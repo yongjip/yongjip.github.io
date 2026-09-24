@@ -14,7 +14,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const entries = await getEntries("methods", lang);
-const title = lang === "ko" ? "Methods | 김용집" : "Methods | Yongjip Kim";
+const title = lang === "ko" ? "방법론 | 김용집" : "Methods | Yongjip Kim";
 const description =
   lang === "ko" ? "실무에서 사용한 계획 모델과 방법을 짧게 정리한 노트입니다." : "Short notes on planning models and practical methods used in analytics and operations work.";
 const canonical = toAbsoluteUrl(getIndexPath("method", lang));
@@ -38,7 +38,7 @@ const heroCopy = lang === "ko" ? "케이스 스터디를 보완하는 방법을 
   <main id="main-content" class="site-shell site-shell-home archive-page archive-page-methods">
     <SiteHeader lang={lang} enHref="/methods/" koHref="/ko/methods/" />
     <section class="hero hero-home hero-compact">
-      <p class="eyebrow">{SHARED_UI_COPY.archiveEyebrows.methods}</p>
+      <p class="eyebrow">{SHARED_UI_COPY[lang].archiveEyebrows.methods}</p>
       <h1>{heading}</h1>
       <p class="hero-copy">{heroCopy}</p>
     </section>
@@ -49,4 +49,3 @@ const heroCopy = lang === "ko" ? "케이스 스터디를 보완하는 방법을 
     <SiteFooter text={SITE_FOOTER[lang]} />
   </main>
 </BaseLayout>
-

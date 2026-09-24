@@ -41,11 +41,13 @@ Order:
 1. header
 2. hero
 3. selected work
-4. experience
-5. methods
-6. footer
+4. independent work
+5. experience
+6. methods
+7. footer
 
 Use home as a front page only. It should not become the main archive.
+Keep the independent-work section brief and link to the Oddfini product catalog for current availability, rather than duplicating product status on the portfolio.
 
 ### Case Page
 
@@ -77,7 +79,7 @@ Order:
 4. overview
 5. method
 6. why it matters
-7. source
+7. source or background
 8. related pages
 9. footer
 
@@ -202,8 +204,8 @@ Required section labels (enforced by `npm run check`):
 
 - Work EN: `Overview`, `Results`, `Takeaways`
 - Work KO: `개요`, `결과`, `배운 점`
-- Methods EN: `Overview`, `Method`, `Why it matters`, `Source`
-- Methods KO: `개요`, `방법`, `왜 중요한가`, `원문`
+- Methods EN: `Overview`, `Method`, `Why it matters`, plus `Source` when a source is linked or `Background` when describing an unpublished note
+- Methods KO: `개요`, `방법`, `왜 중요한가`, plus `원문` when a source is linked or `작성 배경` when describing an unpublished note
 
 The allowed label vocabulary is also enforced by `scripts/check-site-consistency.mjs`. If you need a new label, update the script and docs together.
 
@@ -298,7 +300,7 @@ Rendering config:
 
 Production assets:
 
-- `resources/diagrams/*.png`
+- `public/resources/diagrams/*.png`
 
 Build command:
 
@@ -367,7 +369,7 @@ Current roles:
 - header: stable internal navigation, external profile links, and language switch
 - home body: project discovery
 - detail pages: document flow, related pages, and back link
-- home footer: quiet close, not duplicate navigation
+- home footer: quiet close with one text contact path, not duplicate navigation
 
 When a link appears in multiple places, each placement should have a distinct job.
 
@@ -501,7 +503,7 @@ Do not edit `dist/` manually.
 
 This site currently assumes:
 
-- Astro `6.x`
+- Astro `7.x`
 - Node `22.12.0` or newer
 - content collections loaded explicitly through `glob()` loaders
 - Mermaid used as source only, PNG used in production

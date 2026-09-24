@@ -12,15 +12,15 @@ related:
   - warehouse-optimization
   - seasonality-index
 ogTitle: Building an AI-Powered Text-to-SQL System to Scale Data Access
-ogDescription: "Case study: an AI-powered Text-to-SQL system used structured metadata, Athena execution, and validation loops to cut ad-hoc analysis from 4-10 hours to under 1 hour."
+ogDescription: "Case study: structured metadata and Athena validation supported a Text-to-SQL workflow; the reported time savings are retrospective estimates."
 status: Internal workflow in production use
 scope: Structured metadata, execution, and validation around ad-hoc analytics requests.
 publishedAt: "2026-03-23"
-updatedAt: "2026-03-24"
+updatedAt: "2026-09-25"
 facts:
   - label: Outcome
-    value: Typical turnaround dropped from 4-10 hours to under 1 hour.
-resultSummary: "Outcome: 4-10 hours to under 1 hour"
+    value: Estimated turnaround improved from roughly 4-10 hours to under 1 hour.
+resultSummary: "Estimated outcome: roughly 4-10 hours to under 1 hour"
 ---
 
 import ResponsiveDiagram from "../../../components/ResponsiveDiagram.astro";
@@ -41,7 +41,7 @@ import MetricItem from "../../../components/content/MetricItem.astro";
     <DetailItem title="Context">
       <DetailCopy>
         <p>Ad-hoc analytics requests were consuming too much analyst time. In practice, the slow part was not SQL syntax. It was finding the right tables, understanding what columns meant, mapping business logic correctly, and figuring out join patterns that could actually be trusted.</p>
-        <p>That made even routine questions expensive. Complex requests often took 4 to 10 hours, which limited how many requests the team could realistically support each month.</p>
+        <p>That made even routine questions expensive. From operating recollection, complex requests could take roughly 4 to 10 hours, which limited how many requests the team could support each month.</p>
       </DetailCopy>
     </DetailItem>
     <DetailItem title="Approach">
@@ -78,19 +78,23 @@ import MetricItem from "../../../components/content/MetricItem.astro";
 <DetailSection label="System flow" title="From question to validated answer">
   <ResponsiveDiagram
     src="/resources/diagrams/text-to-sql-en.png"
-    alt="Flow diagram from user question to validated answer through domain selection, structured knowledge, AI-generated SQL, Athena execution, result validation, and knowledge updates."
+    mobileSrc="/resources/diagrams/text-to-sql-en-mobile.png"
+    mobileWidth={472}
+    mobileHeight={912}
+    alt="Flow diagram: choose a domain and metadata for a question, generate SQL, run it in Athena, validate and revise as needed, then deliver the result and update knowledge."
     width={2174}
     height={2824}
   />
   <p class="detail-intro">The system did not stop at generation. It executed, checked, and iterated until the result was reliable enough for review.</p>
 </DetailSection>
 
-<DetailSection label="Results" title="Structured context changed both speed and capacity.">
+<DetailSection label="Results" title="Structured context improved speed and capacity.">
   <MetricGrid>
-    <MetricItem label="Before" value="4 to 10 hrs" description="Typical ad-hoc turnaround before the system." />
-    <MetricItem label="After" value="Under 1 hr" description="Turnaround after structured context and validation loops." />
-    <MetricItem label="Capacity" value="20 to 50+" description="Approximate monthly ad-hoc capacity after the workflow improved." />
+    <MetricItem label="Before" value="~4 to 10 hrs" description="Estimated ad-hoc turnaround before the system." />
+    <MetricItem label="After" value="Under 1 hr" description="Estimated turnaround after the workflow changed." />
+    <MetricItem label="Capacity" value="~20 to 50+" description="Estimated monthly ad-hoc request capacity." />
   </MetricGrid>
+  <p class="detail-intro">These are retrospective operating estimates, not a measured benchmark. The measurement period, sample, and request-level records are unavailable.</p>
 </DetailSection>
 
 <DetailSection label="Takeaways" title="The real system was the knowledge architecture.">

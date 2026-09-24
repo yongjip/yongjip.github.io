@@ -1,10 +1,10 @@
 # yongjip.github.io
 
-Portfolio site for Yongjip Kim, rebuilt as an Astro static site with React available for future interactive islands.
+Portfolio site for Yongjip Kim, covering data systems work and independent games and software through Oddfini. It is an Astro static site with React available for future interactive islands.
 
 ## Stack
 
-- Astro static output
+- Astro 7 static output
 - React available for future interactive islands
 - MDX content collections for bilingual case studies and methods
 - Mermaid as diagram source, prebuilt PNG as the published diagram format

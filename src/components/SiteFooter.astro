@@ -1,11 +1,14 @@
 ---
 interface Props {
   text: string;
+  contactLabel?: string;
+  contactHref?: string;
 }
 
-const { text } = Astro.props;
+const { text, contactLabel, contactHref } = Astro.props;
 ---
 
 <footer class="site-footer">
   <p>{text}</p>
+  {contactLabel && contactHref && <a href={contactHref}>{contactLabel}</a>}
 </footer>

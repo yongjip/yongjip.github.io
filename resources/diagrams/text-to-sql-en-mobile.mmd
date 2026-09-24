@@ -1,0 +1,16 @@
+%%{init: {
+  "themeVariables": {
+    "fontSize": "14px"
+  },
+  "flowchart": {
+    "nodeSpacing": 28,
+    "rankSpacing": 34,
+    "padding": 12
+  }
+}}%%
+flowchart TD
+    A["Question"] --> B["Choose domain and metadata"]
+    B --> C["Generate SQL"]
+    C --> D["Run in Athena"]
+    D --> E["Validate and revise"]
+    E --> F["Deliver and update knowledge"]
