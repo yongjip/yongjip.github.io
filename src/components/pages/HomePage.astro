@@ -5,7 +5,7 @@ import MethodList from "../MethodList.astro";
 import SiteFooter from "../SiteFooter.astro";
 import SiteHeader from "../SiteHeader.astro";
 import WorkCard from "../WorkCard.astro";
-import { EXPERIENCE_ITEMS, HOME_COPY, PROFILE_LINKS, SHARED_UI_COPY } from "../../data/site";
+import { EXPERIENCE_ITEMS, HOME_COPY, OPEN_SOURCE_COPY, PROFILE_LINKS, SHARED_UI_COPY } from "../../data/site";
 import { getFeaturedWork, getMethodPreview } from "../../lib/content";
 import { getHomePath, getIndexPath, toAbsoluteUrl } from "../../lib/routes";
 import { buildHomeSchemas } from "../../lib/seo";
@@ -18,6 +18,7 @@ const { lang } = Astro.props;
 const featuredWork = await getFeaturedWork(lang);
 const methods = await getMethodPreview(lang, 1);
 const copy = HOME_COPY[lang];
+const openSource = OPEN_SOURCE_COPY[lang];
 const uiCopy = SHARED_UI_COPY[lang];
 const canonical = toAbsoluteUrl(getHomePath(lang));
 const metadata =
@@ -80,6 +81,36 @@ const metadata =
       <div class="section-group">
         <p class="section-intro">{copy.independentIntro}</p>
         <a class="text-link section-cta" href={copy.independentHref}>{copy.independentCta}</a>
+        <div class="independent-source-group">
+          <h3>{openSource.toolsHeading}</h3>
+          <ul class="independent-source-list">
+            {openSource.tools.map((item) => (
+              <li>
+                <p><a class="text-link" href={item.href}>{item.title}</a> · {item.status}</p>
+                <p class="section-intro">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="independent-source-group">
+          <h3>{openSource.contributionsHeading}</h3>
+          <ul class="independent-source-list">
+            {openSource.contributions.map((item) => (
+              <li>
+                <p><a class="text-link" href={item.href}>{item.title}</a> · {item.status}</p>
+                <p class="section-intro">{item.description}</p>
+                {item.links.length > 0 && (
+                  <p class="contribution-links">
+                    {item.links.map((link, index) => (
+                      <>{index > 0 && " · "}<a class="text-link" href={link.href}>{link.label}</a></>
+                    ))}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+          <p class="source-status-note">{openSource.checkedOn}</p>
+        </div>
       </div>
     </section>
 

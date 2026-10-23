@@ -3,8 +3,8 @@ id: mergetrain
 lang: ko
 title: 병렬 코딩 에이전트를 위한 로컬 통합 큐 mergetrain
 shortTitle: "mergetrain: 코딩 에이전트 로컬 통합 큐"
-description: 완료된 에이전트 브랜치를 순서대로 조립하고 결합 상태를 테스트한 뒤, 명시적으로 승인된 Git push만 실행하는 오픈소스 로컬 큐를 만들었습니다.
-summary: mergetrain은 병렬 코딩 에이전트의 브랜치를 하나의 순서 있는 검증·승인·통합 워크플로우로 바꾸며 개발자 컴퓨터에서 동작합니다.
+description: 완료된 에이전트 브랜치를 조립하고 결합 상태를 테스트한 뒤, 명시적으로 승인된 Git push만 실행하는 오픈소스 로컬 큐를 만들었습니다.
+summary: mergetrain은 병렬 코딩 에이전트의 브랜치를 하나의 검증·승인·통합 워크플로우로 바꾸며 개발자 컴퓨터에서 동작합니다.
 kind: work
 featured: true
 order: 3
@@ -16,7 +16,7 @@ ogDescription: exact commit handoff, 결합 검증, 승인 기반 atomic push, �
 status: 공개 오픈소스 프로젝트
 scope: Claude Code, Codex 등 코딩 에이전트 worktree의 로컬 통합.
 publishedAt: "2026-06-28"
-updatedAt: "2026-09-25"
+updatedAt: "2026-10-24"
 facts:
   - label: 제품
     value: 호스팅 control plane 없이 로컬 상태와 6개의 안정된 CLI 명령으로 운영합니다.
@@ -39,7 +39,7 @@ import MetricItem from "../../../components/content/MetricItem.astro";
       <p>공통 경계가 없으면 개발자가 직접 queue가 되어 브랜치를 rebase하고, 테스트를 반복하고, 어떤 에이전트가 integration branch를 갱신할지 정해야 합니다.</p>
     </DetailItem>
     <DetailItem title="접근">
-      <p>mergetrain을 local-first integration runtime으로 만들었습니다. 에이전트는 완료한 exact revision을 commit하고 enqueue하며, 하나의 runner가 순서대로 조립하고 결합 상태를 검증한 뒤 명시적으로 승인된 atomic Git push를 한 번 수행합니다.</p>
+      <p>mergetrain을 local-first integration runtime으로 만들었습니다. 에이전트는 완료한 exact revision을 commit하고 enqueue하며, 하나의 runner가 조립하고 결합 상태를 검증한 뒤 명시적으로 승인된 atomic Git push를 수행합니다.</p>
       <p>계정이나 hosted control plane은 두지 않았습니다. queue 상태, lock, recovery evidence가 repository 가까이에 남고 사람과 코딩 에이전트가 같은 상태를 읽도록 설계했습니다.</p>
     </DetailItem>
   </DetailColumns>
@@ -51,7 +51,7 @@ import MetricItem from "../../../components/content/MetricItem.astro";
       <p>에이전트가 완료한 base와 task commit을 정확히 넘깁니다. 이후 branch가 움직여도 train에 들어가는 작업이 조용히 바뀌지 않습니다.</p>
     </DetailItem>
     <DetailItem title="결합 검증">
-      <p>하나의 fenced runner가 job을 순서대로 merge하고 결합 tree에서 gate를 실행합니다. 개별 branch에서는 보이지 않고 함께 조립했을 때만 나타나는 실패도 분리합니다.</p>
+      <p>하나의 fenced runner가 job을 merge하고 결합 tree에서 gate를 실행합니다. 기본 batch 모드는 실패한 제출을 분리해 수정을 기다리는 동안 통과한 작업을 먼저 반영합니다. 선택 가능한 ordered 모드는 앞선 제출이 해결될 때까지 뒤의 반영을 기다립니다.</p>
     </DetailItem>
     <DetailItem title="범위가 정해진 deploy">
       <p>수동·자동 경로 모두 승인을 destination, execution policy, 정확한 deploy plan에 묶습니다. plan이 달라지면 같은 작업이라고 추측하지 않고 중단합니다.</p>

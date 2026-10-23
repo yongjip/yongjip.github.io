@@ -3,8 +3,8 @@ id: mergetrain
 lang: en
 title: "Building mergetrain: A Local Integration Queue for Parallel Coding Agents"
 shortTitle: "mergetrain: Local Integration for Coding Agents"
-description: Built an open-source local queue that orders committed agent branches, tests their combined result, and keeps the final Git push behind an explicit approval boundary.
-summary: mergetrain turns parallel coding-agent branches into one ordered, tested, approval-gated integration workflow that runs on the developer's machine.
+description: Built an open-source local queue that combines committed agent branches, tests the result, and keeps the final Git push behind an explicit approval boundary.
+summary: mergetrain turns parallel coding-agent branches into one tested, approval-gated integration workflow that runs on the developer's machine.
 kind: work
 featured: true
 order: 3
@@ -16,7 +16,7 @@ ogDescription: A case study on designing a local-first queue for exact-commit ha
 status: Public open-source project
 scope: Local integration for Claude Code, Codex, and other coding-agent worktrees.
 publishedAt: "2026-06-28"
-updatedAt: "2026-09-25"
+updatedAt: "2026-10-24"
 facts:
   - label: Product
     value: Six stable CLI verbs with local queue state and no hosted control plane.
@@ -39,7 +39,7 @@ import MetricItem from "../../../components/content/MetricItem.astro";
       <p>Without a shared boundary, the developer becomes the queue: rebasing finished branches, repeating test runs, and deciding which agent may update the integration branch.</p>
     </DetailItem>
     <DetailItem title="Approach">
-      <p>I built mergetrain as a local-first integration runtime. Agents commit and enqueue exact revisions, while one runner assembles them in order, validates the combined tree, and performs one explicitly approved atomic Git push.</p>
+      <p>I built mergetrain as a local-first integration runtime. Agents commit and enqueue exact revisions, while one runner combines them, validates the result, and performs an explicitly approved atomic Git push.</p>
       <p>The product deliberately avoids accounts and a hosted control plane. Queue state, locks, and recovery evidence stay close to the repository and remain readable by both people and coding agents.</p>
     </DetailItem>
   </DetailColumns>
@@ -51,7 +51,7 @@ import MetricItem from "../../../components/content/MetricItem.astro";
       <p>An agent hands off the exact base and task commits it finished. Later branch movement cannot silently change the work that enters the train.</p>
     </DetailItem>
     <DetailItem title="Combined validation">
-      <p>One fenced runner merges queued jobs in order and runs configured gates against the combined tree, including isolation of failures that only appear when branches are assembled together.</p>
+      <p>One fenced runner merges queued jobs and runs configured gates against the combined tree. The default batch mode isolates failed submissions so passing work can land while repairs continue. Optional ordered mode keeps an unresolved earlier submission ahead of later landings.</p>
     </DetailItem>
     <DetailItem title="Bounded deployment">
       <p>Manual and unattended paths bind approval to the destination, execution policy, and exact deployment plan. A changed plan blocks instead of being inferred as equivalent.</p>

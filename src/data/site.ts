@@ -67,7 +67,7 @@ export const ARTICLE_DATE_COPY = {
 
 export const HOME_COPY = {
   en: {
-    eyebrow: "Director, Data Platform at Techtaka",
+    eyebrow: "Head of Data Platform at Techtaka",
     title: "I build simple data systems for real operations work.",
     description:
       "Data platforms, analytics workflows, and AI-assisted internal tools for teams that need usable systems, not abstract demos.",
@@ -80,14 +80,14 @@ export const HOME_COPY = {
     independentLabel: "Independent work",
     independentHeading: "Games and software at Oddfini",
     independentIntro:
-      "I run Oddfini, an independent game and software business, alongside my data platform work. Its public projects include TERATORN, Whir, Codex Control, and mergetrain. The Oddfini site has current availability and support details.",
+      "I build games and software under Oddfini. The Oddfini site has current projects, releases, and support details.",
     independentCta: "Explore Oddfini products",
     independentHref: "https://oddfini.com/products/",
     contactLabel: "Contact via LinkedIn",
     footer: SITE_FOOTER.en,
   },
   ko: {
-    eyebrow: "테크타카 Director, Data Platform",
+    eyebrow: "테크타카 Head of Data Platform",
     title: "실제 운영 문제를 위한 단순한 데이터 시스템을 만듭니다.",
     description:
       "데이터 플랫폼, 분석 워크플로우, AI 기반 내부 도구를 실제 운영에 맞는 형태로 구축합니다.",
@@ -99,7 +99,7 @@ export const HOME_COPY = {
     independentLabel: "독립 작업",
     independentHeading: "Oddfini에서 만드는 게임과 소프트웨어",
     independentIntro:
-      "데이터 플랫폼 업무와 함께 독립 게임·소프트웨어 사업 Oddfini를 운영합니다. 공개된 작업에는 TERATORN, Whir, Codex Control, mergetrain이 있습니다. 최신 배포 상태와 지원 정보는 Oddfini 사이트에서 확인할 수 있습니다.",
+      "Oddfini에서 게임과 소프트웨어를 만듭니다. 현재 프로젝트, 배포 정보와 지원 안내는 Oddfini 사이트에서 확인할 수 있습니다.",
     independentCta: "Oddfini 제품 보기",
     independentHref: "https://oddfini.com/ko/products/",
     contactLabel: "LinkedIn으로 연락하기",
@@ -107,11 +107,84 @@ export const HOME_COPY = {
   },
 } as const;
 
+export const OPEN_SOURCE_COPY = {
+  en: {
+    toolsHeading: "Recent open-source tool",
+    contributionsHeading: "Open-source contributions",
+    checkedOn: "Contribution status checked on 2026-10-24.",
+    tools: [
+      {
+        title: "song2mv",
+        href: "https://github.com/yongjip/song2mv",
+        status: "Alpha",
+        description:
+          "Aligns audio and lyrics to a beat grid and exports LRC, SRT, and word timings. Video rendering is experimental.",
+      },
+    ],
+    contributions: [
+      {
+        title: "PhotoCraft #8087",
+        href: "https://github.com/storytold/photocraft/pull/8087",
+        status: "Merged",
+        description: "Fixed Liquify source reads to prevent tile-edge artifacts.",
+        links: [],
+      },
+      {
+        title: "Streamlit",
+        href: "https://github.com/streamlit/streamlit",
+        status: "Reports resolved",
+        description:
+          "Reported and diagnosed AppTest page-state and Components v2 bugs. Maintainers implemented and merged the fixes.",
+        links: [
+          { label: "#17249", href: "https://github.com/streamlit/streamlit/issues/17249" },
+          { label: "#17216", href: "https://github.com/streamlit/streamlit/issues/17216" },
+          { label: "#17215", href: "https://github.com/streamlit/streamlit/issues/17215" },
+        ],
+      },
+    ],
+  },
+  ko: {
+    toolsHeading: "새 오픈소스 도구",
+    contributionsHeading: "오픈소스 기여",
+    checkedOn: "기여 상태 확인: 2026-10-24.",
+    tools: [
+      {
+        title: "song2mv",
+        href: "https://github.com/yongjip/song2mv",
+        status: "알파",
+        description:
+          "음원과 가사를 비트에 맞춰 LRC·SRT와 단어별 타이밍을 만듭니다. 영상 렌더링은 실험 단계입니다.",
+      },
+    ],
+    contributions: [
+      {
+        title: "PhotoCraft #8087",
+        href: "https://github.com/storytold/photocraft/pull/8087",
+        status: "병합 완료",
+        description: "Liquify가 원본 픽셀을 읽는 범위를 고쳐 타일 경계의 이미지 오류를 수정했습니다.",
+        links: [],
+      },
+      {
+        title: "Streamlit",
+        href: "https://github.com/streamlit/streamlit",
+        status: "보고한 버그 해결",
+        description:
+          "AppTest 페이지 상태와 Components v2의 버그를 재현·분석해 보고했습니다. 유지보수 담당자가 수정 코드를 작성·병합했습니다.",
+        links: [
+          { label: "#17249", href: "https://github.com/streamlit/streamlit/issues/17249" },
+          { label: "#17216", href: "https://github.com/streamlit/streamlit/issues/17216" },
+          { label: "#17215", href: "https://github.com/streamlit/streamlit/issues/17215" },
+        ],
+      },
+    ],
+  },
+} as const;
+
 export const EXPERIENCE_ITEMS = {
   en: [
     {
       title: "Techtaka",
-      role: "Director, Data Platform",
+      role: "Head of Data Platform",
       paragraphs: [
         "Built and operated a lake-based data platform in a 2-person team while supporting analytics and internal systems, then extended it into practical AI-assisted workflows including Text-to-SQL.",
       ],
@@ -134,7 +207,7 @@ export const EXPERIENCE_ITEMS = {
   ko: [
     {
       title: "테크타카",
-      role: "Director, Data Platform",
+      role: "Head of Data Platform",
       paragraphs: [
         "2인 팀에서 데이터 레이크 기반 플랫폼을 구축·운영하며 분석과 내부 시스템 개발을 함께 맡았고, 이후 Text-to-SQL을 포함한 실용적인 AI 기반 워크플로우로 확장했습니다.",
       ],
