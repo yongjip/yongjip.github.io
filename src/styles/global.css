@@ -669,12 +669,6 @@ html[lang="ko"] .article-header h1 {
   font-size: 0.9rem;
 }
 
-.source-status-note {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 0.82rem;
-}
-
 .section-list .section-heading h2,
 .section-methods .section-heading h2 {
   font-size: clamp(1.45rem, 2.6vw, 2.05rem);

@@ -111,7 +111,6 @@ export const OPEN_SOURCE_COPY = {
   en: {
     toolsHeading: "Recent open-source tool",
     contributionsHeading: "Open-source contributions",
-    checkedOn: "Contribution status checked on 2026-10-24.",
     tools: [
       {
         title: "song2mv",
@@ -123,22 +122,20 @@ export const OPEN_SOURCE_COPY = {
     ],
     contributions: [
       {
-        title: "PhotoCraft #8087",
+        title: "PhotoCraft",
         href: "https://github.com/storytold/photocraft/pull/8087",
-        status: "Merged",
-        description: "Fixed Liquify source reads to prevent tile-edge artifacts.",
+        description: "Improved Liquify rendering at tile boundaries.",
         links: [],
       },
       {
         title: "Streamlit",
-        href: "https://github.com/streamlit/streamlit",
-        status: "3 fixes merged",
+        href: "https://github.com/streamlit/streamlit/issues/17249",
         description:
-          "Reproduced and diagnosed AppTest page-state and Components v2 bugs. Maintainers implemented the fixes in three merged PRs.",
+          "Contributed bug reproductions and root-cause analysis for AppTest and Components v2.",
         links: [
-          { label: "#17249 → PR #17305", href: "https://github.com/streamlit/streamlit/pull/17305" },
-          { label: "#17216 → PR #17331", href: "https://github.com/streamlit/streamlit/pull/17331" },
-          { label: "#17215 → PR #17471", href: "https://github.com/streamlit/streamlit/pull/17471" },
+          { label: "Page state", href: "https://github.com/streamlit/streamlit/pull/17305" },
+          { label: "Component registration", href: "https://github.com/streamlit/streamlit/pull/17331" },
+          { label: "Queued triggers", href: "https://github.com/streamlit/streamlit/pull/17471" },
         ],
       },
     ],
@@ -146,7 +143,6 @@ export const OPEN_SOURCE_COPY = {
   ko: {
     toolsHeading: "새 오픈소스 도구",
     contributionsHeading: "오픈소스 기여",
-    checkedOn: "기여 상태 확인: 2026-10-24.",
     tools: [
       {
         title: "song2mv",
@@ -158,22 +154,20 @@ export const OPEN_SOURCE_COPY = {
     ],
     contributions: [
       {
-        title: "PhotoCraft #8087",
+        title: "PhotoCraft",
         href: "https://github.com/storytold/photocraft/pull/8087",
-        status: "병합 완료",
-        description: "Liquify가 원본 픽셀을 읽는 범위를 고쳐 타일 경계의 이미지 오류를 수정했습니다.",
+        description: "Liquify의 타일 경계 렌더링 오류를 개선했습니다.",
         links: [],
       },
       {
         title: "Streamlit",
-        href: "https://github.com/streamlit/streamlit",
-        status: "수정 PR 3건 병합",
+        href: "https://github.com/streamlit/streamlit/issues/17249",
         description:
-          "AppTest 페이지 상태와 Components v2 버그를 재현·분석해 이슈를 등록했습니다. 유지보수 담당자가 수정 코드를 작성하고 PR을 병합했습니다.",
+          "AppTest와 Components v2의 버그를 재현하고 원인을 분석해 개선에 기여했습니다.",
         links: [
-          { label: "#17249 → PR #17305", href: "https://github.com/streamlit/streamlit/pull/17305" },
-          { label: "#17216 → PR #17331", href: "https://github.com/streamlit/streamlit/pull/17331" },
-          { label: "#17215 → PR #17471", href: "https://github.com/streamlit/streamlit/pull/17471" },
+          { label: "페이지 상태", href: "https://github.com/streamlit/streamlit/pull/17305" },
+          { label: "컴포넌트 등록", href: "https://github.com/streamlit/streamlit/pull/17331" },
+          { label: "이벤트 전달", href: "https://github.com/streamlit/streamlit/pull/17471" },
         ],
       },
     ],

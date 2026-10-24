@@ -97,7 +97,7 @@ const metadata =
           <ul class="independent-source-list">
             {openSource.contributions.map((item) => (
               <li>
-                <p><a class="text-link" href={item.href}>{item.title}</a> · {item.status}</p>
+                <p><a class="text-link" href={item.href}>{item.title}</a></p>
                 <p class="section-intro">{item.description}</p>
                 {item.links.length > 0 && (
                   <p class="contribution-links">
@@ -109,7 +109,6 @@ const metadata =
               </li>
             ))}
           </ul>
-          <p class="source-status-note">{openSource.checkedOn}</p>
         </div>
       </div>
     </section>
