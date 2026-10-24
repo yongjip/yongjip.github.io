@@ -132,13 +132,13 @@ export const OPEN_SOURCE_COPY = {
       {
         title: "Streamlit",
         href: "https://github.com/streamlit/streamlit",
-        status: "Reports resolved",
+        status: "3 fixes merged",
         description:
-          "Reported and diagnosed AppTest page-state and Components v2 bugs. Maintainers implemented and merged the fixes.",
+          "Reproduced and diagnosed AppTest page-state and Components v2 bugs. Maintainers implemented the fixes in three merged PRs.",
         links: [
-          { label: "#17249", href: "https://github.com/streamlit/streamlit/issues/17249" },
-          { label: "#17216", href: "https://github.com/streamlit/streamlit/issues/17216" },
-          { label: "#17215", href: "https://github.com/streamlit/streamlit/issues/17215" },
+          { label: "#17249 → PR #17305", href: "https://github.com/streamlit/streamlit/pull/17305" },
+          { label: "#17216 → PR #17331", href: "https://github.com/streamlit/streamlit/pull/17331" },
+          { label: "#17215 → PR #17471", href: "https://github.com/streamlit/streamlit/pull/17471" },
         ],
       },
     ],
@@ -167,13 +167,13 @@ export const OPEN_SOURCE_COPY = {
       {
         title: "Streamlit",
         href: "https://github.com/streamlit/streamlit",
-        status: "보고한 버그 해결",
+        status: "수정 PR 3건 병합",
         description:
-          "AppTest 페이지 상태와 Components v2의 버그를 재현·분석해 보고했습니다. 유지보수 담당자가 수정 코드를 작성·병합했습니다.",
+          "AppTest 페이지 상태와 Components v2 버그를 재현·분석해 이슈를 등록했습니다. 유지보수 담당자가 수정 코드를 작성하고 PR을 병합했습니다.",
         links: [
-          { label: "#17249", href: "https://github.com/streamlit/streamlit/issues/17249" },
-          { label: "#17216", href: "https://github.com/streamlit/streamlit/issues/17216" },
-          { label: "#17215", href: "https://github.com/streamlit/streamlit/issues/17215" },
+          { label: "#17249 → PR #17305", href: "https://github.com/streamlit/streamlit/pull/17305" },
+          { label: "#17216 → PR #17331", href: "https://github.com/streamlit/streamlit/pull/17331" },
+          { label: "#17215 → PR #17471", href: "https://github.com/streamlit/streamlit/pull/17471" },
         ],
       },
     ],
